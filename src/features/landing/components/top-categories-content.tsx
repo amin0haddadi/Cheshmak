@@ -45,7 +45,7 @@ export function TopCategoriesContent() {
           )}
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
           <div className="absolute inset-0 flex items-end justify-center pb-6">
-            <h3 className="text-white text-lg font-semibold group-hover:text-primary transition-colors">
+            <h3 className="text-white text-lg font-semibold group-hover:text-mark transition-colors">
               {category.name}
             </h3>
           </div>

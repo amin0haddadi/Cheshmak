@@ -37,7 +37,7 @@ export function TrendingProducts() {
           </div>
           <Link
             href="/shop"
-            className="text-primary font-medium hover:underline"
+            className="text-primary font-medium hover:underline transition-colors"
           >
             مشاهده همه محصولات ←
           </Link>

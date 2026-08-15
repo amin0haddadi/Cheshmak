@@ -29,7 +29,7 @@ export function InstagramFeed() {
               fill
               className="object-cover transition-transform duration-500 group-hover:scale-110"
             />
-            <div className="absolute inset-0 bg-[#d05278]/0 group-hover:bg-[#d05278]/60 transition-colors flex items-center justify-center">
+            <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/60 transition-colors flex items-center justify-center">
               <Instagram className="h-8 w-8 text-white opacity-0 group-hover:opacity-100 transition-opacity" />
             </div>
           </a>

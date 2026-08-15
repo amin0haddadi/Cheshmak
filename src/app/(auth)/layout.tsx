@@ -19,9 +19,7 @@ export default function AuthLayout({
                 width={180}
                 height={60}
                 priority
-                style={{
-                  filter: 'brightness(0) saturate(100%) invert(18%) sepia(90%) saturate(2500%) hue-rotate(320deg) brightness(0.75) contrast(1.2)',
-                }}
+                className="logo-header"
               />
             </div>
           </Link>

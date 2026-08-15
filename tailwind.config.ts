@@ -44,42 +44,30 @@ const config: Config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // Cheshmak custom colors
-        rose: {
-          50: "#FFF5F5",
-          100: "#FFEBEB",
-          200: "#FED7D7",
-          300: "#FEB2B2",
-          400: "#FC8181",
-          500: "#F56565",
-          600: "#E53E3E",
-          700: "#C53030",
-          800: "#9B2C2C",
-          900: "#742A2A",
+        mark: {
+          DEFAULT: "hsl(var(--mark))",
+          foreground: "hsl(var(--mark-foreground))",
         },
-        blush: {
-          50: "#FDF2F8",
-          100: "#FCE7F3",
-          200: "#FBCFE8",
-          300: "#F9A8D4",
-          400: "#F472B6",
-          500: "#EC4899",
-          600: "#DB2777",
-          700: "#BE185D",
-          800: "#9D174D",
-          900: "#831843",
-        },
-        // Original theme pink color
-        peach: {
-          DEFAULT: "#fcedea",
-          light: "#fef5f3",
-          dark: "#f8d8d2",
+        mist: {
+          DEFAULT: "#F1F3F5",
+          light: "#F7F8F9",
+          dark: "#DDE2E6",
         },
       },
       fontFamily: {
         sans: ["var(--font-estedad)", "Tahoma", "sans-serif"],
         display: ["var(--font-estedad)", "Tahoma", "sans-serif"],
         nastaliq: ["var(--font-nastaliq)", "Tahoma", "serif"],
+      },
+      backgroundImage: {
+        metal:
+          "linear-gradient(145deg,rgb(230, 234, 238) 0%,rgb(222, 227, 233) 20%,rgb(211, 215, 219) 46%,rgb(201, 208, 214) 53%,rgb(204, 210, 218) 80%,rgb(229, 232, 235) 100%)",
+        "metal-text":
+          "linear-gradient(180deg, #f4f5f6 0%, #c5c9ce 36%, #8b9299 52%, #dfe2e5 100%)",
+      },
+      boxShadow: {
+        metal:
+          "inset 0 1px 0 rgba(255,255,255,0.8), inset 0 -1px 0 rgba(26,32,38,0.14), 0 1px 2px rgba(26,32,38,0.1)",
       },
       borderRadius: {
         lg: "var(--radius)",

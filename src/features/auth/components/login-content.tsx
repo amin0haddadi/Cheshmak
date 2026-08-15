@@ -105,7 +105,7 @@ export function LoginContent() {
             <Label htmlFor="password">رمز عبور</Label>
             <Link
               href="/forgot-password"
-              className="text-sm text-primary hover:underline"
+            className="text-sm text-primary hover:underline transition-colors"
             >
               رمز عبور را فراموش کرده‌اید؟
             </Link>
@@ -202,7 +202,7 @@ export function LoginContent() {
 
       <p className="text-center text-sm text-muted-foreground mt-2">
         حساب کاربری ندارید؟{" "}
-        <Link href="/register" className="text-primary hover:underline">
+        <Link href="/register" className="text-primary hover:underline transition-colors">
           ثبت نام
         </Link>
       </p>

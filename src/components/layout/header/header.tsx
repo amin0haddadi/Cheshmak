@@ -58,7 +58,7 @@ export function Header() {
           className={cn(
             "transition-all duration-300 px-[15px] md:px-[40px] lg:px-[70px]",
             isPromoVisible ? "pt-[55px] md:pt-10" : "pt-[45px] md:pt-0",
-            isScrolled && "fixed top-0 left-0 right-0 shadow-md bg-peach/90 !py-1"
+            isScrolled && "fixed top-0 left-0 right-0 shadow-md bg-mist/90 !py-1"
           )}
         >
           <div className="w-full">
@@ -73,9 +73,6 @@ export function Header() {
                     height={60}
                     priority
                     className="logo-header"
-                    style={{
-                      filter: 'brightness(0) saturate(100%) invert(18%) sepia(95%) saturate(3000%) hue-rotate(320deg) brightness(0.6) contrast(1.3)',
-                    }}
                   />
                 </div>
               </Link>
@@ -85,22 +82,22 @@ export function Header() {
 
               {/* Header Actions - Hidden on mobile, shown in mobile menu instead */}
               <div className="hidden lg:flex items-center gap-11">
-                <Link href="/faq" className="text-[#222222] hover:text-[#d05278] transition-colors">
+                <Link href="/faq" className="text-[#222222] hover:text-mark transition-colors">
                   <Search className="h-5 w-5" />
                 </Link>
 
-                <Link href="/profile" className="text-[#222222] hover:text-[#d05278] transition-colors">
+                <Link href="/profile" className="text-[#222222] hover:text-mark transition-colors">
                   <User className="h-5 w-5" />
                 </Link>
 
-                <Link href="/wishlist" className="text-[#222222] hover:text-[#d05278] transition-colors">
+                <Link href="/wishlist" className="text-[#222222] hover:text-mark transition-colors">
                   <Heart className="h-5 w-5" />
                 </Link>
 
-                <Link href="/cart" className="flex items-center text-[#222222] hover:text-[#d05278] transition-colors">
+                <Link href="/cart" className="flex items-center text-[#222222] hover:text-mark transition-colors">
                   <ShoppingBag className="h-5 w-5" />
                   {cartItems.length > 0 && (
-                    <span className="ml-1 w-[22px] h-[22px] rounded-full bg-[#d05278] text-white text-xs font-bold flex items-center justify-center">
+                    <span className="ml-1 w-[22px] h-[22px] rounded-full bg-primary text-primary-foreground text-xs font-bold flex items-center justify-center">
                       {cartItems.length}
                     </span>
                   )}

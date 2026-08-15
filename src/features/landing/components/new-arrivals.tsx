@@ -37,7 +37,7 @@ export function NewArrivals() {
           </div>
           <Link
             href="/shop?sort=-created_at"
-            className="text-primary font-medium hover:underline"
+            className="text-primary font-medium hover:underline transition-colors"
           >
             مشاهده همه جدیدها ←
           </Link>

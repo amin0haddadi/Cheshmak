@@ -91,7 +91,7 @@ export function ProfileContent() {
         <div className="container-custom">
           <p className="text-center text-muted-foreground">
             لطفاً ابتدا{" "}
-            <Link href="/login" className="text-primary hover:underline">
+            <Link href="/login" className="text-primary hover:underline transition-colors">
               وارد حساب کاربری خود
             </Link>{" "}
             شوید.

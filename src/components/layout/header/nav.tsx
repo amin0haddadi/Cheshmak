@@ -26,8 +26,8 @@ export function Nav({ items, className }: NavProps) {
             <Link
               href={item.path}
               className={cn(
-                "flex items-center gap-1 text-sm font-medium transition-colors hover:text-[#d05278]",
-                isActive ? "text-[#d05278]" : "text-[#222222]"
+                "flex items-center gap-1 text-sm font-medium transition-colors hover:text-mark",
+                isActive ? "text-primary" : "text-[#222222]"
               )}
             >
               {item.name}
@@ -45,9 +45,9 @@ export function Nav({ items, className }: NavProps) {
                       key={child.name}
                       href={child.path}
                       className={cn(
-                        "block px-10 py-2 text-base transition-colors hover:bg-[#d05278] hover:text-white",
+                        "block px-10 py-2 text-base transition-colors hover:bg-primary hover:text-white",
                         pathname === child.path
-                          ? "text-[#d05278] bg-[#d05278]/10"
+                          ? "text-primary bg-primary/10"
                           : "text-[#666666]"
                       )}
                     >

@@ -145,7 +145,7 @@ export default function FAQPage() {
           </p>
           <a
             href="/contact"
-            className="inline-flex items-center justify-center px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors"
+            className="inline-flex items-center justify-center px-6 py-3 bg-metal text-primary shadow-metal rounded-lg font-medium hover:bg-none hover:bg-primary hover:text-primary-foreground hover:shadow transition-colors"
           >
             تماس با پشتیبانی
           </a>

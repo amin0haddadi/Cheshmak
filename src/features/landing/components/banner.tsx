@@ -28,7 +28,7 @@ export function Banner() {
       {/* Content */}
       <div className="relative z-10 px-4 md:px-[80px]">
         <div className="max-w-[575px] md:max-w-[685px] lg:max-w-xl">
-          <span className="block text-[#d05278] font-display text-[45px] md:text-[60px]">
+          <span className="block text-metal font-display text-[45px] md:text-[60px]">
             حرفه‌ای
           </span>
           <h1 className="text-[58px] md:text-[70px] font-bold text-[#222222] leading-tight">

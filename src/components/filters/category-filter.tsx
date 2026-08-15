@@ -37,7 +37,7 @@ export function CategoryFilter({
           "px-4 py-2 text-sm rounded-full transition-colors",
           selectedCategory === "all"
             ? "bg-primary text-primary-foreground"
-            : "bg-muted hover:bg-muted/80"
+            : "bg-muted hover:bg-metal hover:text-primary hover:shadow-metal"
         )}
       >
         {allLabel}
@@ -50,7 +50,7 @@ export function CategoryFilter({
             "px-4 py-2 text-sm rounded-full transition-colors",
             selectedCategory === category.id
               ? "bg-primary text-primary-foreground"
-              : "bg-muted hover:bg-muted/80"
+              : "bg-muted hover:bg-metal hover:text-primary hover:shadow-metal"
           )}
         >
           {category.name}

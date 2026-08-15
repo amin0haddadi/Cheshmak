@@ -47,12 +47,12 @@ export function PageHeader({ title, breadcrumbs }: PageHeaderProps) {
                 {item.href ? (
                   <Link
                     href={item.href}
-                    className="text-[#666666] hover:text-[#d05278] transition-colors"
+                    className="text-[#666666] hover:text-primary transition-colors"
                   >
                     {item.label}
                   </Link>
                 ) : (
-                  <span className="text-[#d05278]">{item.label}</span>
+                  <span className="text-primary">{item.label}</span>
                 )}
               </span>
             ))}

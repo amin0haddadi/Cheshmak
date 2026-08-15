@@ -70,7 +70,7 @@ export function MobileMenu({ items }: MobileMenuProps) {
         {/* Close Button */}
         <button
           onClick={closeMobileMenu}
-          className="absolute top-4 left-4 text-[#222222] hover:text-[#d05278] transition-colors"
+          className="absolute top-4 left-4 text-[#222222] hover:text-mark transition-colors"
           aria-label="بستن منو"
         >
           <X className="h-5 w-5" />
@@ -88,8 +88,8 @@ export function MobileMenu({ items }: MobileMenuProps) {
                     <button
                       onClick={() => toggleSubmenu(item.name)}
                       className={cn(
-                        "text-sm transition-colors hover:text-[#d05278] w-full text-right",
-                        isActive ? "text-[#d05278]" : "text-[#222222]"
+                        "text-sm transition-colors hover:text-mark w-full text-right",
+                        isActive ? "text-primary" : "text-[#222222]"
                       )}
                     >
                       {item.name}
@@ -101,9 +101,9 @@ export function MobileMenu({ items }: MobileMenuProps) {
                             key={child.name}
                             href={child.path}
                             className={cn(
-                              "py-2 px-2.5 text-sm transition-colors hover:text-[#d05278]",
+                              "py-2 px-2.5 text-sm transition-colors hover:text-mark",
                               pathname === child.path
-                                ? "text-[#d05278]"
+                                ? "text-primary"
                                 : "text-[#666666]"
                             )}
                           >
@@ -117,8 +117,8 @@ export function MobileMenu({ items }: MobileMenuProps) {
                   <Link
                     href={item.path}
                     className={cn(
-                      "text-sm transition-colors hover:text-[#d05278]",
-                      isActive ? "text-[#d05278]" : "text-[#222222]"
+                      "text-sm transition-colors hover:text-mark",
+                      isActive ? "text-primary" : "text-[#222222]"
                     )}
                   >
                     {item.name}
@@ -131,19 +131,19 @@ export function MobileMenu({ items }: MobileMenuProps) {
 
         {/* Header Options - Icons */}
         <div className="mt-5 pt-5 border-t border-black flex justify-between w-full">
-          <Link href="/faq" className="text-[#222222] hover:text-[#d05278] transition-colors">
+          <Link href="/faq" className="text-[#222222] hover:text-mark transition-colors">
             <Search className="h-5 w-5" />
           </Link>
-          <Link href="/profile" className="text-[#222222] hover:text-[#d05278] transition-colors">
+          <Link href="/profile" className="text-[#222222] hover:text-mark transition-colors">
             <User className="h-5 w-5" />
           </Link>
-          <Link href="/wishlist" className="text-[#222222] hover:text-[#d05278] transition-colors">
+          <Link href="/wishlist" className="text-[#222222] hover:text-mark transition-colors">
             <Heart className="h-5 w-5" />
           </Link>
-          <Link href="/cart" className="flex items-center text-[#222222] hover:text-[#d05278] transition-colors">
+          <Link href="/cart" className="flex items-center text-[#222222] hover:text-mark transition-colors">
             <ShoppingBag className="h-5 w-5" />
             {cartItems.length > 0 && (
-              <span className="mr-1 w-[22px] h-[22px] rounded-full bg-[#d05278] text-white text-xs font-bold flex items-center justify-center">
+              <span className="mr-1 w-[22px] h-[22px] rounded-full bg-primary text-primary-foreground text-xs font-bold flex items-center justify-center">
                 {cartItems.length}
               </span>
             )}

@@ -37,7 +37,7 @@ export function Footer() {
                 href="https://facebook.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="h-10 w-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors"
+                className="h-10 w-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-metal hover:text-primary hover:shadow-metal transition-colors"
               >
                 <FacebookIcon className="h-5 w-5" />
               </a>
@@ -45,7 +45,7 @@ export function Footer() {
                 href="https://twitter.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="h-10 w-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors"
+                className="h-10 w-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-metal hover:text-primary hover:shadow-metal transition-colors"
               >
                 <TwitterIcon className="h-5 w-5" />
               </a>
@@ -53,7 +53,7 @@ export function Footer() {
                 href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="h-10 w-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors"
+                className="h-10 w-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-metal hover:text-primary hover:shadow-metal transition-colors"
               >
                 <InstagramIcon className="h-5 w-5" />
               </a>
@@ -69,9 +69,6 @@ export function Footer() {
                 width={180}
                 height={60}
                 className="logo-footer"
-                style={{
-                  filter: 'brightness(0) saturate(100%) invert(30%) sepia(70%) saturate(1200%) hue-rotate(320deg) brightness(1.8) contrast(0.75)',
-                }}
               />
             </div>
           </Link>
@@ -104,7 +101,7 @@ export function Footer() {
                   <li key={link.name}>
                     <Link
                       href={link.path}
-                      className="text-sm text-white/70 hover:text-primary transition-colors"
+                      className="text-sm text-white/70 hover:text-mark transition-colors"
                     >
                       {link.name}
                     </Link>
@@ -129,13 +126,13 @@ export function Footer() {
                 <div className="flex flex-col gap-1">
                   <a
                     href="tel:+982112345678"
-                    className="text-sm text-white/70 hover:text-primary transition-colors"
+                    className="text-sm text-white/70 hover:text-mark transition-colors"
                   >
                     ۰۲۱-۱۲۳۴۵۶۷۸
                   </a>
                   <a
                     href="tel:+989121234567"
-                    className="text-sm text-white/70 hover:text-primary transition-colors"
+                    className="text-sm text-white/70 hover:text-mark transition-colors"
                   >
                     ۰۹۱۲-۱۲۳۴۵۶۷
                   </a>
@@ -145,7 +142,7 @@ export function Footer() {
                 <Mail className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
                 <a
                   href={`mailto:${brand.email}`}
-                  className="text-sm text-white/70 hover:text-primary transition-colors"
+                  className="text-sm text-white/70 hover:text-mark transition-colors"
                 >
                   {brand.email}
                 </a>
