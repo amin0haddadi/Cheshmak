@@ -19,7 +19,7 @@ interface UIState {
 
 export const useUIStore = create<UIState>((set) => ({
   isMobileMenuOpen: false,
-  isPromoVisible: true,
+  isPromoVisible: false,
   isCartOpen: false,
   isSearchOpen: false,
 

@@ -38,7 +38,7 @@ export function Header() {
     <>
       <header className="absolute right-0 top-0 w-full z-[101]">
         {/* Promo Banner */}
-        {/* {isPromoVisible && (
+        {isPromoVisible && (
           <div className="absolute top-0 right-0 w-full bg-[#222222] text-white py-3 px-4 text-center text-sm">
             <span className="font-bold opacity-80">
               ۳۰٪ تخفیف روی همه محصولات - کد تخفیف: {brand.promoCode}
@@ -51,7 +51,7 @@ export function Header() {
               <X className="h-4 w-4" />
             </button>
           </div>
-        )} */}
+        )}
 
         {/* Main Header - Overlays hero */}
         <div
@@ -106,19 +106,19 @@ export function Header() {
 
               {/* Mobile Menu Toggle - Only visible on mobile */}
               <button
-                className="lg:hidden text-[#222222] w-[22px] h-[45px] flex flex-col justify-center items-center"
+                className="lg:hidden text-metal w-[22px] h-[45px] flex flex-col justify-center items-center"
                 onClick={toggleMobileMenu}
               >
                 <span className={cn(
-                  "block w-[22px] h-[2px] bg-[#222222] transition-transform origin-center",
+                  "block w-[22px] h-[2px] bg-metal transition-transform origin-center",
                   isMobileMenuOpen ? "translate-y-[1px] rotate-45" : ""
                 )} />
                 <span className={cn(
-                  "block w-[22px] h-[2px] bg-[#222222] my-[5px] transition-opacity",
+                  "block w-[22px] h-[2px] bg-metal my-[5px] transition-opacity",
                   isMobileMenuOpen ? "opacity-0" : ""
                 )} />
                 <span className={cn(
-                  "block w-[22px] h-[2px] bg-[#222222] transition-transform origin-center",
+                  "block w-[22px] h-[2px] bg-metal transition-transform origin-center",
                   isMobileMenuOpen ? "-translate-y-[7px] -rotate-45" : ""
                 )} />
               </button>

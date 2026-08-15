@@ -4,12 +4,12 @@ import { Button } from "@/components/ui/button";
 
 export function Banner() {
   return (
-    <section className="relative min-h-screen flex items-center justify-end w-full pt-[130px] pb-[60px] md:pt-[340px] md:pb-[237px] 2xl:pt-[180px] 2xl:pb-[180px]">
+    <section className="relative min-h-screen flex items-end justify-start md:items-center md:justify-end w-full pb-10 md:pt-[340px] md:pb-[237px] 2xl:pt-[180px] 2xl:pb-[180px]">
       {/* Background Image - Different image for mobile */}
       <div className="absolute inset-0 z-0">
         {/* Mobile background */}
         <Image
-          src="/assets/img/main-bg-sm.jpg"
+          src="/assets/img/dark-main-hero-sm.jpg"
           alt="فروشگاه عینک چشمک"
           fill
           className="object-cover object-center md:hidden"
@@ -17,7 +17,7 @@ export function Banner() {
         />
         {/* Desktop background */}
         <Image
-          src="/assets/img/main-bg.jpg"
+          src="/assets/img/dark-main-hero.jpg"
           alt="فروشگاه عینک چشمک"
           fill
           className="object-cover object-center hidden md:block"
@@ -26,8 +26,8 @@ export function Banner() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 px-4 md:px-[80px]">
-        <div className="max-w-[575px] md:max-w-[685px] lg:max-w-xl">
+      <div className="relative z-10 w-full px-4 pb-6 md:w-auto md:px-[80px] md:pb-0">
+        <div className="flex flex-col items-start text-start max-w-[575px] md:max-w-[685px] lg:max-w-xl">
           <span className="block text-metal font-display text-[45px] md:text-[60px]">
             حرفه‌ای
           </span>
