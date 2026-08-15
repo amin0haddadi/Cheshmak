@@ -1,19 +1,58 @@
 import localFont from "next/font/local";
 
-/**
- * Nastaliq font configuration
- * 
- * Font files should be placed in: public/assets/fonts/nastaliq/
- * 
- * Download from: https://fonts.google.com/noto/specimen/Noto+Nastaliq+Urdu
- * Click "Download family" and extract the ZIP file
- * 
- * Required files (TTF format - easier to download):
- * - NotoNastaliqUrdu-Regular.ttf (weight: 400)
- * - NotoNastaliqUrdu-Medium.ttf (weight: 500)
- * - NotoNastaliqUrdu-SemiBold.ttf (weight: 600)
- * - NotoNastaliqUrdu-Bold.ttf (weight: 700)
- */
+export const estedad = localFont({
+  src: [
+    {
+      path: "../../public/assets/fonts/estedad/Estedad-Thin.ttf",
+      weight: "100",
+      style: "normal",
+    },
+    {
+      path: "../../public/assets/fonts/estedad/Estedad-ExtraLight.ttf",
+      weight: "200",
+      style: "normal",
+    },
+    {
+      path: "../../public/assets/fonts/estedad/Estedad-Light.ttf",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "../../public/assets/fonts/estedad/Estedad-Regular.ttf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../public/assets/fonts/estedad/Estedad-Medium.ttf",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../../public/assets/fonts/estedad/Estedad-SemiBold.ttf",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../../public/assets/fonts/estedad/Estedad-Bold.ttf",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "../../public/assets/fonts/estedad/Estedad-ExtraBold.ttf",
+      weight: "800",
+      style: "normal",
+    },
+    {
+      path: "../../public/assets/fonts/estedad/Estedad-Black.ttf",
+      weight: "900",
+      style: "normal",
+    },
+  ],
+  variable: "--font-estedad",
+  display: "swap",
+  fallback: ["Tahoma", "sans-serif"],
+});
+
 export const nastaliq = localFont({
   src: [
     {
@@ -39,6 +78,5 @@ export const nastaliq = localFont({
   ],
   variable: "--font-nastaliq",
   display: "swap",
-  fallback: ["Tahoma", "sans-serif"],
+  fallback: ["Tahoma", "serif"],
 });
-

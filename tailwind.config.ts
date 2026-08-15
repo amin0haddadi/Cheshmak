@@ -77,8 +77,9 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ["var(--font-nastaliq)", "Tahoma", "sans-serif"],
-        display: ["var(--font-nastaliq)", "Tahoma", "serif"],
+        sans: ["var(--font-estedad)", "Tahoma", "sans-serif"],
+        display: ["var(--font-estedad)", "Tahoma", "sans-serif"],
+        nastaliq: ["var(--font-nastaliq)", "Tahoma", "serif"],
       },
       borderRadius: {
         lg: "var(--radius)",

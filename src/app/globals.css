@@ -32,7 +32,7 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: var(--font-nastaliq), 'Noto Nastaliq Urdu', Tahoma, sans-serif;
+    font-family: var(--font-estedad), Tahoma, sans-serif;
   }
 }
 
