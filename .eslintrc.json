@@ -1,0 +1,15 @@
+{
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:@tanstack/eslint-plugin-query/recommended",
+    "plugin:tailwindcss/recommended",
+    "prettier"
+  ],
+  "plugins": [
+    "sort-exports"
+  ],
+  "rules": {
+    "no-console": "warn"
+  }
+}
+

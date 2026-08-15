@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 346 77% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 346 77% 50%;
+    --radius: 0.5rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-nastaliq), 'Noto Nastaliq Urdu', Tahoma, sans-serif;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-muted;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-muted-foreground/30 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-muted-foreground/50;
+}
+
+/* Selection */
+::selection {
+  @apply bg-primary/20 text-primary;
+}
+
+/* Focus visible */
+:focus-visible {
+  @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+}
+
+/* Custom utilities */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .animate-in {
+    animation: fade-up 0.5s ease-out forwards;
+  }
+
+  .container-custom {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+}
+
+/* Icon font from original project */
+@font-face {
+  font-family: 'icomoon';
+  src: url('/assets/fonts/icomoon/icomoon.eot?xpw08v');
+  src: url('/assets/fonts/icomoon/icomoon.eot?xpw08v#iefix') format('embedded-opentype'),
+    url('/assets/fonts/icomoon/icomoon.ttf?xpw08v') format('truetype'),
+    url('/assets/fonts/icomoon/icomoon.woff?xpw08v') format('woff'),
+    url('/assets/fonts/icomoon/icomoon.svg?xpw08v#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+
