@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { brand } from "@/config/brand";
 
 export function DiscountSection() {
   return (
@@ -26,8 +27,8 @@ export function DiscountSection() {
             ۳۰٪ تخفیف
           </h2>
           <p className="text-lg text-white/80 mb-8">
-            روی همه محصولات زیبایی در این فصل. از کد تخفیف{" "}
-            <span className="font-bold text-white">KHANOOMKHANOOMA2024</span> استفاده کنید.
+            روی همه عینک‌ها در این فصل. از کد تخفیف{" "}
+            <span className="font-bold text-white">{brand.promoCode}</span> استفاده کنید.
           </p>
           <Button asChild size="xl" variant="outline" className="border-white text-white hover:bg-white hover:text-foreground">
             <Link href="/shop?filter=sale">خرید حراجی</Link>

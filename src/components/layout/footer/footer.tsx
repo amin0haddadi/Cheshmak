@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { MapPin, Phone, Mail } from "lucide-react";
 import { footerNavItems, paymentMethods } from "@/data/navigation";
+import { brand } from "@/config/brand";
 
 // Custom SVG icons for social media (lucide-react deprecated brand icons)
 const FacebookIcon = ({ className }: { className?: string }) => (
@@ -64,7 +65,7 @@ export function Footer() {
             <div className="relative">
               <Image
                 src="/assets/img/logo.png"
-                alt="خانم خانما"
+                alt={brand.name}
                 width={180}
                 height={60}
                 className="logo-footer"
@@ -143,10 +144,10 @@ export function Footer() {
               <li className="flex items-start gap-3">
                 <Mail className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
                 <a
-                  href="mailto:info@khanoomkhanooma.ir"
+                  href={`mailto:${brand.email}`}
                   className="text-sm text-white/70 hover:text-primary transition-colors"
                 >
-                  info@khanoomkhanooma.ir
+                  {brand.email}
                 </a>
               </li>
             </ul>
@@ -158,7 +159,7 @@ export function Footer() {
       <div className="border-t border-white/10">
         <div className="container-custom py-6">
           <p className="text-center text-sm text-white/50">
-            © کلیه حقوق محفوظ است. خانم خانما {new Date().getFullYear()}
+            © کلیه حقوق محفوظ است. {brand.name} {new Date().getFullYear()}
           </p>
         </div>
       </div>

@@ -10,7 +10,7 @@ export function Banner() {
         {/* Mobile background */}
         <Image
           src="/assets/img/main-bg-sm.jpg"
-          alt="محصولات زیبایی"
+          alt="فروشگاه عینک چشمک"
           fill
           className="object-cover object-center md:hidden"
           priority
@@ -18,7 +18,7 @@ export function Banner() {
         {/* Desktop background */}
         <Image
           src="/assets/img/main-bg.jpg"
-          alt="محصولات زیبایی"
+          alt="فروشگاه عینک چشمک"
           fill
           className="object-cover object-center hidden md:block"
           priority
@@ -32,10 +32,10 @@ export function Banner() {
             حرفه‌ای
           </span>
           <h1 className="text-[58px] md:text-[70px] font-bold text-[#222222] leading-tight">
-            زیبایی و مراقبت
+            عینک و فریم
           </h1>
           <p className="text-[16px] md:text-[20px] text-[#666666] mt-4 max-w-[465px] leading-[180%]">
-            پوست خود را با محصولات آرایشی بدون سموم تغذیه کنید. با پیشنهادهایی
+            عینک طبی، آفتابی و فریم‌های روز را در چشمک پیدا کنید. با پیشنهادهایی
             که نمی‌توانید رد کنید.
           </p>
           <Button asChild size="xl" className="mt-[30px] md:mt-[60px]">

@@ -12,6 +12,7 @@ import { useUIStore } from "@/stores/ui-store";
 import { mainNavItems } from "@/data/navigation";
 import { Nav } from "./nav";
 import { MobileMenu } from "./mobile-menu";
+import { brand } from "@/config/brand";
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -37,9 +38,11 @@ export function Header() {
     <>
       <header className="absolute right-0 top-0 w-full z-[101]">
         {/* Promo Banner */}
-        {isPromoVisible && (
+        {/* {isPromoVisible && (
           <div className="absolute top-0 right-0 w-full bg-[#222222] text-white py-3 px-4 text-center text-sm">
-            <span className="font-bold opacity-80">۳۰٪ تخفیف روی همه محصولات - کد تخفیف: khanoomkhanooma2024</span>
+            <span className="font-bold opacity-80">
+              ۳۰٪ تخفیف روی همه محصولات - کد تخفیف: {brand.promoCode}
+            </span>
             <button
               onClick={hidePromo}
               className="absolute right-4 top-1/2 -translate-y-1/2 hover:opacity-70 transition-opacity"
@@ -48,7 +51,7 @@ export function Header() {
               <X className="h-4 w-4" />
             </button>
           </div>
-        )}
+        )} */}
 
         {/* Main Header - Overlays hero */}
         <div
@@ -65,7 +68,7 @@ export function Header() {
                 <div className="relative">
                   <Image
                     src="/assets/img/logo.png"
-                    alt="خانم خانما"
+                    alt={brand.name}
                     width={180}
                     height={60}
                     priority

@@ -6,7 +6,7 @@ import { ContactContent } from "@/features/contact/components/contact-content";
 export const metadata: Metadata = generatePageMetadata({
   title: "تماس با ما",
   description:
-    "با ما تماس بگیرید. ما اینجا هستیم تا به سوالات شما پاسخ دهیم و در خرید محصولات زیبایی به شما کمک کنیم. اطلاعات تماس و فرم ارتباط با ما.",
+    "با ما تماس بگیرید. ما اینجا هستیم تا به سوالات شما پاسخ دهیم و در خرید عینک به شما کمک کنیم. اطلاعات تماس و فرم ارتباط با ما.",
   url: "/contact",
   keywords: ["تماس", "پشتیبانی", "ارتباط با ما", "اطلاعات تماس"],
 });

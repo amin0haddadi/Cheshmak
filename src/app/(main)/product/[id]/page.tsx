@@ -37,7 +37,7 @@ export async function generateMetadata({
       product.name,
       product.category,
       "خرید آنلاین",
-      "محصولات زیبایی",
+      "خرید عینک",
       ...(product.filterItems || []),
     ],
   });

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { brand } from "@/config/brand";
 
 interface GenerateMetadataParams {
   title: string;
@@ -37,7 +38,7 @@ export function generatePageMetadata({
       title,
       description,
       url: fullUrl,
-      siteName: "خانم خانما",
+      siteName: brand.name,
       images: [
         {
           url: fullImageUrl,

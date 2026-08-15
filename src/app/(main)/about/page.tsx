@@ -7,10 +7,10 @@ import { PageHeader } from "@/components/ui/page-header";
 export const metadata: Metadata = generatePageMetadata({
   title: "درباره ما",
   description:
-    "درباره خانم خانما - ما با ماموریت ساده‌ای شروع کردیم: در دسترس قرار دادن محصولات زیبایی با کیفیت برای همه. از یک فروشگاه کوچک آنلاین به یک مقصد محبوب برای علاقه‌مندان به زیبایی در سراسر جهان تبدیل شدیم.",
+    "درباره چشمک - فروشگاه آنلاین عینک طبی، آفتابی و فریم. ما کمک می‌کنیم مدل مناسب صورت و سبک شما را راحت‌تر پیدا کنید.",
   image: "/assets/img/info-item-img1.jpg",
   url: "/about",
-  keywords: ["درباره ما", "تاریخچه", "ماموریت", "ارزش‌ها"],
+  keywords: ["درباره ما", "چشمک", "فروشگاه عینک", "ماموریت", "ارزش‌ها"],
 });
 
 export default function AboutPage() {
@@ -31,28 +31,26 @@ export default function AboutPage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <span className="inline-block text-primary font-display text-lg italic mb-2">
-                Since 2015
+                از ۲۰۱۵
               </span>
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                Our Journey
+                مسیر ما
               </h2>
               <div className="space-y-4 text-muted-foreground">
                 <p>
-                  خانم خانما با ماموریت ساده‌ای شروع کرد: در دسترس قرار دادن
-                  محصولات زیبایی با کیفیت برای همه. آنچه به عنوان یک فروشگاه
-                  کوچک آنلاین شروع شد، به یک مقصد محبوب برای علاقه‌مندان به
-                  زیبایی در سراسر جهان تبدیل شده است.
+                  چشمک با ماموریت ساده‌ای شروع کرد: در دسترس قرار دادن
+                  عینک باکیفیت برای همه. آنچه به عنوان یک فروشگاه
+                  کوچک آنلاین شروع شد، به مقصدی برای انتخاب عینک طبی،
+                  آفتابی و فریم‌های روز تبدیل شده است.
                 </p>
                 <p>
-                  We carefully curate our collection, partnering with brands
-                  that share our commitment to quality, sustainability, and
-                  innovation. Every product in our catalog is selected with care
-                  and tested to meet our high standards.
+                  مجموعه ما را با دقت انتخاب می‌کنیم و با برندهایی کار می‌کنیم
+                  که کیفیت، راحتی و طراحی را جدی می‌گیرند. هر فریم قبل از
+                  قرار گرفتن در فروشگاه بررسی می‌شود.
                 </p>
                 <p>
-                  Today, we serve thousands of customers across the globe,
-                  helping them discover products that enhance their natural
-                  beauty and boost their confidence.
+                  امروز به مشتریانی کمک می‌کنیم مدل مناسب صورت، سبک و
+                  بودجه خود را پیدا کنند و با اطمینان خرید کنند.
                 </p>
               </div>
             </div>
@@ -73,9 +71,9 @@ export default function AboutPage() {
         <div className="container-custom">
           <div className="text-center mb-12">
             <span className="inline-block text-primary font-display text-lg italic mb-2">
-              What We Stand For
+              ارزش‌های ما
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold">Our Values</h2>
+            <h2 className="text-3xl md:text-4xl font-bold">آنچه برایمان مهم است</h2>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -83,30 +81,30 @@ export default function AboutPage() {
               <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
                 <span className="text-2xl">🌿</span>
               </div>
-              <h3 className="text-xl font-semibold mb-2">Sustainability</h3>
+              <h3 className="text-xl font-semibold mb-2">پایداری</h3>
               <p className="text-muted-foreground">
-                We prioritize eco-friendly products and packaging, working
-                towards a more sustainable future for beauty.
+                به بسته‌بندی مسئولانه و انتخاب برندهایی که دوام محصول را جدی
+                می‌گیرند اهمیت می‌دهیم.
               </p>
             </div>
             <div className="text-center">
               <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
                 <span className="text-2xl">✨</span>
               </div>
-              <h3 className="text-xl font-semibold mb-2">Quality</h3>
+              <h3 className="text-xl font-semibold mb-2">کیفیت</h3>
               <p className="text-muted-foreground">
-                Every product is carefully vetted to ensure it meets our high
-                standards for effectiveness and safety.
+                هر فریم از نظر ساخت، راحتی و دوام بررسی می‌شود تا استاندارد
+                چشمک را داشته باشد.
               </p>
             </div>
             <div className="text-center">
               <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
                 <span className="text-2xl">💜</span>
               </div>
-              <h3 className="text-xl font-semibold mb-2">Inclusivity</h3>
+              <h3 className="text-xl font-semibold mb-2">تنوع مدل‌ها</h3>
               <p className="text-muted-foreground">
-                Beauty is for everyone. We offer products for all skin types,
-                tones, and preferences.
+                عینک برای همه است. مدل‌هایی برای صورت‌ها، سبک‌ها و بودجه‌های
+                مختلف ارائه می‌دهیم.
               </p>
             </div>
           </div>
@@ -127,21 +125,19 @@ export default function AboutPage() {
             </div>
             <div className="order-1 lg:order-2">
               <span className="inline-block text-primary font-display text-lg italic mb-2">
-                Meet the Team
+                تیم چشمک
               </span>
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                Passionate About Beauty
+                علاقه‌مند به دنیای عینک
               </h2>
               <div className="space-y-4 text-muted-foreground">
                 <p>
-                  Our team is made up of beauty enthusiasts, skincare experts,
-                  and customer service professionals who are dedicated to
-                  helping you find the perfect products.
+                  تیم ما از مشاوران انتخاب فریم، کارشناسان بینایی‌سنجی و پشتیبانی
+                  تشکیل شده که کمک می‌کنند مدل مناسب خود را پیدا کنید.
                 </p>
                 <p>
-                  From our buyers who travel the world to discover new brands,
-                  to our customer care team who&apos;s always ready to help,
-                  هر عضو خانواده خانم خانما متعهد به رضایت شما است.
+                  از خریداران مجموعه تا تیم پشتیبانی،
+                  هر عضو خانواده چشمک متعهد به رضایت شما است.
                 </p>
               </div>
             </div>

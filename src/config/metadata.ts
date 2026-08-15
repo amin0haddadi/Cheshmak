@@ -1,27 +1,19 @@
 import type { Metadata } from "next";
+import { brand } from "@/config/brand";
 
 const rootMetadata: Metadata = {
   title: {
-    template: "%s - خانم خانما",
-    default: "خانم خانما",
+    template: `%s - ${brand.name}`,
+    default: brand.name,
   },
-  description:
-    "پوست خود را با محصولات آرایشی بدون سموم تغذیه کنید. محصولات زیبایی و مراقبت حرفه‌ای با پیشنهادهایی که نمی‌توانید رد کنید.",
+  description: brand.description,
 
   authors: [
     {
       name: "Amin Haddadi",
     },
   ],
-  keywords: [
-    "زیبایی",
-    "لوازم آرایشی",
-    "مراقبت پوست",
-    "آرایش",
-    "مراقبت مو",
-    "عطر",
-    "اسپا",
-  ],
+  keywords: [...brand.keywords],
 };
 
 export { rootMetadata };

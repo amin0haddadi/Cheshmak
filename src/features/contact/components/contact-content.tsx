@@ -4,6 +4,7 @@ import { useState } from "react";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { brand } from "@/config/brand";
 
 export function ContactContent() {
   const [formData, setFormData] = useState({
@@ -72,17 +73,17 @@ export function ContactContent() {
                   <h3 className="font-semibold mb-1">Email</h3>
                   <p className="text-muted-foreground text-sm">
                     <a
-                      href="mailto:info@khanoomkhanooma.com"
+                      href={`mailto:${brand.email}`}
                       className="hover:text-primary"
                     >
-                      info@khanoomkhanooma.com
+                      {brand.email}
                     </a>
                     <br />
                     <a
-                      href="mailto:support@khanoomkhanooma.com"
+                      href={`mailto:${brand.supportEmail}`}
                       className="hover:text-primary"
                     >
-                      support@khanoomkhanooma.com
+                      {brand.supportEmail}
                     </a>
                   </p>
                 </div>

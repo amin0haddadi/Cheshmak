@@ -140,7 +140,7 @@ export function RegisterContent() {
       <div className="text-center mb-8">
         <h1 className="text-2xl font-bold mb-2">ایجاد حساب کاربری</h1>
         <p className="text-muted-foreground">
-          به خانم خانما بپیوندید برای پیشنهادهای ویژه و به‌روزرسانی‌ها
+          به چشمک بپیوندید برای پیشنهادهای ویژه و به‌روزرسانی‌ها
         </p>
       </div>
 

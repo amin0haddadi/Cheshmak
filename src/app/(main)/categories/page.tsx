@@ -6,17 +6,15 @@ import { CategoriesContent } from "@/features/categories/components/categories-c
 export const metadata: Metadata = generatePageMetadata({
   title: "دسته‌بندی‌ها",
   description:
-    "مرور دسته‌بندی‌های مختلف محصولات زیبایی: آرایش، مراقبت پوست، مو، عطر، اسپا و ناخن. پیدا کردن محصولات مورد علاقه خود را آسان کنید.",
+    "مرور دسته‌بندی‌های عینک: طبی، آفتابی، مطالعه، بچه‌گانه و فریم‌های روز. پیدا کردن مدل مناسب را آسان کنید.",
   image: "/assets/img/top-categories-img1.jpg",
   url: "/categories",
   keywords: [
-    "دسته‌بندی محصولات",
-    "آرایش",
-    "مراقبت پوست",
-    "مو",
-    "عطر",
-    "اسپا",
-    "ناخن",
+    "دسته‌بندی عینک",
+    "عینک طبی",
+    "عینک آفتابی",
+    "عینک مطالعه",
+    "فریم",
   ],
 });
 

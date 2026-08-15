@@ -22,58 +22,58 @@ const blogPosts: Record<
   }
 > = {
   "skincare-routine-for-beginners": {
-    title: "راهنمای کامل مراقبت از پوست برای مبتدیان",
+    title: "راهنمای انتخاب فریم مناسب فرم صورت",
     excerpt:
-      "شروع یک روتین مراقبت از پوست می‌تواند دلهره‌آور باشد. این راهنمای ما برای ساختن یک روتین ساده و موثر است.",
+      "شکل صورت نقش مهمی در انتخاب فریم دارد. در این راهنما مدل مناسب صورت گرد، کشیده و مربعی را بررسی می‌کنیم.",
     image: "/assets/img/blog-img1.jpg",
     author: "سارا محمدی",
     date: "۱۵ آذر ۱۴۰۳",
-    category: "مراقبت پوست",
+    category: "انتخاب فریم",
   },
   "makeup-trends-2024": {
-    title: "برترین ترندهای آرایش در سال ۱۴۰۳",
+    title: "ترندهای عینک در سال ۱۴۰۳",
     excerpt:
-      "از پوست شیشه‌ای تا لب‌های جسورانه، ترندهای آرایشی که امسال زیبایی را تعریف می‌کنند را کشف کنید.",
+      "از فریم‌های شفاف تا مدل‌های گربه‌ای، ترندهای امسال عینک را بشناسید و سبک خود را پیدا کنید.",
     image: "/assets/img/blog-img2.jpg",
     author: "مریم احمدی",
     date: "۱۰ آذر ۱۴۰۳",
-    category: "آرایش",
+    category: "ترند",
   },
   "natural-ingredients-guide": {
-    title: "راهنمای مواد زیبایی طبیعی",
+    title: "راهنمای نگهداری از عینک",
     excerpt:
-      "درباره مواد طبیعی که می‌توانند روتین زیبایی شما را متحول کنند و دلیل کارآمدی آن‌ها بیاموزید.",
+      "با چند عادت ساده، فریم و عدسی‌ها را تمیز و سالم نگه دارید و عمر عینک را بیشتر کنید.",
     image: "/assets/img/blog-img3.jpg",
     author: "علی رضایی",
     date: "۵ آذر ۱۴۰۳",
-    category: "مواد تشکیل‌دهنده",
+    category: "نگهداری",
   },
   "hair-care-winter-tips": {
-    title: "مراقبت از مو در زمستان",
+    title: "چطور عینک آفتابی مناسب انتخاب کنیم",
     excerpt:
-      "هوای سرد می‌تواند برای موهای شما سخت باشد. نکات برتر ما برای حفظ سلامت مو در طول زمستان.",
+      "محافظت UV، رنگ عدسی و شکل فریم؛ نکاتی که قبل از خرید عینک آفتابی باید بدانید.",
     image: "/assets/img/blog-img4.jpg",
     author: "لیلا کریمی",
     date: "۲۸ آبان ۱۴۰۳",
-    category: "مراقبت مو",
+    category: "عینک آفتابی",
   },
   "self-care-sunday-routine": {
-    title: "روتین کامل مراقبت از خود در یکشنبه‌ها",
+    title: "تفاوت عینک طبی و عینک آفتابی",
     excerpt:
-      "یکشنبه‌های خود را با راهنمای گام به گام ما به یک آیین مراقبت از خود تبدیل کنید.",
+      "اگر بین مدل طبی و آفتابی مردد هستید، این مقایسه کوتاه کمک می‌کند انتخاب بهتری داشته باشید.",
     image: "/assets/img/blog-img5.jpg",
     author: "سارا محمدی",
     date: "۲۰ آبان ۱۴۰۳",
-    category: "سلامت",
+    category: "راهنما",
   },
   "fragrance-layering-tips": {
-    title: "هنر لایه‌بندی عطر",
+    title: "راهنمای انتخاب عدسی عینک",
     excerpt:
-      "کشف کنید چگونه با تسلط بر هنر لایه‌بندی عطر، عطر امضای خود را بسازید.",
+      "عدسی ضد بازتاب، بلوکات و فتوکرومیک چه تفاوتی دارند و کدام برای استفاده روزمره مناسب‌تر است.",
     image: "/assets/img/blog-img6.jpg",
     author: "مریم احمدی",
     date: "۱۵ آبان ۱۴۰۳",
-    category: "عطر",
+    category: "عدسی",
   },
 };
 
@@ -96,57 +96,37 @@ export async function generateMetadata({
     image: post.image,
     url: `/blog/${params.slug}`,
     type: "article",
-    keywords: [post.category, "زیبایی", "مقالات"],
+    keywords: [post.category, "عینک", "مقالات"],
   });
 }
 
 export default function BlogPostPage({ params }: BlogPostPageProps) {
   const defaultPost = {
-    title: "The Ultimate Skincare Routine for Beginners",
+    title: "راهنمای انتخاب فریم مناسب فرم صورت",
     image: "/assets/img/post-img.jpg",
-    date: "Dec 15, 2024",
-    author: "Sarah Johnson",
-    category: "Skincare",
-    excerpt: "Starting a skincare routine can feel overwhelming.",
+    date: "۱۵ آذر ۱۴۰۳",
+    author: "سارا محمدی",
+    category: "انتخاب فریم",
+    excerpt: "شکل صورت نقش مهمی در انتخاب فریم دارد.",
     content: `
-      <p>Starting a skincare routine can feel overwhelming with so many products and steps to consider. But here's the good news: an effective skincare routine doesn't have to be complicated. In fact, a simple, consistent routine is often more beneficial than a complex one.</p>
+      <p>انتخاب فریم مناسب فقط به سلیقه بستگی ندارد؛ فرم صورت، رنگ پوست و سبک روزمره هم مهم است. خبر خوب این است که با چند قاعده ساده می‌توانید مدل مناسب را سریع‌تر پیدا کنید.</p>
       
-      <h2>The Basics: Three Essential Steps</h2>
+      <h2>سه نکته اصلی</h2>
       
-      <p>Every skincare routine should include these three fundamental steps:</p>
+      <p>قبل از خرید این سه مورد را در نظر بگیرید:</p>
       
-      <h3>1. Cleanse</h3>
-      <p>Cleansing removes dirt, oil, and impurities from your skin. Choose a gentle cleanser that doesn't strip your skin of its natural oils. For most skin types, cleansing twice a day (morning and night) is ideal.</p>
+      <h3>۱. فرم صورت</h3>
+      <p>برای صورت گرد فریم‌های زاویه‌دار، برای صورت کشیده مدل‌های پهن‌تر و برای صورت مربعی فریم‌های گردتر معمولاً تعادل بهتری می‌سازند.</p>
       
-      <h3>2. Moisturize</h3>
-      <p>Regardless of your skin type, moisturizing is essential. It helps maintain your skin's barrier function and keeps it hydrated. Look for a moisturizer that suits your skin type – lighter for oily skin, richer for dry skin.</p>
+      <h3>۲. راحتی روی بینی و گوش</h3>
+      <p>فریم نباید روی بینی فشار بیاورد یا از گوش سر بخورد. پد بینی و دسته را در صفحه محصول بررسی کنید.</p>
       
-      <h3>3. Protect</h3>
-      <p>Sunscreen is the most important anti-aging product you can use. Apply a broad-spectrum SPF 30 or higher every morning, even on cloudy days.</p>
+      <h3>۳. کاربرد</h3>
+      <p>عینک کار روزانه، رانندگی یا استفاده آفتابی هرکدام عدسی و فریم متفاوتی می‌طلبند.</p>
       
-      <h2>Building Your Routine</h2>
+      <h2>قدم بعدی</h2>
       
-      <p>Once you've mastered the basics, you can gradually add products to address specific concerns:</p>
-      
-      <ul>
-        <li><strong>Serums:</strong> Targeted treatments for issues like dark spots, wrinkles, or dehydration</li>
-        <li><strong>Toners:</strong> Help balance your skin's pH and prep it for other products</li>
-        <li><strong>Eye cream:</strong> Addresses the delicate eye area</li>
-        <li><strong>Exfoliants:</strong> Remove dead skin cells (use 1-2 times per week)</li>
-      </ul>
-      
-      <h2>Tips for Success</h2>
-      
-      <p>Remember these key points as you build your routine:</p>
-      
-      <ul>
-        <li>Introduce new products one at a time</li>
-        <li>Give products at least 4-6 weeks to show results</li>
-        <li>Listen to your skin – if something doesn't feel right, stop using it</li>
-        <li>Consistency is more important than complexity</li>
-      </ul>
-      
-      <p>Starting a skincare routine is a form of self-care that pays dividends over time. Be patient with yourself and your skin, and enjoy the journey to healthier, more radiant skin.</p>
+      <p>اگر هنوز مطمئن نیستید، دسته‌بندی‌های فروشگاه چشمک را ببینید یا با پشتیبانی مشورت کنید.</p>
     `,
   };
 
@@ -187,7 +167,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
               </div>
               <div>
                 <p className="font-medium">{post.author}</p>
-                <p className="text-sm text-muted-foreground">Beauty Expert</p>
+                <p className="text-sm text-muted-foreground">مشاور عینک</p>
               </div>
             </div>
           </header>
@@ -219,7 +199,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
           <div className="flex items-center gap-2 mt-8 pt-8 border-t">
             <Tag className="h-4 w-4 text-muted-foreground" />
             <div className="flex gap-2">
-              {["Skincare", "Beauty Tips", "Beginners"].map((tag) => (
+              {["عینک", "انتخاب فریم", "راهنما"].map((tag) => (
                 <span
                   key={tag}
                   className="px-3 py-1 bg-muted rounded-full text-sm"

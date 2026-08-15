@@ -15,7 +15,7 @@ export default function AuthLayout({
             <div className="relative">
               <Image
                 src="/assets/img/logo.png"
-                alt="خانم خانما"
+                alt="چشمک"
                 width={180}
                 height={60}
                 priority
@@ -33,7 +33,7 @@ export default function AuthLayout({
       <div className="hidden lg:block lg:w-1/2 relative">
         <Image
           src="/assets/img/login-form__bg.png"
-          alt="Beauty products"
+          alt="فروشگاه عینک چشمک"
           fill
           className="object-cover"
         />

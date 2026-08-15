@@ -5,7 +5,7 @@ import { RegisterContent } from "@/features/auth/components/register-content";
 export const metadata: Metadata = generatePageMetadata({
   title: "ثبت نام",
   description:
-    "به خانم خانما بپیوندید. حساب کاربری خود را ایجاد کنید و از پیشنهادهای ویژه و به‌روزرسانی‌های محصولات زیبایی بهره‌مند شوید.",
+    "به چشمک بپیوندید. حساب کاربری خود را ایجاد کنید و از پیشنهادهای ویژه و به‌روزرسانی‌های فروشگاه عینک بهره‌مند شوید.",
   url: "/register",
   keywords: ["ثبت نام", "ایجاد حساب", "عضویت", "حساب کاربری"],
 });

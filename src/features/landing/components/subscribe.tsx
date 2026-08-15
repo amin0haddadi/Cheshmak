@@ -60,7 +60,7 @@ export function Subscribe() {
 
           <p className="text-xs text-muted-foreground mt-4">
             با عضویت، شما با سیاست حریم خصوصی ما موافقت کرده و رضایت می‌دهید
-            که از خانم خانما به‌روزرسانی دریافت کنید.
+            که از چشمک به‌روزرسانی دریافت کنید.
           </p>
         </div>
       </div>
