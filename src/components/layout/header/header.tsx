@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { X, Search, User, Heart, ShoppingBag } from "lucide-react";
@@ -12,6 +11,7 @@ import { useUIStore } from "@/stores/ui-store";
 import { mainNavItems } from "@/data/navigation";
 import { Nav } from "./nav";
 import { MobileMenu } from "./mobile-menu";
+import { BrandLogo } from "@/components/layout/brand-logo";
 import { brand } from "@/config/brand";
 
 export function Header() {
@@ -58,23 +58,14 @@ export function Header() {
           className={cn(
             "transition-all duration-300 px-[15px] md:px-[40px] lg:px-[70px]",
             isPromoVisible ? "pt-[55px] md:pt-10" : "pt-[45px] md:pt-0",
-            isScrolled && "fixed top-0 left-0 right-0 shadow-md bg-mist/90 !py-1"
+            isScrolled && "fixed top-0 left-0 right-0 shadow-md bg-primary/80 !py-1"
           )}
         >
           <div className="w-full">
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between text-mark">
               {/* Logo */}
               <Link href="/" className="flex-shrink-0">
-                <div className="relative">
-                  <Image
-                    src="/assets/img/logo.png"
-                    alt={brand.name}
-                    width={180}
-                    height={60}
-                    priority
-                    className="logo-header"
-                  />
-                </div>
+                <BrandLogo className="h-12 aspect-[1087/535] md:h-[68px]" />
               </Link>
 
               {/* Desktop Navigation */}
@@ -82,22 +73,22 @@ export function Header() {
 
               {/* Header Actions - Hidden on mobile, shown in mobile menu instead */}
               <div className="hidden lg:flex items-center gap-11">
-                <Link href="/faq" className="text-[#222222] hover:text-mark transition-colors">
+                <Link href="/faq" className="hover:text-white transition-colors">
                   <Search className="h-5 w-5" />
                 </Link>
 
-                <Link href="/profile" className="text-[#222222] hover:text-mark transition-colors">
+                <Link href="/profile" className="hover:text-white transition-colors">
                   <User className="h-5 w-5" />
                 </Link>
 
-                <Link href="/wishlist" className="text-[#222222] hover:text-mark transition-colors">
+                <Link href="/wishlist" className="hover:text-white transition-colors">
                   <Heart className="h-5 w-5" />
                 </Link>
 
-                <Link href="/cart" className="flex items-center text-[#222222] hover:text-mark transition-colors">
+                <Link href="/cart" className="flex items-center hover:text-white transition-colors">
                   <ShoppingBag className="h-5 w-5" />
                   {cartItems.length > 0 && (
-                    <span className="ml-1 w-[22px] h-[22px] rounded-full bg-primary text-primary-foreground text-xs font-bold flex items-center justify-center">
+                    <span className="ml-1 w-[22px] h-[22px] rounded-full bg-mark text-primary text-xs font-bold flex items-center justify-center">
                       {cartItems.length}
                     </span>
                   )}
@@ -106,19 +97,19 @@ export function Header() {
 
               {/* Mobile Menu Toggle - Only visible on mobile */}
               <button
-                className="lg:hidden text-metal w-[22px] h-[45px] flex flex-col justify-center items-center"
+                className="lg:hidden w-[22px] h-[45px] flex flex-col justify-center items-center"
                 onClick={toggleMobileMenu}
               >
                 <span className={cn(
-                  "block w-[22px] h-[2px] bg-metal transition-transform origin-center",
+                  "block w-[22px] h-[2px] bg-mark transition-transform origin-center",
                   isMobileMenuOpen ? "translate-y-[1px] rotate-45" : ""
                 )} />
                 <span className={cn(
-                  "block w-[22px] h-[2px] bg-metal my-[5px] transition-opacity",
+                  "block w-[22px] h-[2px] bg-mark my-[5px] transition-opacity",
                   isMobileMenuOpen ? "opacity-0" : ""
                 )} />
                 <span className={cn(
-                  "block w-[22px] h-[2px] bg-metal transition-transform origin-center",
+                  "block w-[22px] h-[2px] bg-mark transition-transform origin-center",
                   isMobileMenuOpen ? "-translate-y-[7px] -rotate-45" : ""
                 )} />
               </button>

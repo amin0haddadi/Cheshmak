@@ -95,16 +95,6 @@
   }
 }
 
-/* Cheshmak logo tints */
-.logo-header {
-  filter: brightness(0) saturate(100%) invert(18%) sepia(12%) saturate(700%)
-    hue-rotate(175deg) brightness(0.92) contrast(0.95);
-}
-
-.logo-footer {
-  filter: brightness(0) invert(1);
-}
-
 @font-face {
   font-family: 'icomoon';
   src: url('/assets/fonts/icomoon/icomoon.eot?xpw08v');

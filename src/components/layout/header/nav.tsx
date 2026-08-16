@@ -17,18 +17,11 @@ export function Nav({ items, className }: NavProps) {
   return (
     <nav className={cn("flex items-center gap-8", className)}>
       {items.map((item) => {
-        const isActive =
-          pathname === item.path ||
-          (item.children?.some((child) => pathname === child.path) ?? false);
-
         return (
           <div key={item.name} className="relative group">
             <Link
               href={item.path}
-              className={cn(
-                "flex items-center gap-1 text-sm font-medium transition-colors hover:text-mark",
-                isActive ? "text-primary" : "text-[#222222]"
-              )}
+              className="flex items-center gap-1 text-sm font-medium text-mark transition-colors hover:text-white"
             >
               {item.name}
               {item.children && (

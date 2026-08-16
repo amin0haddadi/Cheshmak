@@ -1,5 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
+import { brand } from "@/config/brand";
+import { BrandLogo } from "@/components/layout/brand-logo";
 
 export default function AuthLayout({
   children,
@@ -12,16 +14,7 @@ export default function AuthLayout({
       <div className="flex-1 flex flex-col justify-center px-4 sm:px-6 lg:px-8 py-12">
         <div className="mx-auto w-full max-w-md">
           <Link href="/" className="flex justify-center mb-8">
-            <div className="relative">
-              <Image
-                src="/assets/img/logo.png"
-                alt="چشمک"
-                width={180}
-                height={60}
-                priority
-                className="logo-header"
-              />
-            </div>
+            <BrandLogo className="h-16 aspect-[1087/535]" />
           </Link>
           {children}
         </div>

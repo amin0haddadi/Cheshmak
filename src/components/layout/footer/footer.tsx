@@ -3,6 +3,7 @@ import Image from "next/image";
 import { MapPin, Phone, Mail } from "lucide-react";
 import { footerNavItems, paymentMethods } from "@/data/navigation";
 import { brand } from "@/config/brand";
+import { BrandLogo } from "@/components/layout/brand-logo";
 
 // Custom SVG icons for social media (lucide-react deprecated brand icons)
 const FacebookIcon = ({ className }: { className?: string }) => (
@@ -62,15 +63,7 @@ export function Footer() {
 
           {/* Logo */}
           <Link href="/" className="flex-shrink-0">
-            <div className="relative">
-              <Image
-                src="/assets/img/logo.png"
-                alt={brand.name}
-                width={180}
-                height={60}
-                className="logo-footer"
-              />
-            </div>
+            <BrandLogo className="h-[72px] aspect-[1087/535] md:h-20" />
           </Link>
 
           {/* Payment Methods */}

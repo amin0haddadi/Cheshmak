@@ -18,14 +18,14 @@ export function PageHeader({ title, breadcrumbs }: PageHeaderProps) {
       <div className="absolute inset-0 -z-[1]">
         {/* Mobile background */}
         <Image
-          src="/assets/img/detail-main-bg-sm.jpg"
+          src="/assets/img/mobile-detail-bg.jpg"
           alt=""
           fill
           className="object-cover object-center md:hidden"
         />
         {/* Desktop background */}
         <Image
-          src="/assets/img/detail-main-bg.jpg"
+          src="/assets/img/detail-bg.jpg"
           alt=""
           fill
           className="object-cover object-center hidden md:block"
@@ -34,7 +34,7 @@ export function PageHeader({ title, breadcrumbs }: PageHeaderProps) {
 
       {/* Content */}
       <div className="container-custom text-center flex flex-col justify-center items-center gap-10">
-        <h1 className="text-[45px] md:text-[60px] font-bold text-[#222222] leading-tight text-center">
+        <h1 className="text-[45px] md:text-[60px] font-bold text-mark leading-tight text-center">
           {title}
         </h1>
 
@@ -43,16 +43,16 @@ export function PageHeader({ title, breadcrumbs }: PageHeaderProps) {
           <nav className="flex items-center justify-center gap-2 text-[14px] md:text-[16px]">
             {breadcrumbs.map((item, index) => (
               <span key={index} className="flex items-center gap-2">
-                {index > 0 && <span className="text-[#666666]">/</span>}
+                {index > 0 && <span className="text-mark">/</span>}
                 {item.href ? (
                   <Link
                     href={item.href}
-                    className="text-[#666666] hover:text-primary transition-colors"
+                    className="text-mark hover:text-white transition-colors"
                   >
                     {item.label}
                   </Link>
                 ) : (
-                  <span className="text-primary">{item.label}</span>
+                  <span className="text-mark/60">{item.label}</span>
                 )}
               </span>
             ))}
