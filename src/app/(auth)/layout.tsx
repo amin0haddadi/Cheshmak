@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-import { brand } from "@/config/brand";
 import { BrandLogo } from "@/components/layout/brand-logo";
 
 export default function AuthLayout({
@@ -9,7 +8,7 @@ export default function AuthLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen flex">
+    <div className="min-h-screen flex bg-gradient-to-l from-primary/80 to-mark/10">
       {/* Left - Form */}
       <div className="flex-1 flex flex-col justify-center px-4 sm:px-6 lg:px-8 py-12">
         <div className="mx-auto w-full max-w-md">

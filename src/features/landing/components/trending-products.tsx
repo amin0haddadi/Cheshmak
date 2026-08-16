@@ -25,7 +25,7 @@ export function TrendingProducts() {
   }
 
   return (
-    <section className="py-16 lg:py-24 bg-muted/30">
+    <section className="py-16 lg:py-24 bg-muted/30 relative z-10">
       <div className="container-custom">
         {/* Section Title */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">

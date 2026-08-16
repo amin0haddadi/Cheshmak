@@ -81,7 +81,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
             className="w-full shadow-lg"
             onClick={handleAddToCart}
           >
-            <ShoppingBag className="h-4 w-4 mr-2" />
+            <ShoppingBag className="h-4 w-4 mr-2 ml-2" />
             افزودن به سبد
           </Button>
         </div>
