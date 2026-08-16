@@ -244,7 +244,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
 
               <Button className="flex-1" size="lg" onClick={handleAddToCart}>
                 <ShoppingBag className="h-5 w-5 mr-2" />
-                Add to Cart
+                افزودن به سبد
               </Button>
 
               <Button

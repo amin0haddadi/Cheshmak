@@ -82,7 +82,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
             onClick={handleAddToCart}
           >
             <ShoppingBag className="h-4 w-4 mr-2" />
-            Add to Cart
+            افزودن به سبد
           </Button>
         </div>
       </div>
