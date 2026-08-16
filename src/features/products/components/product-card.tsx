@@ -60,7 +60,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
             <Heart
               className={cn(
                 "h-4 w-4",
-                isWishlisted && "fill-primary text-primary"
+                isWishlisted && "fill-red-500 text-red-500"
               )}
             />
           </Button>

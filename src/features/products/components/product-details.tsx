@@ -255,7 +255,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
                 <Heart
                   className={cn(
                     "h-5 w-5",
-                    isWishlisted && "fill-primary text-primary"
+                    isWishlisted && "fill-red-500 text-red-500"
                   )}
                 />
               </Button>
