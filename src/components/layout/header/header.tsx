@@ -57,7 +57,7 @@ export function Header() {
         <div
           className={cn(
             "transition-all duration-300 px-[15px] md:px-[40px] lg:px-[70px]",
-            isPromoVisible ? "pt-[55px] md:pt-10" : "pt-[45px] md:pt-0",
+            isPromoVisible ? "pt-[55px] md:pt-10" : "pt-4 md:pt-1",
             isScrolled && "fixed top-0 left-0 right-0 shadow-md bg-primary/80 !py-1"
           )}
         >

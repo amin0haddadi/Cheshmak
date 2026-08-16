@@ -15,6 +15,7 @@ import {
 import { cn, formatPrice } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { PageHeader } from "@/components/ui/page-header";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useCartStore } from "@/stores/cart-store";
 import { useWishlistStore } from "@/stores/wishlist-store";
@@ -61,21 +62,16 @@ export function ProductDetails({ product }: ProductDetailsProps) {
       : 0;
 
   return (
-    <div className="py-8 lg:py-12">
-      <div className="container-custom">
-        {/* Breadcrumb */}
-        <nav className="flex items-center gap-2 text-sm mb-8">
-          <Link href="/" className="text-muted-foreground hover:text-foreground">
-            Home
-          </Link>
-          <span className="text-muted-foreground">/</span>
-          <Link href="/shop" className="text-muted-foreground hover:text-foreground">
-            Shop
-          </Link>
-          <span className="text-muted-foreground">/</span>
-          <span className="text-foreground">{product.name}</span>
-        </nav>
-
+    <>
+      <PageHeader
+        breadcrumbs={[
+          { label: "خانه", href: "/" },
+          { label: "فروشگاه", href: "/shop" },
+          { label: product.name },
+        ]}
+      />
+      <div className="py-8 lg:py-12">
+        <div className="container-custom">
         {/* Product Details */}
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 mb-16">
           {/* Gallery */}
@@ -162,7 +158,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
               <p className="text-sm text-muted-foreground uppercase tracking-wider mb-2">
                 {product.category}
               </p>
-              <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
+              <h2 className="text-3xl font-bold mb-4">{product.name}</h2>
               {averageRating > 0 && (
                 <div className="flex items-center gap-2">
                   <div className="flex">
@@ -360,6 +356,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
         )}
       </div>
     </div>
+    </>
   );
 }
 
