@@ -1,10 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
-
-interface BreadcrumbItem {
-  label: string;
-  href?: string;
-}
+import { Breadcrumb, type BreadcrumbItem } from "@/components/ui/breadcrumb";
 
 interface PageHeaderProps {
   title: string;
@@ -38,28 +33,10 @@ export function PageHeader({ title, breadcrumbs }: PageHeaderProps) {
           {title}
         </h1>
 
-        {/* Breadcrumbs */}
         {breadcrumbs && breadcrumbs.length > 0 && (
-          <nav className="flex items-center justify-center gap-2 text-[14px] md:text-[16px]">
-            {breadcrumbs.map((item, index) => (
-              <span key={index} className="flex items-center gap-2">
-                {index > 0 && <span className="text-mark">/</span>}
-                {item.href ? (
-                  <Link
-                    href={item.href}
-                    className="text-mark hover:text-white transition-colors"
-                  >
-                    {item.label}
-                  </Link>
-                ) : (
-                  <span className="text-mark/60">{item.label}</span>
-                )}
-              </span>
-            ))}
-          </nav>
+          <Breadcrumb items={breadcrumbs} />
         )}
       </div>
     </div>
   );
 }
-
