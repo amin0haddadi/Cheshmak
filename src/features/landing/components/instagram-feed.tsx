@@ -2,12 +2,12 @@ import Image from "next/image";
 import { Instagram } from "lucide-react";
 
 const instagramImages = [
-  "/assets/img/insta-photo1.jpg",
-  "/assets/img/insta-photo2.jpg",
-  "/assets/img/insta-photo3.jpg",
-  "/assets/img/insta-photo4.jpg",
-  "/assets/img/insta-photo5.jpg",
-  "/assets/img/insta-photo6.jpg",
+  "/assets/img/insta01.jpg",
+  "/assets/img/insta04.jpg",
+  "/assets/img/insta02.jpg",
+  "/assets/img/insta05.jpg",
+  "/assets/img/insta03.jpg",
+  "/assets/img/insta06.jpg",
 ];
 
 export function InstagramFeed() {

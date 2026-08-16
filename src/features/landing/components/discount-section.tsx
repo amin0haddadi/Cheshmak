@@ -9,10 +9,16 @@ export function DiscountSection() {
       {/* Background */}
       <div className="absolute inset-0 z-0">
         <Image
+          src="/assets/img/discount-bg-sm.jpg"
+          alt="Discount background"
+          fill
+          className="object-cover object-center md:hidden"
+        />
+        <Image
           src="/assets/img/discount-bg.jpg"
           alt="Discount background"
           fill
-          className="object-cover"
+          className="object-cover object-center hidden md:block"
         />
         <div className="absolute inset-0 bg-black/40" />
       </div>
@@ -30,7 +36,7 @@ export function DiscountSection() {
             روی همه عینک‌ها در این فصل. از کد تخفیف{" "}
             <span className="font-bold text-white">{brand.promoCode}</span> استفاده کنید.
           </p>
-          <Button asChild size="xl" variant="outline" className="border-white text-white hover:bg-white hover:text-foreground">
+          <Button asChild size="xl" variant="outline" className="border-mark text-primary/80 hover:bg-primary/80 hover:text-mark">
             <Link href="/shop?filter=sale">خرید حراجی</Link>
           </Button>
         </div>
