@@ -149,8 +149,8 @@ export function ProductDetails({ product }: ProductDetailsProps) {
           <div className="space-y-6">
             {/* Badges */}
             <div className="flex gap-2">
-              {product.isSale && <Badge variant="sale">Sale</Badge>}
-              {product.isNew && <Badge variant="new">New</Badge>}
+              {product.isSale && <Badge variant="sale">حراج</Badge>}
+              {product.isNew && <Badge variant="new">جدید</Badge>}
             </div>
 
             {/* Title & Rating */}
@@ -175,7 +175,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
                     ))}
                   </div>
                   <span className="text-sm text-muted-foreground">
-                    ({product.reviews?.length} reviews)
+                    ({product.reviews?.length} نظر)
                   </span>
                 </div>
               )}
@@ -199,7 +199,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
             {/* Colors */}
             {product.colors && product.colors.length > 0 && (
               <div>
-                <p className="font-medium mb-3">Color</p>
+                <p className="font-medium mb-3">رنگ</p>
                 <div className="flex gap-2">
                   {product.colors.map((color) => (
                     <button
@@ -219,34 +219,45 @@ export function ProductDetails({ product }: ProductDetailsProps) {
             )}
 
             {/* Quantity & Add to Cart */}
-            <div className="flex flex-col sm:flex-row gap-4">
-              <div className="flex items-center border rounded-lg">
+            <div className="flex items-stretch gap-2">
+              <div className="flex items-center border rounded-lg shrink-0 h-11">
                 <Button
                   variant="ghost"
                   size="icon"
+                  className="h-11 w-10 shrink-0"
+                  disabled={quantity <= 1}
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
                 >
                   <Minus className="h-4 w-4" />
                 </Button>
-                <span className="w-12 text-center font-medium">{quantity}</span>
+                <span className="w-8 sm:w-12 text-center font-medium tabular-nums">
+                  {quantity}
+                </span>
                 <Button
                   variant="ghost"
                   size="icon"
+                  className="h-11 w-10 shrink-0"
                   onClick={() => setQuantity(quantity + 1)}
                 >
                   <Plus className="h-4 w-4" />
                 </Button>
               </div>
 
-              <Button className="flex-1" size="lg" onClick={handleAddToCart}>
-                <ShoppingBag className="h-5 w-5 mr-2 ml-2" />
+              <Button
+                className="flex-1 h-11 min-w-0 px-3 text-sm sm:px-8 sm:text-base"
+                size="lg"
+                onClick={handleAddToCart}
+              >
+                <ShoppingBag className="h-4 w-4 sm:h-5 sm:w-5 shrink-0" />
                 افزودن به سبد
               </Button>
 
               <Button
                 variant="outline"
-                size="lg"
+                size="icon"
+                className="h-11 w-11 shrink-0"
                 onClick={() => toggleItem(product)}
+                aria-label="افزودن به علاقه‌مندی‌ها"
               >
                 <Heart
                   className={cn(
@@ -260,11 +271,11 @@ export function ProductDetails({ product }: ProductDetailsProps) {
             {/* Product Info */}
             <div className="border-t pt-6 space-y-2 text-sm">
               <p>
-                <span className="text-muted-foreground">SKU:</span>{" "}
+                <span className="text-muted-foreground">شناسه:</span>{" "}
                 {product.productNumber}
               </p>
               <p>
-                <span className="text-muted-foreground">Category:</span>{" "}
+                <span className="text-muted-foreground">دسته‌بندی:</span>{" "}
                 <Link
                   href={`/shop?category=${product.category}`}
                   className="hover:text-primary"
@@ -273,11 +284,11 @@ export function ProductDetails({ product }: ProductDetailsProps) {
                 </Link>
               </p>
               <p>
-                <span className="text-muted-foreground">Availability:</span>{" "}
+                <span className="text-muted-foreground">موجودی:</span>{" "}
                 {product.isStocked ? (
-                  <span className="text-green-600">In Stock</span>
+                  <span className="text-green-600">موجود</span>
                 ) : (
-                  <span className="text-red-600">Out of Stock</span>
+                  <span className="text-red-600">ناموجود</span>
                 )}
               </p>
             </div>
@@ -285,19 +296,21 @@ export function ProductDetails({ product }: ProductDetailsProps) {
         </div>
 
         {/* Tabs */}
-        <Tabs defaultValue="description" className="mb-16">
-          <TabsList>
-            <TabsTrigger value="description">Description</TabsTrigger>
-            <TabsTrigger value="reviews">
-              Reviews ({product.reviews?.length || 0})
-            </TabsTrigger>
-          </TabsList>
-          <TabsContent value="description" className="mt-6">
+        <Tabs defaultValue="description" dir="rtl" className="mb-16">
+          <div className="flex w-full justify-start">
+            <TabsList>
+              <TabsTrigger value="description">توضیحات</TabsTrigger>
+              <TabsTrigger value="reviews">
+                نظرات ({product.reviews?.length || 0})
+              </TabsTrigger>
+            </TabsList>
+          </div>
+          <TabsContent value="description" className="mt-6 text-start">
             <p className="text-muted-foreground max-w-3xl">
               {product.description || product.content}
             </p>
           </TabsContent>
-          <TabsContent value="reviews" className="mt-6">
+          <TabsContent value="reviews" className="mt-6 text-start">
             {product.reviews && product.reviews.length > 0 ? (
               <div className="space-y-6 max-w-3xl">
                 {product.reviews.map((review, index) => (
@@ -338,7 +351,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
                 ))}
               </div>
             ) : (
-              <p className="text-muted-foreground">No reviews yet.</p>
+              <p className="text-muted-foreground">هنوز نظری ثبت نشده است.</p>
             )}
           </TabsContent>
         </Tabs>
@@ -346,7 +359,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
         {/* Related Products */}
         {relatedProducts.length > 0 && (
           <div>
-            <h2 className="text-2xl font-bold mb-8">Related Products</h2>
+            <h2 className="text-2xl font-bold mb-8">محصولات مرتبط</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {relatedProducts.map((p) => (
                 <ProductCard key={p.id} product={p} />
