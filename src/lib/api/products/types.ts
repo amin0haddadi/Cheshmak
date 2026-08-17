@@ -22,9 +22,19 @@ export interface ApiProduct {
   id: number;
   name: string;
   slug: string;
-  description: string;
-  photos: ApiProductPhoto[];
-  variant: ApiProductVariant;
+  description: string | null;
+  photos: ApiProductPhoto[] | null;
+  category?: {
+    id: number;
+    name: string;
+    slug: string;
+    description:string
+    icon:string
+    image:string
+  } | null;
+  variant: ApiProductVariant | null;
+  variants?: ApiProductVariant[] | null;
+  cheapestVariant?: ApiProductVariant | null;
   created_at: string;
   updated_at: string;
 }

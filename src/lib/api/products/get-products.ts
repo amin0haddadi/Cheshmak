@@ -21,6 +21,10 @@ export async function getProducts(
     });
   }
 
+  if (!queryParams.has("include")) {
+    queryParams.append("include", "cheapestVariant,variants");
+  }
+
   const queryString = queryParams.toString();
   const endpoint = queryString ? `/products?${queryString}` : "/products";
 

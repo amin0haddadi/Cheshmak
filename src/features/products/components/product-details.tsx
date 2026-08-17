@@ -36,6 +36,8 @@ export function ProductDetails({ product }: ProductDetailsProps) {
 
   const { addItem } = useCartStore();
   const { toggleItem, isInWishlist } = useWishlistStore();
+  const maxQuantity = Math.max(0, product.stock ?? 0);
+
 
   // Fetch related products from the same category
   const { data: relatedProductsData } = useProducts({
@@ -50,6 +52,14 @@ export function ProductDetails({ product }: ProductDetailsProps) {
         .filter((p) => p.id !== product.id)
         .slice(0, 4)
     : [];
+
+  const handleIncreaseQuantity = () => {
+    setQuantity(quantity + 1);
+  };
+
+  const handleDecreaseQuantity= () => {
+    setQuantity(quantity - 1);
+  };
 
   const handleAddToCart = () => {
     addItem(product, quantity, selectedColor);
@@ -226,7 +236,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
                   size="icon"
                   className="h-11 w-10 shrink-0"
                   disabled={quantity <= 1}
-                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                  onClick={handleDecreaseQuantity}
                 >
                   <Minus className="h-4 w-4" />
                 </Button>
@@ -237,7 +247,9 @@ export function ProductDetails({ product }: ProductDetailsProps) {
                   variant="ghost"
                   size="icon"
                   className="h-11 w-10 shrink-0"
-                  onClick={() => setQuantity(quantity + 1)}
+                  disabled={quantity >= maxQuantity}
+
+                  onClick={handleIncreaseQuantity}
                 >
                   <Plus className="h-4 w-4" />
                 </Button>
@@ -267,6 +279,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
                 />
               </Button>
             </div>
+            <div className="text-red-500 text-sm ">{maxQuantity} عدد موجود در انبار</div>
 
             {/* Product Info */}
             <div className="border-t pt-6 space-y-2 text-sm">

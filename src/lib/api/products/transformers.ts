@@ -1,39 +1,47 @@
 import type { Product } from "@/types";
-import type { ApiProduct } from "./types";
+import type { ApiProduct, ApiProductVariant } from "./types";
+
+function getProductVariant(
+  apiProduct: ApiProduct
+): ApiProductVariant | null {
+  return (
+    apiProduct.variant ??
+    apiProduct.cheapestVariant ??
+    apiProduct.variants?.[0] ??
+    null
+  );
+}
 
 /**
  * Transform API product to frontend Product type
  */
 export function transformApiProduct(apiProduct: ApiProduct): Product {
-  // Get the default photo or first photo
-  const defaultPhoto = apiProduct.photos.find((p) => p.is_default) || apiProduct.photos[0];
-  const imageGallery = apiProduct.photos.map((p) => p.url);
+  const variant = getProductVariant(apiProduct);
+  const photos = apiProduct.photos ?? [];
+  const defaultPhoto = photos.find((p) => p.is_default) || photos[0];
+  const imageGallery = photos.map((p) => p.url);
+  const description = apiProduct.description ?? undefined;
 
-  // Calculate if product is on sale
-  const isSale = apiProduct.variant.discount_price !== null && 
-                  parseFloat(apiProduct.variant.discount_price) < parseFloat(apiProduct.variant.price);
-
-  // Format prices
-  const price = apiProduct.variant.final_price.toString();
-  const oldPrice = apiProduct.variant.discount_price 
-    ? apiProduct.variant.price 
-    : undefined;
+  const hasDiscount =
+    variant?.discount_price != null &&
+    parseFloat(variant.discount_price) < parseFloat(variant.price);
 
   return {
     id: apiProduct.id.toString(),
     name: apiProduct.name,
-    price: price,
-    oldPrice: oldPrice,
+    price: (variant?.final_price ?? variant?.price ?? 0).toString(),
+    oldPrice: hasDiscount ? variant?.price : undefined,
     image: defaultPhoto?.url || "",
     imageGallery: imageGallery.length > 0 ? imageGallery : undefined,
-    category: "", // Will be set if API provides category
-    isSale: isSale,
-    isNew: false, // Can be calculated based on created_at if needed
-    isStocked: apiProduct.variant.stock > 0,
-    productNumber: apiProduct.variant.sku,
-    variantId: apiProduct.variant.id, // Store variant ID for cart operations
-    description: apiProduct.description,
-    // Additional fields from variant can be stored if needed
+    category: apiProduct.category?.name ?? "",
+    categorySlug: apiProduct.category?.slug,
+    isSale: Boolean(hasDiscount),
+    isNew: false,
+    isStocked: (variant?.stock ?? 0) > 0,
+    stock: variant?.stock ?? 0,
+    productNumber: variant?.sku,
+    variantId: variant?.id,
+    description,
+    content: description,
   };
 }
-

@@ -12,10 +12,9 @@ export async function getProductById(id: string): Promise<Product | null> {
   // Errors are handled globally in QueryProvider and API client
   try {
     const response = await api.get<ApiProduct | { data: ApiProduct }>(`/products/${id}`);
-    
+
     // Handle both response formats
     const apiProduct: ApiProduct = "data" in response ? response.data : response;
-    
     return transformApiProduct(apiProduct);
   } catch (error) {
     // Return null for 404 errors, let other errors be handled globally
