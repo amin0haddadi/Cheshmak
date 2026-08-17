@@ -158,7 +158,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
               <p className="text-sm text-muted-foreground uppercase tracking-wider mb-2">
                 {product.category}
               </p>
-              <h2 className="text-3xl font-bold mb-4">{product.name}</h2>
+              <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
               {averageRating > 0 && (
                 <div className="flex items-center gap-2">
                   <div className="flex">
