@@ -62,6 +62,8 @@ const config: Config = {
       backgroundImage: {
         metal:
           "linear-gradient(145deg,rgb(230, 234, 238) 0%,rgb(222, 227, 233) 20%,rgb(211, 215, 219) 46%,rgb(201, 208, 214) 53%,rgb(204, 210, 218) 80%,rgb(229, 232, 235) 100%)",
+        "metal-50":
+          "linear-gradient(145deg,rgba(230, 234, 238, 0.5) 0%,rgba(222, 227, 233, 0.5) 20%,rgba(211, 215, 219, 0.5) 46%,rgba(201, 208, 214, 0.5) 53%,rgba(204, 210, 218, 0.5) 80%,rgba(229, 232, 235, 0.5) 100%)",
         "metal-text":
           "linear-gradient(180deg, #f4f5f6 0%, #c5c9ce 36%, #8b9299 52%, #dfe2e5 100%)",
       },

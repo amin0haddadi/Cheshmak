@@ -26,19 +26,23 @@ export function Banner() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 w-full px-4 pb-6 md:w-auto md:px-[80px] md:pb-0">
-        <div className="flex flex-col items-start text-start max-w-[575px] md:max-w-[685px] lg:max-w-xl">
-          <span className="block text-metal font-display text-[45px] md:text-[60px]">
+      <div className="relative z-10 w-full px-4 md:pb-6 md:w-auto md:px-[80px] md:pb-0">
+        <div className="flex flex-col items-start text-start max-w-[575px] md:max-w-[685px] lg:max-w-xl ">
+          <span className="block text-metal font-display text-[45px] md:text-[60px] hidden md:block">
             حرفه‌ای
           </span>
-          <h1 className="text-[58px] md:text-[70px] font-bold text-[#222222] leading-tight">
+          <h1 className="text-[58px] md:text-[70px] font-bold text-[#222222] leading-tight hidden md:block">
             عینک و فریم
           </h1>
-          <p className="text-[16px] md:text-[20px] text-[#666666] mt-4 max-w-[465px] leading-[180%]">
+          <p className="text-[16px] md:text-[20px] text-white mt-4 max-w-[465px] leading-[180%] hidden md:block">
             عینک طبی، آفتابی و فریم‌های روز را در چشمک پیدا کنید. با پیشنهادهایی
             که نمی‌توانید رد کنید.
           </p>
-          <Button asChild size="xl" className="mt-[30px] md:mt-[60px]">
+          <Button
+            asChild
+            size="xl"
+            className="mt-[30px] md:mt-[60px] w-full md:w-auto bg-metal-50 text-white"
+          >
             <Link href="/shop">همین حالا خرید کنید</Link>
           </Button>
         </div>
