@@ -29,7 +29,7 @@ export function Footer() {
     <footer className="bg-neutral-900 text-white">
       {/* Top Section */}
       <div className="container-custom py-12">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8 pb-12 border-b border-white/10">
+        <div className="flex flex-col items-center justify-between gap-8 border-b border-white/10 pb-12 md:flex-row">
           {/* Social Links */}
           <div className="flex items-center gap-4">
             <span className="text-sm text-white/70">ما را دنبال کنید:</span>
@@ -38,32 +38,32 @@ export function Footer() {
                 href="https://facebook.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="h-10 w-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-metal hover:text-primary hover:shadow-metal transition-colors"
+                className="flex size-10 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-metal hover:text-primary hover:shadow-metal"
               >
-                <FacebookIcon className="h-5 w-5" />
+                <FacebookIcon className="size-5" />
               </a>
               <a
                 href="https://twitter.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="h-10 w-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-metal hover:text-primary hover:shadow-metal transition-colors"
+                className="flex size-10 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-metal hover:text-primary hover:shadow-metal"
               >
-                <TwitterIcon className="h-5 w-5" />
+                <TwitterIcon className="size-5" />
               </a>
               <a
                 href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="h-10 w-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-metal hover:text-primary hover:shadow-metal transition-colors"
+                className="flex size-10 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-metal hover:text-primary hover:shadow-metal"
               >
-                <InstagramIcon className="h-5 w-5" />
+                <InstagramIcon className="size-5" />
               </a>
             </div>
           </div>
 
           {/* Logo */}
           <Link href="/" className="flex-shrink-0">
-            <BrandLogo className="h-[72px] aspect-[1087/535] md:h-20" />
+            <BrandLogo className="aspect-[1087/535] h-[72px] md:h-20" />
           </Link>
 
           {/* Payment Methods */}
@@ -77,7 +77,7 @@ export function Footer() {
                   alt={method.name}
                   width={40}
                   height={25}
-                  className="opacity-70 hover:opacity-100 transition-opacity"
+                  className="opacity-70 transition-opacity hover:opacity-100"
                 />
               ))}
             </div>
@@ -85,16 +85,16 @@ export function Footer() {
         </div>
 
         {/* Navigation */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 py-12">
+        <div className="grid grid-cols-2 gap-8 py-12 md:grid-cols-4">
           {footerNavItems.map((section) => (
             <div key={section.title}>
-              <h3 className="font-semibold text-lg mb-4">{section.title}</h3>
+              <h3 className="mb-4 text-lg font-semibold">{section.title}</h3>
               <ul className="space-y-3">
                 {section.links.map((link) => (
                   <li key={link.name}>
                     <Link
                       href={link.path}
-                      className="text-sm text-white/70 hover:text-mark transition-colors"
+                      className="text-sm text-white/70 transition-colors hover:text-mark"
                     >
                       {link.name}
                     </Link>
@@ -106,36 +106,36 @@ export function Footer() {
 
           {/* Contact Info */}
           <div>
-            <h3 className="font-semibold text-lg mb-4">تماس با ما</h3>
+            <h3 className="mb-4 text-lg font-semibold">تماس با ما</h3>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
-                <MapPin className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                <MapPin className="mt-0.5 size-5 flex-shrink-0 text-primary" />
                 <span className="text-sm text-white/70">
                   تهران، خیابان ولیعصر، پلاک ۲۷
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <Phone className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                <Phone className="mt-0.5 size-5 flex-shrink-0 text-primary" />
                 <div className="flex flex-col gap-1">
                   <a
                     href="tel:+982112345678"
-                    className="text-sm text-white/70 hover:text-mark transition-colors"
+                    className="text-sm text-white/70 transition-colors hover:text-mark"
                   >
                     ۰۲۱-۱۲۳۴۵۶۷۸
                   </a>
                   <a
                     href="tel:+989121234567"
-                    className="text-sm text-white/70 hover:text-mark transition-colors"
+                    className="text-sm text-white/70 transition-colors hover:text-mark"
                   >
                     ۰۹۱۲-۱۲۳۴۵۶۷
                   </a>
                 </div>
               </li>
               <li className="flex items-start gap-3">
-                <Mail className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                <Mail className="mt-0.5 size-5 flex-shrink-0 text-primary" />
                 <a
                   href={`mailto:${brand.email}`}
-                  className="text-sm text-white/70 hover:text-mark transition-colors"
+                  className="text-sm text-white/70 transition-colors hover:text-mark"
                 >
                   {brand.email}
                 </a>

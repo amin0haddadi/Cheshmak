@@ -11,7 +11,7 @@ export function useMe() {
   const { data: session, status } = useSession();
 
   return useQuery({
-    queryKey: authKeys.me(),
+    queryKey: [...authKeys.me(), session?.accessToken],
     queryFn: () => getMe(session?.accessToken),
     enabled: status === "authenticated" && !!session?.accessToken,
     staleTime: 5 * 60 * 1000, // 5 minutes - user data doesn't change often

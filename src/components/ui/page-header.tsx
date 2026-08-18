@@ -16,7 +16,7 @@ export function PageHeader({ title, breadcrumbs }: PageHeaderProps) {
       )}
     >
       {/* Background Image */}
-      <div className="absolute inset-0 -z-[1]">
+      <div className="absolute inset-0 z-[-1]">
         {/* Mobile background */}
         <Image
           src="/assets/img/mobile-detail-bg.jpg"
@@ -29,14 +29,14 @@ export function PageHeader({ title, breadcrumbs }: PageHeaderProps) {
           src="/assets/img/detail-bg.jpg"
           alt=""
           fill
-          className="object-cover object-center hidden md:block"
+          className="hidden object-cover object-center md:block"
         />
       </div>
 
       {/* Content */}
-      <div className="container-custom text-center flex flex-col justify-center items-center gap-10">
+      <div className="container-custom flex flex-col items-center justify-center gap-10 text-center">
         {title && (
-          <h1 className="text-[45px] md:text-[60px] font-bold text-mark leading-tight text-center">
+          <h1 className="text-center text-[45px] font-bold leading-tight text-mark md:text-[60px]">
             {title}
           </h1>
         )}

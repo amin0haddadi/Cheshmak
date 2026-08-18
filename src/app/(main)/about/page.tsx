@@ -28,12 +28,12 @@ export default function AboutPage() {
       {/* Story Section */}
       <section className="py-16 lg:py-24">
         <div className="container-custom">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid items-center gap-12 lg:grid-cols-2">
             <div>
-              <span className="inline-block text-primary font-display text-lg italic mb-2">
+              <span className="mb-2 inline-block font-display text-lg italic text-primary">
                 از ۲۰۱۵
               </span>
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              <h2 className="mb-6 text-3xl font-bold md:text-4xl">
                 مسیر ما
               </h2>
               <div className="space-y-4 text-muted-foreground">
@@ -54,7 +54,7 @@ export default function AboutPage() {
                 </p>
               </div>
             </div>
-            <div className="relative aspect-square rounded-2xl overflow-hidden">
+            <div className="relative aspect-square overflow-hidden rounded-2xl">
               <Image
                 src="/assets/img/info-item-img1.jpg"
                 alt="Our story"
@@ -67,41 +67,41 @@ export default function AboutPage() {
       </section>
 
       {/* Values Section */}
-      <section className="py-16 lg:py-24 bg-muted/30">
+      <section className="bg-muted/30 py-16 lg:py-24">
         <div className="container-custom">
-          <div className="text-center mb-12">
-            <span className="inline-block text-primary font-display text-lg italic mb-2">
+          <div className="mb-12 text-center">
+            <span className="mb-2 inline-block font-display text-lg italic text-primary">
               ارزش‌های ما
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold">آنچه برایمان مهم است</h2>
+            <h2 className="text-3xl font-bold md:text-4xl">آنچه برایمان مهم است</h2>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid gap-8 md:grid-cols-3">
             <div className="text-center">
-              <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+              <div className="mx-auto mb-4 flex size-16 items-center justify-center rounded-full bg-primary/10">
                 <span className="text-2xl">🌿</span>
               </div>
-              <h3 className="text-xl font-semibold mb-2">پایداری</h3>
+              <h3 className="mb-2 text-xl font-semibold">پایداری</h3>
               <p className="text-muted-foreground">
                 به بسته‌بندی مسئولانه و انتخاب برندهایی که دوام محصول را جدی
                 می‌گیرند اهمیت می‌دهیم.
               </p>
             </div>
             <div className="text-center">
-              <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+              <div className="mx-auto mb-4 flex size-16 items-center justify-center rounded-full bg-primary/10">
                 <span className="text-2xl">✨</span>
               </div>
-              <h3 className="text-xl font-semibold mb-2">کیفیت</h3>
+              <h3 className="mb-2 text-xl font-semibold">کیفیت</h3>
               <p className="text-muted-foreground">
                 هر فریم از نظر ساخت، راحتی و دوام بررسی می‌شود تا استاندارد
                 چشمک را داشته باشد.
               </p>
             </div>
             <div className="text-center">
-              <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+              <div className="mx-auto mb-4 flex size-16 items-center justify-center rounded-full bg-primary/10">
                 <span className="text-2xl">💜</span>
               </div>
-              <h3 className="text-xl font-semibold mb-2">تنوع مدل‌ها</h3>
+              <h3 className="mb-2 text-xl font-semibold">تنوع مدل‌ها</h3>
               <p className="text-muted-foreground">
                 عینک برای همه است. مدل‌هایی برای صورت‌ها، سبک‌ها و بودجه‌های
                 مختلف ارائه می‌دهیم.
@@ -114,8 +114,8 @@ export default function AboutPage() {
       {/* Team Section */}
       <section className="py-16 lg:py-24">
         <div className="container-custom">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="relative aspect-square rounded-2xl overflow-hidden order-2 lg:order-1">
+          <div className="grid items-center gap-12 lg:grid-cols-2">
+            <div className="relative order-2 aspect-square overflow-hidden rounded-2xl lg:order-1">
               <Image
                 src="/assets/img/info-item-img2.jpg"
                 alt="Our team"
@@ -124,10 +124,10 @@ export default function AboutPage() {
               />
             </div>
             <div className="order-1 lg:order-2">
-              <span className="inline-block text-primary font-display text-lg italic mb-2">
+              <span className="mb-2 inline-block font-display text-lg italic text-primary">
                 تیم چشمک
               </span>
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              <h2 className="mb-6 text-3xl font-bold md:text-4xl">
                 علاقه‌مند به دنیای عینک
               </h2>
               <div className="space-y-4 text-muted-foreground">

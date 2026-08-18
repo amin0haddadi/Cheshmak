@@ -106,7 +106,7 @@ export default function BlogPage() {
         <div className="mb-12">
           <Link
             href={`/blog/${blogPosts[0].slug}`}
-            className="group grid md:grid-cols-2 gap-6 bg-card rounded-2xl overflow-hidden border"
+            className="group grid gap-6 overflow-hidden rounded-2xl border bg-card md:grid-cols-2"
           >
             <div className="relative aspect-[4/3] md:aspect-auto">
               <Image
@@ -116,18 +116,18 @@ export default function BlogPage() {
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
               />
             </div>
-            <div className="p-6 md:p-8 flex flex-col justify-center">
-              <div className="flex items-center gap-3 text-sm text-muted-foreground mb-4">
-                <span className="text-primary font-medium">
+            <div className="flex flex-col justify-center p-6 md:p-8">
+              <div className="mb-4 flex items-center gap-3 text-sm text-muted-foreground">
+                <span className="font-medium text-primary">
                   {blogPosts[0].category}
                 </span>
                 <span>•</span>
                 <span>{blogPosts[0].date}</span>
               </div>
-              <h2 className="text-2xl md:text-3xl font-bold mb-4 group-hover:text-primary transition-colors">
+              <h2 className="mb-4 text-2xl font-bold transition-colors group-hover:text-primary md:text-3xl">
                 {blogPosts[0].title}
               </h2>
-              <p className="text-muted-foreground mb-4">
+              <p className="mb-4 text-muted-foreground">
                 {blogPosts[0].excerpt}
               </p>
                 <p className="text-sm text-muted-foreground">
@@ -138,12 +138,12 @@ export default function BlogPage() {
         </div>
 
         {/* Blog Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {blogPosts.slice(1).map((post) => (
             <Link
               key={post.id}
               href={`/blog/${post.slug}`}
-              className="group bg-card rounded-xl overflow-hidden border"
+              className="group overflow-hidden rounded-xl border bg-card"
             >
               <div className="relative aspect-[4/3]">
                 <Image
@@ -154,17 +154,17 @@ export default function BlogPage() {
                 />
               </div>
               <div className="p-5">
-                <div className="flex items-center gap-3 text-sm text-muted-foreground mb-3">
-                  <span className="text-primary font-medium">
+                <div className="mb-3 flex items-center gap-3 text-sm text-muted-foreground">
+                  <span className="font-medium text-primary">
                     {post.category}
                   </span>
                   <span>•</span>
                   <span>{post.date}</span>
                 </div>
-                <h3 className="font-semibold mb-2 group-hover:text-primary transition-colors line-clamp-2">
+                <h3 className="mb-2 line-clamp-2 font-semibold transition-colors group-hover:text-primary">
                   {post.title}
                 </h3>
-                <p className="text-sm text-muted-foreground line-clamp-2">
+                <p className="line-clamp-2 text-sm text-muted-foreground">
                   {post.excerpt}
                 </p>
               </div>

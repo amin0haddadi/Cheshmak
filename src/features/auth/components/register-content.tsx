@@ -54,14 +54,6 @@ export function RegisterContent() {
         password_confirmation: data.password_confirmation,
       });
 
-      // Log response for debugging
-      console.log("Register response:", response);
-      console.log("Response type:", typeof response);
-      console.log("Response keys:", response ? Object.keys(response) : "null");
-
-      // Response structure: { user: {...}, token: "..." }
-      // No data wrapper - access user and token directly
-      // Check if response has user and token properties directly
       const user = response?.user;
       const token = response?.token;
 
@@ -87,9 +79,6 @@ export function RegisterContent() {
           router.refresh();
         }
       } else {
-        // Log what we actually got
-        console.error("Unexpected response structure:", response);
-        // Fallback if response structure is unexpected
         toast({
           title: "ثبت نام موفق",
           description: "حساب کاربری شما ایجاد شد. لطفاً وارد شوید.",
@@ -97,10 +86,6 @@ export function RegisterContent() {
         router.push("/login");
       }
     } catch (error: any) {
-      // Log error for debugging
-      console.error("Register error:", error);
-      
-      // Handle different error structures
       let errorMessage = "خطا در ثبت نام. لطفاً اطلاعات خود را بررسی کنید.";
       
       if (error) {
@@ -137,8 +122,8 @@ export function RegisterContent() {
 
   return (
     <>
-      <div className="text-center mb-8">
-        <h1 className="text-2xl font-bold mb-2">ایجاد حساب کاربری</h1>
+      <div className="mb-8 text-center">
+        <h1 className="mb-2 text-2xl font-bold">ایجاد حساب کاربری</h1>
         <p className="text-muted-foreground">
           به چشمک بپیوندید برای پیشنهادهای ویژه و به‌روزرسانی‌ها
         </p>
@@ -147,7 +132,7 @@ export function RegisterContent() {
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <Label htmlFor="firstName" className="block mb-3">
+            <Label htmlFor="firstName" className="mb-3 block">
               نام
             </Label>
             <Input
@@ -163,13 +148,13 @@ export function RegisterContent() {
               className={errors.firstName ? "border-destructive" : ""}
             />
             {errors.firstName && (
-              <p className="text-sm text-destructive mt-2">
+              <p className="mt-2 text-sm text-destructive">
                 {errors.firstName.message}
               </p>
             )}
           </div>
           <div>
-            <Label htmlFor="lastName" className="block mb-3">
+            <Label htmlFor="lastName" className="mb-3 block">
               نام خانوادگی
             </Label>
             <Input
@@ -185,7 +170,7 @@ export function RegisterContent() {
               className={errors.lastName ? "border-destructive" : ""}
             />
             {errors.lastName && (
-              <p className="text-sm text-destructive mt-2">
+              <p className="mt-2 text-sm text-destructive">
                 {errors.lastName.message}
               </p>
             )}
@@ -193,7 +178,7 @@ export function RegisterContent() {
         </div>
 
         <div>
-          <Label htmlFor="email" className="block mb-3">
+          <Label htmlFor="email" className="mb-3 block">
             ایمیل
           </Label>
           <Input
@@ -210,14 +195,14 @@ export function RegisterContent() {
             className={errors.email ? "border-destructive" : ""}
           />
           {errors.email && (
-            <p className="text-sm text-destructive mt-2">
+            <p className="mt-2 text-sm text-destructive">
               {errors.email.message}
             </p>
           )}
         </div>
 
         <div>
-          <Label htmlFor="password" className="block mb-3">
+          <Label htmlFor="password" className="mb-3 block">
             رمز عبور
           </Label>
           <div className="relative">
@@ -251,21 +236,21 @@ export function RegisterContent() {
               className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
             >
               {showPassword ? (
-                <EyeOff className="h-4 w-4" />
+                <EyeOff className="size-4" />
               ) : (
-                <Eye className="h-4 w-4" />
+                <Eye className="size-4" />
               )}
             </button>
           </div>
           {errors.password && (
-            <p className="text-sm text-destructive mt-2">
+            <p className="mt-2 text-sm text-destructive">
               {errors.password.message}
             </p>
           )}
         </div>
 
         <div>
-          <Label htmlFor="password_confirmation" className="block mb-3">
+          <Label htmlFor="password_confirmation" className="mb-3 block">
             تکرار رمز عبور
           </Label>
           <div className="relative">
@@ -286,14 +271,14 @@ export function RegisterContent() {
               className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
             >
               {showPasswordConfirmation ? (
-                <EyeOff className="h-4 w-4" />
+                <EyeOff className="size-4" />
               ) : (
-                <Eye className="h-4 w-4" />
+                <Eye className="size-4" />
               )}
             </button>
           </div>
           {errors.password_confirmation && (
-            <p className="text-sm text-destructive mt-2">
+            <p className="mt-2 text-sm text-destructive">
               {errors.password_confirmation.message}
             </p>
           )}
@@ -304,7 +289,7 @@ export function RegisterContent() {
         </Button>
       </form>
 
-      <p className="text-center text-xs text-muted-foreground mt-6">
+      <p className="mt-6 text-center text-xs text-muted-foreground">
         با ایجاد حساب کاربری، شما با{" "}
         <Link href="/terms" className="text-primary hover:underline">
           شرایط استفاده
@@ -316,7 +301,7 @@ export function RegisterContent() {
         ما موافقت می‌کنید
       </p>
 
-      <p className="text-center text-sm text-muted-foreground mt-8">
+      <p className="mt-8 text-center text-sm text-muted-foreground">
         قبلاً حساب کاربری دارید؟{" "}
         <Link href="/login" className="text-primary hover:underline">
           ورود

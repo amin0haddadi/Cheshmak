@@ -18,21 +18,21 @@ export function Nav({ items, className }: NavProps) {
     <nav className={cn("flex items-center gap-8", className)}>
       {items.map((item) => {
         return (
-          <div key={item.name} className="relative group">
+          <div key={item.name} className="group relative">
             <Link
               href={item.path}
               className="flex items-center gap-1 text-sm font-medium text-mark transition-colors hover:text-white"
             >
               {item.name}
               {item.children && (
-                <ChevronDown className="h-4 w-4 transition-transform group-hover:rotate-180" />
+                <ChevronDown className="size-4 transition-transform group-hover:rotate-180" />
               )}
             </Link>
 
             {/* Dropdown */}
             {item.children && (
-              <div className="absolute left-0 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                <div className="bg-white shadow-lg py-4 min-w-[220px]">
+              <div className="invisible absolute left-0 top-full pt-2 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100">
+                <div className="min-w-[220px] bg-white py-4 shadow-lg">
                   {item.children.map((child) => (
                     <Link
                       key={child.name}

@@ -28,16 +28,16 @@ export function NewArrivals() {
     <section className="py-16 lg:py-24">
       <div className="container-custom">
         {/* Section Title */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
+        <div className="mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
-            <span className="inline-block text-primary font-display text-lg mb-2">
+            <span className="mb-2 inline-block font-display text-lg text-primary">
               تازه رسیده
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold">جدیدترین محصولات</h2>
+            <h2 className="text-3xl font-bold md:text-4xl">جدیدترین محصولات</h2>
           </div>
           <Link
             href="/shop?sort=-created_at"
-            className="text-primary font-medium hover:underline transition-colors"
+            className="font-medium text-primary transition-colors hover:underline"
           >
             مشاهده همه جدیدها ←
           </Link>
@@ -45,7 +45,7 @@ export function NewArrivals() {
 
         {/* Products Grid */}
         {products.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {products.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}

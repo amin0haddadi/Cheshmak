@@ -18,7 +18,7 @@ export default function RootLayout({
       dir="rtl"
       className={`${estedad.variable} ${nastaliq.variable}`}
     >
-      <body className={`${estedad.className} min-h-screen flex flex-col`}>
+      <body className={`${estedad.className} flex min-h-screen flex-col`}>
         <SessionProvider>
           <QueryProvider>
             {children}

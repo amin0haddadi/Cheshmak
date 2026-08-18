@@ -138,26 +138,26 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
         {/* Back Link */}
         <Link
           href="/blog"
-          className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-8"
+          className="mb-8 inline-flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
         >
-          <ArrowLeft className="h-4 w-4" />
+          <ArrowLeft className="size-4" />
           Back to Blog
         </Link>
 
         {/* Article */}
-        <article className="max-w-3xl mx-auto">
+        <article className="mx-auto max-w-3xl">
           {/* Header */}
           <header className="mb-8">
-            <div className="flex items-center gap-3 text-sm text-muted-foreground mb-4">
-              <span className="text-primary font-medium">{post.category}</span>
+            <div className="mb-4 flex items-center gap-3 text-sm text-muted-foreground">
+              <span className="font-medium text-primary">{post.category}</span>
               <span>•</span>
               <span>{post.date}</span>
             </div>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+            <h1 className="mb-6 text-3xl font-bold md:text-4xl lg:text-5xl">
               {post.title}
             </h1>
             <div className="flex items-center gap-4">
-              <div className="relative w-12 h-12 rounded-full overflow-hidden bg-muted">
+              <div className="relative size-12 overflow-hidden rounded-full bg-muted">
                 <Image
                   src="/assets/img/comment-author1.jpg"
                   alt={post.author}
@@ -173,7 +173,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
           </header>
 
           {/* Featured Image */}
-          <div className="relative aspect-video rounded-xl overflow-hidden mb-8">
+          <div className="relative mb-8 aspect-video overflow-hidden rounded-xl">
             <Image
               src={post.image}
               alt={post.title}
@@ -186,7 +186,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
           {/* Content */}
           {post.content ? (
             <div
-              className="prose prose-lg max-w-none prose-headings:font-bold prose-h2:text-2xl prose-h2:mt-8 prose-h2:mb-4 prose-h3:text-xl prose-h3:mt-6 prose-h3:mb-3 prose-p:text-muted-foreground prose-p:leading-relaxed prose-li:text-muted-foreground prose-a:text-primary prose-a:no-underline hover:prose-a:underline"
+              className="prose prose-lg prose-headings:font-bold prose-h2:text-2xl prose-h2:mt-8 prose-h2:mb-4 prose-h3:text-xl prose-h3:mt-6 prose-h3:mb-3 prose-p:text-muted-foreground prose-p:leading-relaxed prose-li:text-muted-foreground prose-a:text-primary prose-a:no-underline hover:prose-a:underline max-w-none"
               dangerouslySetInnerHTML={{ __html: post.content }}
             />
           ) : (
@@ -196,13 +196,13 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
           )}
 
           {/* Tags */}
-          <div className="flex items-center gap-2 mt-8 pt-8 border-t">
-            <Tag className="h-4 w-4 text-muted-foreground" />
+          <div className="mt-8 flex items-center gap-2 border-t pt-8">
+            <Tag className="size-4 text-muted-foreground" />
             <div className="flex gap-2">
               {["عینک", "انتخاب فریم", "راهنما"].map((tag) => (
                 <span
                   key={tag}
-                  className="px-3 py-1 bg-muted rounded-full text-sm"
+                  className="rounded-full bg-muted px-3 py-1 text-sm"
                 >
                   {tag}
                 </span>

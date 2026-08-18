@@ -5,11 +5,11 @@ export function TopCategories() {
     <section className="py-16 lg:py-24">
       <div className="container-custom">
         {/* Section Title */}
-        <div className="text-center mb-12">
-          <span className="inline-block text-primary font-display text-lg mb-2">
+        <div className="mb-12 text-center">
+          <span className="mb-2 inline-block font-display text-lg text-primary">
             برترین
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold">دسته‌بندی‌ها</h2>
+          <h2 className="text-3xl font-bold md:text-4xl">دسته‌بندی‌ها</h2>
         </div>
 
         {/* Categories Grid */}

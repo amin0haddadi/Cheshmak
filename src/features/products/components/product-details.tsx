@@ -83,11 +83,11 @@ export function ProductDetails({ product }: ProductDetailsProps) {
       <div className="py-8 lg:py-12">
         <div className="container-custom">
         {/* Product Details */}
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 mb-16">
+        <div className="mb-16 grid gap-8 lg:grid-cols-2 lg:gap-12">
           {/* Gallery */}
           <div className="space-y-4">
             {/* Main Image */}
-            <div className="relative aspect-square rounded-xl overflow-hidden bg-muted">
+            <div className="relative aspect-square overflow-hidden rounded-xl bg-muted">
               <Image
                 src={images[selectedImage]}
                 alt={product.name}
@@ -109,7 +109,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
                       )
                     }
                   >
-                    <ChevronLeft className="h-5 w-5" />
+                    <ChevronLeft className="size-5" />
                   </Button>
                   <Button
                     variant="secondary"
@@ -123,7 +123,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
                       )
                     }
                   >
-                    <ChevronRight className="h-5 w-5" />
+                    <ChevronRight className="size-5" />
                   </Button>
                 </>
               )}
@@ -165,10 +165,10 @@ export function ProductDetails({ product }: ProductDetailsProps) {
 
             {/* Title & Rating */}
             <div>
-              <p className="text-sm text-muted-foreground uppercase tracking-wider mb-2">
+              <p className="mb-2 text-sm uppercase tracking-wider text-muted-foreground">
                 {product.category}
               </p>
-              <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
+              <h1 className="mb-4 text-3xl font-bold">{product.name}</h1>
               {averageRating > 0 && (
                 <div className="flex items-center gap-2">
                   <div className="flex">
@@ -209,7 +209,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
             {/* Colors */}
             {product.colors && product.colors.length > 0 && (
               <div>
-                <p className="font-medium mb-3">رنگ</p>
+                <p className="mb-3 font-medium">رنگ</p>
                 <div className="flex gap-2">
                   {product.colors.map((color) => (
                     <button
@@ -230,7 +230,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
 
             {/* Quantity & Add to Cart */}
             <div className="flex items-stretch gap-2">
-              <div className="flex items-center border rounded-lg shrink-0 h-11">
+              <div className="flex h-11 shrink-0 items-center rounded-lg border">
                 <Button
                   variant="ghost"
                   size="icon"
@@ -238,9 +238,9 @@ export function ProductDetails({ product }: ProductDetailsProps) {
                   disabled={quantity <= 1}
                   onClick={handleDecreaseQuantity}
                 >
-                  <Minus className="h-4 w-4" />
+                  <Minus className="size-4" />
                 </Button>
-                <span className="w-8 sm:w-12 text-center font-medium tabular-nums">
+                <span className="w-8 text-center font-medium tabular-nums sm:w-12">
                   {quantity}
                 </span>
                 <Button
@@ -251,23 +251,23 @@ export function ProductDetails({ product }: ProductDetailsProps) {
 
                   onClick={handleIncreaseQuantity}
                 >
-                  <Plus className="h-4 w-4" />
+                  <Plus className="size-4" />
                 </Button>
               </div>
 
               <Button
-                className="flex-1 h-11 min-w-0 px-3 text-sm sm:px-8 sm:text-base"
+                className="h-11 min-w-0 flex-1 px-3 text-sm sm:px-8 sm:text-base"
                 size="lg"
                 onClick={handleAddToCart}
               >
-                <ShoppingBag className="h-4 w-4 sm:h-5 sm:w-5 shrink-0" />
+                <ShoppingBag className="size-4 shrink-0 sm:size-5" />
                 افزودن به سبد
               </Button>
 
               <Button
                 variant="outline"
                 size="icon"
-                className="h-11 w-11 shrink-0"
+                className="size-11 shrink-0"
                 onClick={() => toggleItem(product)}
                 aria-label="افزودن به علاقه‌مندی‌ها"
               >
@@ -279,10 +279,10 @@ export function ProductDetails({ product }: ProductDetailsProps) {
                 />
               </Button>
             </div>
-            <div className="text-red-500 text-sm ">{maxQuantity} عدد موجود در انبار</div>
+            <div className="text-sm text-red-500 ">{maxQuantity} عدد موجود در انبار</div>
 
             {/* Product Info */}
-            <div className="border-t pt-6 space-y-2 text-sm">
+            <div className="space-y-2 border-t pt-6 text-sm">
               <p>
                 <span className="text-muted-foreground">شناسه:</span>{" "}
                 {product.productNumber}
@@ -319,17 +319,17 @@ export function ProductDetails({ product }: ProductDetailsProps) {
             </TabsList>
           </div>
           <TabsContent value="description" className="mt-6 text-start">
-            <p className="text-muted-foreground max-w-3xl">
+            <p className="max-w-3xl text-muted-foreground">
               {product.description || product.content}
             </p>
           </TabsContent>
           <TabsContent value="reviews" className="mt-6 text-start">
             {product.reviews && product.reviews.length > 0 ? (
-              <div className="space-y-6 max-w-3xl">
+              <div className="max-w-3xl space-y-6">
                 {product.reviews.map((review, index) => (
                   <div key={index} className="border-b pb-6 last:border-0">
                     <div className="flex items-start gap-4">
-                      <div className="relative w-12 h-12 rounded-full overflow-hidden">
+                      <div className="relative size-12 overflow-hidden rounded-full">
                         <Image
                           src={review.author.image}
                           alt={review.author.name}
@@ -338,13 +338,13 @@ export function ProductDetails({ product }: ProductDetailsProps) {
                         />
                       </div>
                       <div className="flex-1">
-                        <div className="flex items-center justify-between mb-2">
+                        <div className="mb-2 flex items-center justify-between">
                           <h4 className="font-medium">{review.author.name}</h4>
                           <span className="text-sm text-muted-foreground">
                             {review.reviewDate}
                           </span>
                         </div>
-                        <div className="flex mb-2">
+                        <div className="mb-2 flex">
                           {[1, 2, 3, 4, 5].map((star) => (
                             <Star
                               key={star}
@@ -372,8 +372,8 @@ export function ProductDetails({ product }: ProductDetailsProps) {
         {/* Related Products */}
         {relatedProducts.length > 0 && (
           <div>
-            <h2 className="text-2xl font-bold mb-8">محصولات مرتبط</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <h2 className="mb-8 text-2xl font-bold">محصولات مرتبط</h2>
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {relatedProducts.map((p) => (
                 <ProductCard key={p.id} product={p} />
               ))}

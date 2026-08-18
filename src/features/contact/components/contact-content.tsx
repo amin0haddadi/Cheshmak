@@ -25,17 +25,17 @@ export function ContactContent() {
   return (
     <div className="py-8 lg:py-12">
       <div className="container-custom">
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="grid gap-8 lg:grid-cols-3">
           {/* Contact Info */}
           <div className="space-y-6">
-            <div className="bg-card rounded-xl border p-6">
+            <div className="rounded-xl border bg-card p-6">
               <div className="flex items-start gap-4">
-                <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                  <MapPin className="h-5 w-5 text-primary" />
+                <div className="flex size-12 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
+                  <MapPin className="size-5 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-1">Our Location</h3>
-                  <p className="text-muted-foreground text-sm">
+                  <h3 className="mb-1 font-semibold">Our Location</h3>
+                  <p className="text-sm text-muted-foreground">
                     27 Division St, New York,
                     <br />
                     NY 10002, USA
@@ -44,14 +44,14 @@ export function ContactContent() {
               </div>
             </div>
 
-            <div className="bg-card rounded-xl border p-6">
+            <div className="rounded-xl border bg-card p-6">
               <div className="flex items-start gap-4">
-                <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                  <Phone className="h-5 w-5 text-primary" />
+                <div className="flex size-12 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
+                  <Phone className="size-5 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-1">Phone</h3>
-                  <p className="text-muted-foreground text-sm">
+                  <h3 className="mb-1 font-semibold">Phone</h3>
+                  <p className="text-sm text-muted-foreground">
                     <a href="tel:+13459971345" className="hover:text-primary">
                       +1 345 99 71 345
                     </a>
@@ -64,14 +64,14 @@ export function ContactContent() {
               </div>
             </div>
 
-            <div className="bg-card rounded-xl border p-6">
+            <div className="rounded-xl border bg-card p-6">
               <div className="flex items-start gap-4">
-                <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                  <Mail className="h-5 w-5 text-primary" />
+                <div className="flex size-12 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
+                  <Mail className="size-5 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-1">Email</h3>
-                  <p className="text-muted-foreground text-sm">
+                  <h3 className="mb-1 font-semibold">Email</h3>
+                  <p className="text-sm text-muted-foreground">
                     <a
                       href={`mailto:${brand.email}`}
                       className="hover:text-primary"
@@ -90,14 +90,14 @@ export function ContactContent() {
               </div>
             </div>
 
-            <div className="bg-card rounded-xl border p-6">
+            <div className="rounded-xl border bg-card p-6">
               <div className="flex items-start gap-4">
-                <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                  <Clock className="h-5 w-5 text-primary" />
+                <div className="flex size-12 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
+                  <Clock className="size-5 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-1">Working Hours</h3>
-                  <p className="text-muted-foreground text-sm">
+                  <h3 className="mb-1 font-semibold">Working Hours</h3>
+                  <p className="text-sm text-muted-foreground">
                     Mon - Fri: 9:00 AM - 6:00 PM
                     <br />
                     Sat - Sun: 10:00 AM - 4:00 PM
@@ -109,14 +109,14 @@ export function ContactContent() {
 
           {/* Contact Form */}
           <div className="lg:col-span-2">
-            <div className="bg-card rounded-xl border p-6 lg:p-8">
-              <h2 className="text-xl font-semibold mb-6">Send us a Message</h2>
+            <div className="rounded-xl border bg-card p-6 lg:p-8">
+              <h2 className="mb-6 text-xl font-semibold">Send us a Message</h2>
 
               {isSubmitted ? (
-                <div className="text-center py-12">
-                  <div className="h-16 w-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
+                <div className="py-12 text-center">
+                  <div className="mx-auto mb-4 flex size-16 items-center justify-center rounded-full bg-green-100">
                     <svg
-                      className="h-8 w-8 text-green-600"
+                      className="size-8 text-green-600"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -129,16 +129,16 @@ export function ContactContent() {
                       />
                     </svg>
                   </div>
-                  <h3 className="text-xl font-semibold mb-2">Message Sent!</h3>
+                  <h3 className="mb-2 text-xl font-semibold">Message Sent!</h3>
                   <p className="text-muted-foreground">
                     Thank you for reaching out. We&apos;ll get back to you soon.
                   </p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid sm:grid-cols-2 gap-4">
+                  <div className="grid gap-4 sm:grid-cols-2">
                     <div>
-                      <label className="block text-sm font-medium mb-2">
+                      <label className="mb-2 block text-sm font-medium">
                         Your Name
                       </label>
                       <Input
@@ -151,7 +151,7 @@ export function ContactContent() {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium mb-2">
+                      <label className="mb-2 block text-sm font-medium">
                         Your Email
                       </label>
                       <Input
@@ -167,7 +167,7 @@ export function ContactContent() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium mb-2">
+                    <label className="mb-2 block text-sm font-medium">
                       Subject
                     </label>
                     <Input
@@ -181,7 +181,7 @@ export function ContactContent() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium mb-2">
+                    <label className="mb-2 block text-sm font-medium">
                       Message
                     </label>
                     <textarea
@@ -205,7 +205,7 @@ export function ContactContent() {
         </div>
 
         {/* Map */}
-        <div className="mt-12 rounded-xl overflow-hidden h-[400px] bg-muted">
+        <div className="mt-12 h-[400px] overflow-hidden rounded-xl bg-muted">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.9503398796114!2d-73.99276908459418!3d40.71455797933185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a27e2f24131%3A0x64ffc98d24a3f93e!2s27%20Division%20St%2C%20New%20York%2C%20NY%2010002!5e0!3m2!1sen!2sus!4v1639000000000!5m2!1sen!2sus"
             width="100%"

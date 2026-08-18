@@ -8,19 +8,19 @@ export default function AuthLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen flex bg-gradient-to-l from-primary/80 to-mark/10">
+    <div className="flex min-h-screen bg-gradient-to-l from-primary/80 to-mark/10">
       {/* Left - Form */}
-      <div className="flex-1 flex flex-col justify-center px-4 sm:px-6 lg:px-8 py-12">
+      <div className="flex flex-1 flex-col justify-center px-4 py-12 sm:px-6 lg:px-8">
         <div className="mx-auto w-full max-w-md">
-          <Link href="/" className="flex justify-center mb-8">
-            <BrandLogo className="h-16 aspect-[1087/535]" />
+          <Link href="/" className="mb-8 flex justify-center">
+            <BrandLogo className="aspect-[1087/535] h-16" />
           </Link>
           {children}
         </div>
       </div>
 
       {/* Right - Image */}
-      <div className="hidden lg:block lg:w-1/2 relative">
+      <div className="relative hidden lg:block lg:w-1/2">
         <Image
           src="/assets/img/login-form__bg.png"
           alt="فروشگاه عینک چشمک"

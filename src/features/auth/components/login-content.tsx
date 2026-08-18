@@ -70,14 +70,14 @@ export function LoginContent() {
 
   return (
     <>
-      <div className="text-center mb-8">
-        <h1 className="text-2xl font-bold mb-2">خوش آمدید</h1>
+      <div className="mb-8 text-center">
+        <h1 className="mb-2 text-2xl font-bold">خوش آمدید</h1>
         <p className="text-muted-foreground">وارد حساب کاربری خود شوید</p>
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         <div>
-          <Label htmlFor="email" className="block mb-3">
+          <Label htmlFor="email" className="mb-3 block">
             ایمیل
           </Label>
           <Input
@@ -94,18 +94,18 @@ export function LoginContent() {
             className={errors.email ? "border-destructive" : ""}
           />
           {errors.email && (
-            <p className="text-sm text-destructive mt-2">
+            <p className="mt-2 text-sm text-destructive">
               {errors.email.message}
             </p>
           )}
         </div>
 
         <div>
-          <div className="flex items-center justify-between mb-3">
+          <div className="mb-3 flex items-center justify-between">
             <Label htmlFor="password">رمز عبور</Label>
             <Link
               href="/forgot-password"
-            className="text-sm text-primary hover:underline transition-colors"
+            className="text-sm text-primary transition-colors hover:underline"
             >
               رمز عبور را فراموش کرده‌اید؟
             </Link>
@@ -141,14 +141,14 @@ export function LoginContent() {
               className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
             >
               {showPassword ? (
-                <EyeOff className="h-4 w-4" />
+                <EyeOff className="size-4" />
               ) : (
-                <Eye className="h-4 w-4" />
+                <Eye className="size-4" />
               )}
             </button>
           </div>
           {errors.password && (
-            <p className="text-sm text-destructive mt-2">
+            <p className="mt-2 text-sm text-destructive">
               {errors.password.message}
             </p>
           )}
@@ -200,9 +200,9 @@ export function LoginContent() {
         </Button>
       </div> */}
 
-      <p className="text-center text-sm text-muted-foreground mt-2">
+      <p className="mt-2 text-center text-sm text-muted-foreground">
         حساب کاربری ندارید؟{" "}
-        <Link href="/register" className="text-primary hover:underline transition-colors">
+        <Link href="/register" className="text-primary transition-colors hover:underline">
           ثبت نام
         </Link>
       </p>

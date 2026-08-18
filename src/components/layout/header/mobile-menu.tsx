@@ -54,7 +54,7 @@ export function MobileMenu({ items }: MobileMenuProps) {
       {/* Backdrop - click to close */}
       {isMobileMenuOpen && (
         <div
-          className="fixed inset-0 bg-black/30 z-[100] lg:hidden"
+          className="fixed inset-0 z-[100] bg-black/30 lg:hidden"
           onClick={closeMobileMenu}
         />
       )}
@@ -70,10 +70,10 @@ export function MobileMenu({ items }: MobileMenuProps) {
         {/* Close Button */}
         <button
           onClick={closeMobileMenu}
-          className="absolute top-4 left-4 text-[#222222] hover:text-mark transition-colors"
+          className="absolute left-4 top-4 text-[#222222] transition-colors hover:text-mark"
           aria-label="بستن منو"
         >
-          <X className="h-5 w-5" />
+          <X className="size-5" />
         </button>
 
         {/* Navigation */}
@@ -95,7 +95,7 @@ export function MobileMenu({ items }: MobileMenuProps) {
                       {item.name}
                     </button>
                     {openSubmenu === item.name && (
-                      <div className="flex flex-col mt-2">
+                      <div className="mt-2 flex flex-col">
                         {item.children.map((child) => (
                           <Link
                             key={child.name}
@@ -130,20 +130,20 @@ export function MobileMenu({ items }: MobileMenuProps) {
         </nav>
 
         {/* Header Options - Icons */}
-        <div className="mt-5 pt-5 border-t border-black flex justify-between w-full">
-          <Link href="/faq" className="text-[#222222] hover:text-mark transition-colors">
-            <Search className="h-5 w-5" />
+        <div className="mt-5 flex w-full justify-between border-t border-black pt-5">
+          <Link href="/faq" className="text-[#222222] transition-colors hover:text-mark">
+            <Search className="size-5" />
           </Link>
-          <Link href="/profile" className="text-[#222222] hover:text-mark transition-colors">
-            <User className="h-5 w-5" />
+          <Link href="/profile" className="text-[#222222] transition-colors hover:text-mark">
+            <User className="size-5" />
           </Link>
-          <Link href="/wishlist" className="text-[#222222] hover:text-mark transition-colors">
-            <Heart className="h-5 w-5" />
+          <Link href="/wishlist" className="text-[#222222] transition-colors hover:text-mark">
+            <Heart className="size-5" />
           </Link>
-          <Link href="/cart" className="flex items-center text-[#222222] hover:text-mark transition-colors">
-            <ShoppingBag className="h-5 w-5" />
+          <Link href="/cart" className="flex items-center text-[#222222] transition-colors hover:text-mark">
+            <ShoppingBag className="size-5" />
             {cartItems.length > 0 && (
-              <span className="mr-1 w-[22px] h-[22px] rounded-full bg-primary text-primary-foreground text-xs font-bold flex items-center justify-center">
+              <span className="mr-1 flex h-[22px] w-[22px] items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">
                 {cartItems.length}
               </span>
             )}

@@ -4,6 +4,5 @@
 
 export const cartKeys = {
   all: ["cart"] as const,
-  list: () => [...cartKeys.all, "list"] as const,
+  lists: () => [...cartKeys.all, "list"] as const,
 };
-

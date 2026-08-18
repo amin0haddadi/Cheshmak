@@ -5,7 +5,7 @@ import { brand } from "@/config/brand";
 
 export function DiscountSection() {
   return (
-    <section className="relative py-20 lg:py-32 overflow-hidden">
+    <section className="relative overflow-hidden py-20 lg:py-32">
       {/* Background */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -18,21 +18,21 @@ export function DiscountSection() {
           src="/assets/img/discount-bg.jpg"
           alt="Discount background"
           fill
-          className="object-cover object-center hidden md:block"
+          className="hidden object-cover object-center md:block"
         />
         <div className="absolute inset-0 bg-black/40" />
       </div>
 
       {/* Content */}
       <div className="container-custom relative z-10">
-        <div className="max-w-xl text-center mx-auto text-white">
-          <span className="inline-block font-display text-xl mb-4 text-primary-foreground/80">
+        <div className="mx-auto max-w-xl text-center text-white">
+          <span className="mb-4 inline-block font-display text-xl text-primary-foreground/80">
             پیشنهاد ویژه محدود
           </span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+          <h2 className="mb-6 text-4xl font-bold md:text-5xl lg:text-6xl">
             ۳۰٪ تخفیف
           </h2>
-          <p className="text-lg text-white/80 mb-8">
+          <p className="mb-8 text-lg text-white/80">
             روی همه عینک‌ها در این فصل. از کد تخفیف{" "}
             <span className="font-bold text-white">{brand.promoCode}</span> استفاده کنید.
           </p>

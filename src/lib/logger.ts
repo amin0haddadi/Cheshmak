@@ -35,6 +35,7 @@ class Logger {
         debug: "color: #8b5cf6",
       };
 
+      // eslint-disable-next-line no-console -- logger output in development
       console.log(
         `%c[${level.toUpperCase()}] ${entry.timestamp}`,
         styles[level],

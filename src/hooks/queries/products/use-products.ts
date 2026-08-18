@@ -8,21 +8,8 @@ import { productKeys } from "./query-keys";
  * Uses React Query for caching and state management
  */
 export function useProducts(params?: GetProductsParams) {
-  // Serialize params to ensure query key changes when params change
-  const serializedParams = params
-    ? Object.entries(params)
-        .filter(([_, value]) => value !== undefined && value !== null && value !== "")
-        .sort(([a], [b]) => a.localeCompare(b))
-        .reduce((acc, [key, value]) => {
-          if (value !== undefined && value !== null && value !== "") {
-            acc[key] = value as string | number;
-          }
-          return acc;
-        }, {} as Record<string, string | number>)
-    : undefined;
-
   return useQuery({
-    queryKey: [...productKeys.lists(), serializedParams],
+    queryKey: [...productKeys.lists(), params],
     queryFn: () => getProducts(params),
     staleTime: 5 * 60 * 1000, // 5 minutes - products don't change often
     gcTime: 10 * 60 * 1000, // 10 minutes cache

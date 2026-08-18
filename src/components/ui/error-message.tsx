@@ -31,7 +31,7 @@ export function ErrorMessage({
       )}
     >
       <div className="text-center">
-        <p className="text-destructive mb-4">{message}</p>
+        <p className="mb-4 text-destructive">{message}</p>
         {onRetry && (
           <Button onClick={onRetry}>{retryLabel}</Button>
         )}

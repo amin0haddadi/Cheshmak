@@ -36,19 +36,19 @@ export function Header() {
 
   return (
     <>
-      <header className="absolute right-0 top-0 w-full z-[101]">
+      <header className="absolute right-0 top-0 z-[101] w-full">
         {/* Promo Banner */}
         {isPromoVisible && (
-          <div className="absolute top-0 right-0 w-full bg-[#222222] text-white py-3 px-4 text-center text-sm">
+          <div className="absolute right-0 top-0 w-full bg-[#222222] px-4 py-3 text-center text-sm text-white">
             <span className="font-bold opacity-80">
               ۳۰٪ تخفیف روی همه محصولات - کد تخفیف: {brand.promoCode}
             </span>
             <button
               onClick={hidePromo}
-              className="absolute right-4 top-1/2 -translate-y-1/2 hover:opacity-70 transition-opacity"
+              className="absolute right-4 top-1/2 -translate-y-1/2 transition-opacity hover:opacity-70"
               aria-label="Close promo"
             >
-              <X className="h-4 w-4" />
+              <X className="size-4" />
             </button>
           </div>
         )}
@@ -65,30 +65,30 @@ export function Header() {
             <div className="flex items-center justify-between text-mark">
               {/* Logo */}
               <Link href="/" className="flex-shrink-0">
-                <BrandLogo className="h-12 aspect-[1087/535] md:h-[68px]" />
+                <BrandLogo className="aspect-[1087/535] h-12 md:h-[68px]" />
               </Link>
 
               {/* Desktop Navigation */}
               <Nav items={mainNavItems} className="hidden lg:flex" />
 
               {/* Header Actions - Hidden on mobile, shown in mobile menu instead */}
-              <div className="hidden lg:flex items-center gap-11">
-                <Link href="/faq" className="hover:text-white transition-colors">
-                  <Search className="h-5 w-5" />
+              <div className="hidden items-center gap-11 lg:flex">
+                <Link href="/faq" className="transition-colors hover:text-white">
+                  <Search className="size-5" />
                 </Link>
 
-                <Link href="/profile" className="hover:text-white transition-colors">
-                  <User className="h-5 w-5" />
+                <Link href="/profile" className="transition-colors hover:text-white">
+                  <User className="size-5" />
                 </Link>
 
-                <Link href="/wishlist" className="hover:text-white transition-colors">
-                  <Heart className="h-5 w-5" />
+                <Link href="/wishlist" className="transition-colors hover:text-white">
+                  <Heart className="size-5" />
                 </Link>
 
-                <Link href="/cart" className="flex items-center hover:text-white transition-colors">
-                  <ShoppingBag className="h-5 w-5" />
+                <Link href="/cart" className="flex items-center transition-colors hover:text-white">
+                  <ShoppingBag className="size-5" />
                   {cartItems.length > 0 && (
-                    <span className="ml-1 w-[22px] h-[22px] rounded-full bg-mark text-primary text-xs font-bold flex items-center justify-center">
+                    <span className="ml-1 flex h-[22px] w-[22px] items-center justify-center rounded-full bg-mark text-xs font-bold text-primary">
                       {cartItems.length}
                     </span>
                   )}
@@ -97,7 +97,7 @@ export function Header() {
 
               {/* Mobile Menu Toggle - Only visible on mobile */}
               <button
-                className="lg:hidden w-[22px] h-[45px] flex flex-col justify-center items-center"
+                className="flex h-[45px] w-[22px] flex-col items-center justify-center lg:hidden"
                 onClick={toggleMobileMenu}
               >
                 <span className={cn(

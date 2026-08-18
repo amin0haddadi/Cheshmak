@@ -43,16 +43,16 @@ export function ProductCard({ product, className }: ProductCardProps) {
           />
         </Link>
 
-        <div className="absolute top-3 left-3 flex flex-col gap-2">
+        <div className="absolute left-3 top-3 flex flex-col gap-2">
           {product.isSale && <Badge variant="sale">Sale</Badge>}
           {product.isNew && <Badge variant="new">New</Badge>}
         </div>
 
-        <div className="absolute top-3 right-3 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+        <div className="absolute right-3 top-3 flex flex-col gap-2 opacity-0 transition-opacity group-hover:opacity-100">
           <Button
             variant="secondary"
             size="icon"
-            className="h-9 w-9 rounded-full shadow-md"
+            className="size-9 rounded-full shadow-md"
             onClick={handleToggleWishlist}
           >
             <Heart
@@ -66,33 +66,33 @@ export function ProductCard({ product, className }: ProductCardProps) {
             <Button
               variant="secondary"
               size="icon"
-              className="h-9 w-9 rounded-full shadow-md"
+              className="size-9 rounded-full shadow-md"
             >
-              <Eye className="h-4 w-4" />
+              <Eye className="size-4" />
             </Button>
           </Link>
         </div>
 
-        <div className="absolute bottom-3 left-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
+        <div className="absolute inset-x-3 bottom-3 opacity-0 transition-opacity group-hover:opacity-100">
           <Button className="w-full shadow-lg" onClick={handleAddToCart}>
-            <ShoppingBag className="h-4 w-4 mr-2 ml-2" />
+            <ShoppingBag className="mx-2 size-4" />
             افزودن به سبد
           </Button>
         </div>
       </div>
 
       {/* Info */}
-      <div className="relative z-[1] space-y-1 sm:space-y-2 px-3 pb-3 pt-2 sm:px-4 sm:pb-4">
-        <p className="text-[10px] sm:text-xs text-primary/70 uppercase tracking-wider">
+      <div className="relative z-[1] space-y-1 px-3 pb-3 pt-2 sm:space-y-2 sm:px-4 sm:pb-4">
+        <p className="text-[10px] uppercase tracking-wider text-primary/70 sm:text-xs">
           {product.category}
         </p>
         <Link href={`/product/${product.id}`}>
-          <h3 className="text-sm sm:text-base font-medium text-primary hover:text-primary/80 transition-colors line-clamp-1">
+          <h3 className="line-clamp-1 text-sm font-medium text-primary transition-colors hover:text-primary/80 sm:text-base">
             {product.name}
           </h3>
         </Link>
         <div className="flex flex-wrap items-center gap-1 sm:gap-2">
-          <span className="text-sm sm:text-base font-semibold text-primary">
+          <span className="text-sm font-semibold text-primary sm:text-base">
             {formatPrice(product.price)}
           </span>
           {product.oldPrice && (

@@ -28,13 +28,15 @@ export function CategoryFilter({
 
   return (
     <div className={cn(
-      isMobile ? "flex flex-wrap gap-2" : "flex items-center gap-2",
+      isMobile ? "flex flex-wrap gap-2" : "flex items-center gap-2 flex-wrap",
       className
     )}>
       <button
+        type="button"
         onClick={() => onCategoryChange("all")}
         className={cn(
-          "px-4 py-2 text-sm rounded-full transition-colors",
+          "rounded-full transition-colors",
+          isMobile ? "px-3 py-1.5 text-xs" : "px-4 py-2 text-sm",
           selectedCategory === "all"
             ? "bg-primary text-primary-foreground"
             : "bg-muted hover:bg-metal hover:text-primary hover:shadow-metal"
@@ -44,10 +46,12 @@ export function CategoryFilter({
       </button>
       {categories.map((category) => (
         <button
+          type="button"
           key={category.id}
           onClick={() => onCategoryChange(category.id)}
           className={cn(
-            "px-4 py-2 text-sm rounded-full transition-colors",
+            "rounded-full transition-colors",
+            isMobile ? "px-3 py-1.5 text-xs" : "px-4 py-2 text-sm",
             selectedCategory === category.id
               ? "bg-primary text-primary-foreground"
               : "bg-muted hover:bg-metal hover:text-primary hover:shadow-metal"

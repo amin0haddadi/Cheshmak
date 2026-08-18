@@ -19,9 +19,9 @@ export function Subscribe() {
   };
 
   return (
-    <section className="relative py-16 lg:py-24 bg-muted/50 overflow-hidden">
+    <section className="relative overflow-hidden bg-muted/50 py-16 lg:py-24">
       {/* Decorative Image */}
-      <div className="absolute right-0 bottom-0 w-64 lg:w-96 opacity-20 pointer-events-none">
+      <div className="pointer-events-none absolute bottom-0 right-0 w-64 opacity-20 lg:w-96">
         <Image
           src="/assets/img/subscribe-img.png"
           alt=""
@@ -32,33 +32,33 @@ export function Subscribe() {
       </div>
 
       <div className="container-custom relative z-10">
-        <div className="max-w-2xl mx-auto text-center">
-          <span className="inline-block text-primary font-display text-lg mb-2">
+        <div className="mx-auto max-w-2xl text-center">
+          <span className="mb-2 inline-block font-display text-lg text-primary">
             خبرنامه
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <h2 className="mb-4 text-3xl font-bold md:text-4xl">
             عضویت و دریافت ۱۰٪ تخفیف
           </h2>
-          <p className="text-muted-foreground mb-8">
+          <p className="mb-8 text-muted-foreground">
             برای دریافت آخرین اخبار، محصولات جدید و تخفیف‌های ویژه در خبرنامه ما
             عضو شوید.
           </p>
 
-          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row-reverse gap-4 max-w-md mx-auto">
+          <form onSubmit={handleSubmit} className="mx-auto flex max-w-md flex-col gap-4 sm:flex-row-reverse">
             <Input
               type="email"
               placeholder="ایمیل خود را وارد کنید"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="flex-1 h-12"
+              className="h-12 flex-1"
             />
             <Button type="submit" size="lg" className="h-12">
               {isSubmitted ? "عضو شدید!" : "عضویت"}
             </Button>
           </form>
 
-          <p className="text-xs text-muted-foreground mt-4">
+          <p className="mt-4 text-xs text-muted-foreground">
             با عضویت، شما با سیاست حریم خصوصی ما موافقت کرده و رضایت می‌دهید
             که از چشمک به‌روزرسانی دریافت کنید.
           </p>

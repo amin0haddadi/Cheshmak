@@ -72,15 +72,11 @@ export function ShopContent({ searchParams }: ShopContentProps) {
     }
   };
 
-  // Sync state with URL params when they change
+  // Sync local filter state from the URL
   useEffect(() => {
-    const page = pageFromUrl;
-    const category = categoryFromUrl;
-    const sort = sortFromUrl;
-    
-    if (page !== currentPage) setCurrentPage(page);
-    if (category !== selectedCategory) setSelectedCategory(category);
-    if (sort !== sortBy) setSortBy(sort);
+    setCurrentPage(pageFromUrl);
+    setSelectedCategory(categoryFromUrl);
+    setSortBy(sortFromUrl);
   }, [pageFromUrl, categoryFromUrl, sortFromUrl]);
 
   // Update URL when params change

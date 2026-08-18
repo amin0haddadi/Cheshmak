@@ -16,7 +16,7 @@ export function TrendingProducts() {
 
   if (isLoading) {
     return (
-      <section className="py-16 lg:py-24 bg-muted/30">
+      <section className="bg-muted/30 py-16 lg:py-24">
         <div className="container-custom">
           <Loading message="در حال بارگذاری..." />
         </div>
@@ -25,19 +25,19 @@ export function TrendingProducts() {
   }
 
   return (
-    <section className="py-16 lg:py-24 bg-muted/30 relative z-10">
+    <section className="relative z-10 bg-muted/30 py-16 lg:py-24">
       <div className="container-custom">
         {/* Section Title */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
+        <div className="mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
-            <span className="inline-block text-primary font-display text-lg mb-2">
+            <span className="mb-2 inline-block font-display text-lg text-primary">
               این فصل
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold">پرفروش‌ترین‌ها</h2>
+            <h2 className="text-3xl font-bold md:text-4xl">پرفروش‌ترین‌ها</h2>
           </div>
           <Link
             href="/shop"
-            className="text-primary font-medium hover:underline transition-colors"
+            className="font-medium text-primary transition-colors hover:underline"
           >
             مشاهده همه محصولات ←
           </Link>
@@ -45,7 +45,7 @@ export function TrendingProducts() {
 
         {/* Products Grid */}
         {products.length > 0 ? (
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
             {products.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}

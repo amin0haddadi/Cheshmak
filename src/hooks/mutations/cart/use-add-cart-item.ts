@@ -18,7 +18,7 @@ export function useAddCartItem() {
       addCartItem(item, session?.accessToken),
     onSuccess: () => {
       // Invalidate cart query to refetch updated cart
-      queryClient.invalidateQueries({ queryKey: cartKeys.list() });
+      queryClient.invalidateQueries({ queryKey: cartKeys.lists() });
       
       toast({
         title: "موفق",

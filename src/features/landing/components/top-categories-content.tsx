@@ -10,11 +10,11 @@ export function TopCategoriesContent() {
   // Show loading state with skeleton or return early
   if (isLoading || !categories) {
     return (
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 lg:gap-6">
+      <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6 lg:gap-6">
         {[...Array(6)].map((_, i) => (
           <div
             key={i}
-            className="aspect-[3/4] rounded-xl bg-muted animate-pulse"
+            className="aspect-[3/4] animate-pulse rounded-xl bg-muted"
           />
         ))}
       </div>
@@ -26,12 +26,12 @@ export function TopCategoriesContent() {
   }
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 lg:gap-6">
+    <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6 lg:gap-6">
       {categories.map((category) => (
         <Link
           key={category.categoryId}
           href={`/shop?filter[category.slug]=${category.categoryId}`}
-          className="group relative aspect-[3/4] rounded-xl overflow-hidden"
+          className="group relative aspect-[3/4] overflow-hidden rounded-xl"
         >
           {category.image ? (
             <Image
@@ -41,11 +41,11 @@ export function TopCategoriesContent() {
               className="object-cover transition-transform duration-500 group-hover:scale-110"
             />
           ) : (
-            <div className="w-full h-full bg-gradient-to-br from-primary/20 to-primary/5" />
+            <div className="size-full bg-gradient-to-br from-primary/20 to-primary/5" />
           )}
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
           <div className="absolute inset-0 flex items-end justify-center pb-6">
-            <h3 className="text-white text-lg font-semibold group-hover:text-mark transition-colors">
+            <h3 className="text-lg font-semibold text-white transition-colors group-hover:text-mark">
               {category.name}
             </h3>
           </div>

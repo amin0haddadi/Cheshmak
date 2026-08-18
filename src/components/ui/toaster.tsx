@@ -55,7 +55,7 @@ function ToastProgress({
       : "bg-primary";
 
   return (
-    <div className="absolute bottom-0 left-0 right-0 h-1 bg-background/20 overflow-hidden rounded-b-md">
+    <div className="absolute inset-x-0 bottom-0 h-1 overflow-hidden rounded-b-md bg-background/20">
       <div
         className={`h-full ${progressColor} transition-all ease-linear`}
         style={{

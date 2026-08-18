@@ -91,7 +91,7 @@ export function ProfileContent() {
         <div className="container-custom">
           <p className="text-center text-muted-foreground">
             لطفاً ابتدا{" "}
-            <Link href="/login" className="text-primary hover:underline transition-colors">
+            <Link href="/login" className="text-primary transition-colors hover:underline">
               وارد حساب کاربری خود
             </Link>{" "}
             شوید.
@@ -111,13 +111,13 @@ export function ProfileContent() {
   return (
     <div className="py-8 lg:py-12">
       <div className="container-custom">
-        <div className="grid lg:grid-cols-4 gap-8">
+        <div className="grid gap-8 lg:grid-cols-4">
           {/* Sidebar */}
           <div className="lg:col-span-1">
-            <div className="bg-card rounded-xl border p-6">
-              <div className="flex flex-col items-center text-center mb-6">
-                <div className="relative w-20 h-20 rounded-full bg-muted flex items-center justify-center mb-4">
-                  <User className="h-10 w-10 text-muted-foreground" />
+            <div className="rounded-xl border bg-card p-6">
+              <div className="mb-6 flex flex-col items-center text-center">
+                <div className="relative mb-4 flex size-20 items-center justify-center rounded-full bg-muted">
+                  <User className="size-10 text-muted-foreground" />
                 </div>
                 <h2 className="font-semibold">
                   {user.name}
@@ -128,37 +128,37 @@ export function ProfileContent() {
               <nav className="space-y-1">
                 <Link
                   href="/profile"
-                  className="flex items-center gap-3 px-3 py-2 rounded-lg bg-muted text-foreground"
+                  className="flex items-center gap-3 rounded-lg bg-muted px-3 py-2 text-foreground"
                 >
-                  <User className="h-4 w-4" />
+                  <User className="size-4" />
                   پروفایل
                 </Link>
                 <Link
                   href="/profile/orders"
-                  className="flex items-center gap-3 px-3 py-2 rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
                 >
-                  <Package className="h-4 w-4" />
+                  <Package className="size-4" />
                   سفارش‌ها
                 </Link>
                 <Link
                   href="/wishlist"
-                  className="flex items-center gap-3 px-3 py-2 rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
                 >
-                  <Heart className="h-4 w-4" />
+                  <Heart className="size-4" />
                   علاقه‌مندی‌ها
                 </Link>
                 <Link
                   href="/profile/settings"
-                  className="flex items-center gap-3 px-3 py-2 rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
                 >
-                  <Settings className="h-4 w-4" />
+                  <Settings className="size-4" />
                   تنظیمات
                 </Link>
                 <button
                   onClick={logout}
-                  className="flex items-center gap-3 px-3 py-2 rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground transition-colors w-full"
+                  className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
                 >
-                  <LogOut className="h-4 w-4" />
+                  <LogOut className="size-4" />
                   خروج
                 </button>
               </nav>
@@ -175,13 +175,13 @@ export function ProfileContent() {
               </TabsList>
 
               <TabsContent value="profile">
-                <div className="bg-card rounded-xl border p-6">
-                  <h2 className="text-xl font-semibold mb-6">
+                <div className="rounded-xl border bg-card p-6">
+                  <h2 className="mb-6 text-xl font-semibold">
                     اطلاعات شخصی
                   </h2>
-                  <div className="grid sm:grid-cols-2 gap-4 max-w-2xl">
+                  <div className="grid max-w-2xl gap-4 sm:grid-cols-2">
                     <div>
-                      <label className="block text-sm font-medium mb-2">
+                      <label className="mb-2 block text-sm font-medium">
                         نام
                       </label>
                       <Input
@@ -192,7 +192,7 @@ export function ProfileContent() {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium mb-2">
+                      <label className="mb-2 block text-sm font-medium">
                         نام خانوادگی
                       </label>
                       <Input
@@ -203,7 +203,7 @@ export function ProfileContent() {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium mb-2">
+                      <label className="mb-2 block text-sm font-medium">
                         ایمیل
                       </label>
                       <Input
@@ -215,7 +215,7 @@ export function ProfileContent() {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium mb-2">
+                      <label className="mb-2 block text-sm font-medium">
                         تلفن
                       </label>
                       <Input
@@ -232,15 +232,15 @@ export function ProfileContent() {
               </TabsContent>
 
               <TabsContent value="orders">
-                <div className="bg-card rounded-xl border overflow-hidden">
-                  <div className="p-6 border-b">
+                <div className="overflow-hidden rounded-xl border bg-card">
+                  <div className="border-b p-6">
                     <h2 className="text-xl font-semibold">تاریخچه سفارش‌ها</h2>
                   </div>
                   <div className="divide-y">
                     {orders.map((order) => (
                       <div
                         key={order.id}
-                        className="p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+                        className="flex flex-col justify-between gap-4 p-6 sm:flex-row sm:items-center"
                       >
                         <div>
                           <p className="font-medium">{order.id}</p>
@@ -273,19 +273,19 @@ export function ProfileContent() {
               </TabsContent>
 
               <TabsContent value="addresses">
-                <div className="bg-card rounded-xl border p-6">
-                  <div className="flex items-center justify-between mb-6">
+                <div className="rounded-xl border bg-card p-6">
+                  <div className="mb-6 flex items-center justify-between">
                     <h2 className="text-xl font-semibold">آدرس‌های ذخیره شده</h2>
                     <Button>افزودن آدرس</Button>
                   </div>
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    <div className="border rounded-lg p-4">
-                      <div className="flex items-start justify-between mb-2">
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <div className="rounded-lg border p-4">
+                      <div className="mb-2 flex items-start justify-between">
                         <div className="flex items-center gap-2">
-                          <MapPin className="h-4 w-4 text-primary" />
+                          <MapPin className="size-4 text-primary" />
                           <span className="font-medium">منزل</span>
                         </div>
-                        <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded">
+                        <span className="rounded bg-primary/10 px-2 py-1 text-xs text-primary">
                           پیش‌فرض
                         </span>
                       </div>
@@ -297,10 +297,10 @@ export function ProfileContent() {
                         ایران
                       </p>
                     </div>
-                    <div className="border rounded-lg p-4">
-                      <div className="flex items-start justify-between mb-2">
+                    <div className="rounded-lg border p-4">
+                      <div className="mb-2 flex items-start justify-between">
                         <div className="flex items-center gap-2">
-                          <MapPin className="h-4 w-4 text-muted-foreground" />
+                          <MapPin className="size-4 text-muted-foreground" />
                           <span className="font-medium">دفتر</span>
                         </div>
                       </div>

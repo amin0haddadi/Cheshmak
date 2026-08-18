@@ -13,12 +13,12 @@ export function WishlistContent() {
     return (
       <div className="py-16 lg:py-24">
         <div className="container-custom">
-          <div className="text-center max-w-md mx-auto">
-            <div className="h-24 w-24 rounded-full bg-muted flex items-center justify-center mx-auto mb-6">
-              <Heart className="h-12 w-12 text-muted-foreground" />
+          <div className="mx-auto max-w-md text-center">
+            <div className="mx-auto mb-6 flex size-24 items-center justify-center rounded-full bg-muted">
+              <Heart className="size-12 text-muted-foreground" />
             </div>
-            <h2 className="text-2xl font-bold mb-4">لیست علاقه‌مندی شما خالی است</h2>
-            <p className="text-muted-foreground mb-8">
+            <h2 className="mb-4 text-2xl font-bold">لیست علاقه‌مندی شما خالی است</h2>
+            <p className="mb-8 text-muted-foreground">
               با کلیک روی آیکون قلب در هر محصول، آن را ذخیره کنید.
             </p>
             <Button asChild size="lg">
@@ -33,7 +33,7 @@ export function WishlistContent() {
   return (
     <div className="py-8 lg:py-12">
       <div className="container-custom">
-        <div className="flex items-center justify-between mb-8">
+        <div className="mb-8 flex items-center justify-between">
           <div>
             <p className="text-muted-foreground">
               {items.length} محصول ذخیره شده

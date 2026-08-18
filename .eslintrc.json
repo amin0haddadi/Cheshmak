@@ -9,7 +9,13 @@
     "sort-exports"
   ],
   "rules": {
-    "no-console": "warn"
+    "no-console": "warn",
+    "tailwindcss/no-custom-classname": [
+      "warn",
+      {
+        "whitelist": ["destructive"]
+      }
+    ]
   }
 }
 

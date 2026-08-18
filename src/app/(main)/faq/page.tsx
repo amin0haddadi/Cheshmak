@@ -113,11 +113,11 @@ export default function FAQPage() {
         <div className="container-custom">
 
         {/* FAQ Sections */}
-        <div className="max-w-3xl mx-auto space-y-8">
+        <div className="mx-auto max-w-3xl space-y-8">
           {faqCategories.map((category) => (
             <div key={category.title}>
-              <h2 className="text-xl font-semibold mb-4">{category.title}</h2>
-              <Accordion type="single" collapsible className="bg-card rounded-xl border">
+              <h2 className="mb-4 text-xl font-semibold">{category.title}</h2>
+              <Accordion type="single" collapsible className="rounded-xl border bg-card">
                 {category.faqs.map((faq, index) => (
                   <AccordionItem
                     key={index}
@@ -138,14 +138,14 @@ export default function FAQPage() {
         </div>
 
         {/* Contact CTA */}
-        <div className="text-center mt-16 p-8 bg-muted/50 rounded-2xl">
-          <h2 className="text-2xl font-bold mb-4">هنوز سوالی دارید؟</h2>
-          <p className="text-muted-foreground mb-6">
+        <div className="mt-16 rounded-2xl bg-muted/50 p-8 text-center">
+          <h2 className="mb-4 text-2xl font-bold">هنوز سوالی دارید؟</h2>
+          <p className="mb-6 text-muted-foreground">
             تیم پشتیبانی ما آماده کمک به شما در هر سوال یا نگرانی است.
           </p>
           <a
             href="/contact"
-            className="inline-flex items-center justify-center px-6 py-3 bg-metal text-primary shadow-metal rounded-lg font-medium hover:bg-none hover:bg-primary hover:text-primary-foreground hover:shadow transition-colors"
+            className="inline-flex items-center justify-center rounded-lg bg-metal px-6 py-3 font-medium text-primary shadow-metal transition-colors hover:bg-primary hover:bg-none hover:text-primary-foreground hover:shadow"
           >
             تماس با پشتیبانی
           </a>

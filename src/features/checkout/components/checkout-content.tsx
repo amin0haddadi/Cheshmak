@@ -36,9 +36,9 @@ export function CheckoutContent() {
     return (
       <div className="py-16 lg:py-24">
         <div className="container-custom">
-          <div className="text-center max-w-md mx-auto">
-            <h2 className="text-2xl font-bold mb-4">محصولی برای پرداخت وجود ندارد</h2>
-            <p className="text-muted-foreground mb-8">
+          <div className="mx-auto max-w-md text-center">
+            <h2 className="mb-4 text-2xl font-bold">محصولی برای پرداخت وجود ندارد</h2>
+            <p className="mb-8 text-muted-foreground">
               ابتدا چند محصول به سبد خرید خود اضافه کنید.
             </p>
             <Button asChild size="lg">
@@ -74,7 +74,7 @@ export function CheckoutContent() {
     <div className="py-8 lg:py-12">
       <div className="container-custom">
         {/* Steps */}
-        <div className="flex items-center justify-center mb-12">
+        <div className="mb-12 flex items-center justify-center">
           {steps.map((step, index) => (
             <div key={step.id} className="flex items-center">
               <div
@@ -86,9 +86,9 @@ export function CheckoutContent() {
                 )}
               >
                 {currentStep > step.id ? (
-                  <Check className="h-5 w-5" />
+                  <Check className="size-5" />
                 ) : (
-                  <step.icon className="h-5 w-5" />
+                  <step.icon className="size-5" />
                 )}
               </div>
               <span
@@ -113,17 +113,17 @@ export function CheckoutContent() {
           ))}
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="grid gap-8 lg:grid-cols-3">
           {/* Form */}
           <div className="lg:col-span-2">
             {currentStep === 1 && (
-              <div className="bg-card rounded-xl border p-6">
-                <h2 className="text-xl font-semibold mb-6">
+              <div className="rounded-xl border bg-card p-6">
+                <h2 className="mb-6 text-xl font-semibold">
                   Shipping Information
                 </h2>
-                <div className="grid sm:grid-cols-2 gap-4">
+                <div className="grid gap-4 sm:grid-cols-2">
                   <div>
-                    <label className="block text-sm font-medium mb-2">
+                    <label className="mb-2 block text-sm font-medium">
                       First Name
                     </label>
                     <Input
@@ -134,7 +134,7 @@ export function CheckoutContent() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-2">
+                    <label className="mb-2 block text-sm font-medium">
                       Last Name
                     </label>
                     <Input
@@ -145,7 +145,7 @@ export function CheckoutContent() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-2">
+                    <label className="mb-2 block text-sm font-medium">
                       Email
                     </label>
                     <Input
@@ -157,7 +157,7 @@ export function CheckoutContent() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-2">
+                    <label className="mb-2 block text-sm font-medium">
                       Phone
                     </label>
                     <Input
@@ -169,7 +169,7 @@ export function CheckoutContent() {
                     />
                   </div>
                   <div className="sm:col-span-2">
-                    <label className="block text-sm font-medium mb-2">
+                    <label className="mb-2 block text-sm font-medium">
                       Address
                     </label>
                     <Input
@@ -180,7 +180,7 @@ export function CheckoutContent() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-2">
+                    <label className="mb-2 block text-sm font-medium">
                       City
                     </label>
                     <Input
@@ -191,7 +191,7 @@ export function CheckoutContent() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-2">
+                    <label className="mb-2 block text-sm font-medium">
                       State
                     </label>
                     <Input
@@ -202,7 +202,7 @@ export function CheckoutContent() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-2">
+                    <label className="mb-2 block text-sm font-medium">
                       ZIP Code
                     </label>
                     <Input
@@ -213,7 +213,7 @@ export function CheckoutContent() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-2">
+                    <label className="mb-2 block text-sm font-medium">
                       Country
                     </label>
                     <Input
@@ -228,20 +228,20 @@ export function CheckoutContent() {
             )}
 
             {currentStep === 2 && (
-              <div className="bg-card rounded-xl border p-6">
-                <h2 className="text-xl font-semibold mb-6">Payment Method</h2>
+              <div className="rounded-xl border bg-card p-6">
+                <h2 className="mb-6 text-xl font-semibold">Payment Method</h2>
                 <div className="space-y-4">
-                  <div className="border rounded-lg p-4 flex items-center gap-4 cursor-pointer hover:border-primary transition-colors">
+                  <div className="flex cursor-pointer items-center gap-4 rounded-lg border p-4 transition-colors hover:border-primary">
                     <input
                       type="radio"
                       name="payment"
                       defaultChecked
-                      className="w-4 h-4"
+                      className="size-4"
                     />
-                    <CreditCard className="h-6 w-6 text-muted-foreground" />
+                    <CreditCard className="size-6 text-muted-foreground" />
                     <span>Credit / Debit Card</span>
                   </div>
-                  <div className="pl-8 space-y-4">
+                  <div className="space-y-4 pl-8">
                     <Input placeholder="Card Number" />
                     <div className="grid grid-cols-2 gap-4">
                       <Input placeholder="MM/YY" />
@@ -253,15 +253,15 @@ export function CheckoutContent() {
             )}
 
             {currentStep === 3 && (
-              <div className="bg-card rounded-xl border p-6">
-                <h2 className="text-xl font-semibold mb-6">Review Order</h2>
+              <div className="rounded-xl border bg-card p-6">
+                <h2 className="mb-6 text-xl font-semibold">Review Order</h2>
                 <div className="space-y-4">
                   {items.map((item) => (
                     <div
                       key={item.id}
-                      className="flex items-center gap-4 pb-4 border-b last:border-0"
+                      className="flex items-center gap-4 border-b pb-4 last:border-0"
                     >
-                      <div className="relative w-16 h-16 rounded-lg overflow-hidden">
+                      <div className="relative size-16 overflow-hidden rounded-lg">
                         <Image
                           src={item.image}
                           alt={item.name}
@@ -282,9 +282,9 @@ export function CheckoutContent() {
                   ))}
                 </div>
 
-                <div className="mt-6 pt-6 border-t">
-                  <h3 className="font-semibold mb-2">Shipping Address</h3>
-                  <p className="text-muted-foreground text-sm">
+                <div className="mt-6 border-t pt-6">
+                  <h3 className="mb-2 font-semibold">Shipping Address</h3>
+                  <p className="text-sm text-muted-foreground">
                     {formData.firstName} {formData.lastName}
                     <br />
                     {formData.address}
@@ -298,7 +298,7 @@ export function CheckoutContent() {
             )}
 
             {/* Navigation */}
-            <div className="flex justify-between mt-6">
+            <div className="mt-6 flex justify-between">
               <Button
                 variant="outline"
                 onClick={() => setCurrentStep(currentStep - 1)}
@@ -314,10 +314,10 @@ export function CheckoutContent() {
 
           {/* Order Summary */}
           <div className="lg:col-span-1">
-            <div className="bg-card rounded-xl border p-6 sticky top-24">
-              <h2 className="text-xl font-semibold mb-6">Order Summary</h2>
+            <div className="sticky top-24 rounded-xl border bg-card p-6">
+              <h2 className="mb-6 text-xl font-semibold">Order Summary</h2>
 
-              <div className="space-y-4 mb-6">
+              <div className="mb-6 space-y-4">
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">
                     Subtotal ({items.length} items)
@@ -338,7 +338,7 @@ export function CheckoutContent() {
                   <span className="text-muted-foreground">Tax</span>
                   <span>{formatPrice(tax)}</span>
                 </div>
-                <div className="border-t pt-4 flex justify-between font-semibold text-lg">
+                <div className="flex justify-between border-t pt-4 text-lg font-semibold">
                   <span>Total</span>
                   <span>{formatPrice(total)}</span>
                 </div>

@@ -52,12 +52,12 @@ export function CartContent() {
     return (
       <div className="py-16 lg:py-24">
         <div className="container-custom">
-          <div className="text-center max-w-md mx-auto">
-            <div className="h-24 w-24 rounded-full bg-muted flex items-center justify-center mx-auto mb-6">
-              <ShoppingBag className="h-12 w-12 text-muted-foreground" />
+          <div className="mx-auto max-w-md text-center">
+            <div className="mx-auto mb-6 flex size-24 items-center justify-center rounded-full bg-muted">
+              <ShoppingBag className="size-12 text-muted-foreground" />
             </div>
-            <h2 className="text-2xl font-bold mb-4">سبد خرید شما خالی است</h2>
-            <p className="text-muted-foreground mb-8">
+            <h2 className="mb-4 text-2xl font-bold">سبد خرید شما خالی است</h2>
+            <p className="mb-8 text-muted-foreground">
               به نظر می‌رسد هنوز چیزی به سبد خرید خود اضافه نکرده‌اید.
             </p>
             <Button asChild size="lg">
@@ -72,18 +72,18 @@ export function CartContent() {
   return (
     <div className="py-8 lg:py-12">
       <div className="container-custom">
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="grid gap-8 lg:grid-cols-3">
           {/* Cart Items */}
-          <div className="lg:col-span-2 space-y-4">
+          <div className="space-y-4 lg:col-span-2">
             {items.map((item) => (
               <div
                 key={`${item.id}-${item.selectedColor}`}
-                className="flex gap-4 p-4 bg-card rounded-xl border"
+                className="flex gap-4 rounded-xl border bg-card p-4"
               >
                 {/* Image */}
                 <Link
                   href={`/product/${item.id}`}
-                  className="relative w-24 h-24 rounded-lg overflow-hidden flex-shrink-0"
+                  className="relative size-24 flex-shrink-0 overflow-hidden rounded-lg"
                 >
                   <Image
                     src={item.image}
@@ -94,12 +94,12 @@ export function CartContent() {
                 </Link>
 
                 {/* Details */}
-                <div className="flex-1 min-w-0">
+                <div className="min-w-0 flex-1">
                   <div className="flex justify-between gap-4">
                     <div>
                       <Link
                         href={`/product/${item.id}`}
-                        className="font-medium hover:text-primary transition-colors line-clamp-1"
+                        className="line-clamp-1 font-medium transition-colors hover:text-primary"
                       >
                         {item.name}
                       </Link>
@@ -107,12 +107,12 @@ export function CartContent() {
                         {item.category}
                       </p>
                       {item.selectedColor && (
-                        <div className="flex items-center gap-2 mt-1">
+                        <div className="mt-1 flex items-center gap-2">
                           <span className="text-sm text-muted-foreground">
                             رنگ:
                           </span>
                           <div
-                            className="w-4 h-4 rounded-full border"
+                            className="size-4 rounded-full border"
                             style={{ backgroundColor: item.selectedColor }}
                           />
                         </div>
@@ -124,22 +124,22 @@ export function CartContent() {
                       className="text-muted-foreground hover:text-destructive"
                       onClick={() => removeItem(item.id)}
                     >
-                      <Trash2 className="h-4 w-4" />
+                      <Trash2 className="size-4" />
                     </Button>
                   </div>
 
-                  <div className="flex items-center justify-between mt-4">
+                  <div className="mt-4 flex items-center justify-between">
                     {/* Quantity */}
-                    <div className="flex items-center border rounded-lg">
+                    <div className="flex items-center rounded-lg border">
                       <Button
                         variant="ghost"
                         size="icon"
-                        className="h-8 w-8"
+                        className="size-8"
                         onClick={() =>
                           updateQuantity(item.id, item.quantity - 1)
                         }
                       >
-                        <Minus className="h-3 w-3" />
+                        <Minus className="size-3" />
                       </Button>
                       <span className="w-8 text-center text-sm">
                         {item.quantity}
@@ -147,12 +147,12 @@ export function CartContent() {
                       <Button
                         variant="ghost"
                         size="icon"
-                        className="h-8 w-8"
+                        className="size-8"
                         onClick={() =>
                           updateQuantity(item.id, item.quantity + 1)
                         }
                       >
-                        <Plus className="h-3 w-3" />
+                        <Plus className="size-3" />
                       </Button>
                     </div>
 
@@ -176,10 +176,10 @@ export function CartContent() {
 
           {/* Order Summary */}
           <div className="lg:col-span-1">
-            <div className="bg-card rounded-xl border p-6 sticky top-24">
-              <h2 className="text-xl font-semibold mb-6">خلاصه سفارش</h2>
+            <div className="sticky top-24 rounded-xl border bg-card p-6">
+              <h2 className="mb-6 text-xl font-semibold">خلاصه سفارش</h2>
 
-              <div className="space-y-4 mb-6">
+              <div className="mb-6 space-y-4">
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">جمع جزء</span>
                   <span>{formatPrice(subtotal)}</span>
@@ -199,7 +199,7 @@ export function CartContent() {
                     ارسال رایگان برای سفارش‌های بالای ۹۹ دلار
                   </p>
                 )}
-                <div className="border-t pt-4 flex justify-between font-semibold text-lg">
+                <div className="flex justify-between border-t pt-4 text-lg font-semibold">
                   <span>جمع کل</span>
                   <span>{formatPrice(total)}</span>
                 </div>
@@ -209,7 +209,7 @@ export function CartContent() {
                 <Link href="/checkout">ادامه به تسویه حساب</Link>
               </Button>
 
-              <p className="text-center text-xs text-muted-foreground mt-4">
+              <p className="mt-4 text-center text-xs text-muted-foreground">
                 مالیات در تسویه حساب محاسبه می‌شود
               </p>
             </div>

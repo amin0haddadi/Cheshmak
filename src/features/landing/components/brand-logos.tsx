@@ -10,13 +10,13 @@ const brands = [
 
 export function BrandLogos() {
   return (
-    <section className="py-12 bg-muted/30">
+    <section className="bg-muted/30 py-12">
       <div className="container-custom">
         <div className="flex flex-wrap items-center justify-center gap-8 lg:gap-16">
           {brands.map((brand) => (
             <div
               key={brand.name}
-              className="opacity-50 hover:opacity-100 transition-opacity"
+              className="opacity-50 transition-opacity hover:opacity-100"
             >
               <Image
                 src={brand.logo}
