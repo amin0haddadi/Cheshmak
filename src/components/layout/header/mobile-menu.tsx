@@ -62,7 +62,7 @@ export function MobileMenu({ items }: MobileMenuProps) {
       {/* Menu Panel - RTL: slides from left */}
       <div
         className={cn(
-          "fixed top-0 h-full w-[230px] bg-white z-[101] lg:hidden transition-all duration-300 ease-in overflow-y-auto",
+          "fixed top-0 h-full w-[230px] bg-card text-foreground z-[101] lg:hidden transition-all duration-300 ease-in overflow-y-auto",
           isMobileMenuOpen ? "left-0" : "-left-[306px]"
         )}
         style={{ padding: "48px 30px 30px" }}
@@ -70,7 +70,7 @@ export function MobileMenu({ items }: MobileMenuProps) {
         {/* Close Button */}
         <button
           onClick={closeMobileMenu}
-          className="absolute left-4 top-4 text-[#222222] transition-colors hover:text-mark"
+          className="absolute left-4 top-4 text-foreground transition-colors hover:text-mark"
           aria-label="بستن منو"
         >
           <X className="size-5" />
@@ -89,7 +89,7 @@ export function MobileMenu({ items }: MobileMenuProps) {
                       onClick={() => toggleSubmenu(item.name)}
                       className={cn(
                         "text-sm transition-colors hover:text-mark w-full text-right",
-                        isActive ? "text-primary" : "text-[#222222]"
+                        isActive ? "text-mark" : "text-foreground"
                       )}
                     >
                       {item.name}
@@ -103,8 +103,8 @@ export function MobileMenu({ items }: MobileMenuProps) {
                             className={cn(
                               "py-2 px-2.5 text-sm transition-colors hover:text-mark",
                               pathname === child.path
-                                ? "text-primary"
-                                : "text-[#666666]"
+                                ? "text-mark"
+                                : "text-muted-foreground"
                             )}
                           >
                             {child.name}
@@ -118,7 +118,7 @@ export function MobileMenu({ items }: MobileMenuProps) {
                     href={item.path}
                     className={cn(
                       "text-sm transition-colors hover:text-mark",
-                      isActive ? "text-primary" : "text-[#222222]"
+                      isActive ? "text-mark" : "text-foreground"
                     )}
                   >
                     {item.name}
@@ -130,17 +130,17 @@ export function MobileMenu({ items }: MobileMenuProps) {
         </nav>
 
         {/* Header Options - Icons */}
-        <div className="mt-5 flex w-full justify-between border-t border-black pt-5">
-          <Link href="/faq" className="text-[#222222] transition-colors hover:text-mark">
+        <div className="mt-5 flex w-full justify-between border-t border-border pt-5">
+          <Link href="/faq" className="text-foreground transition-colors hover:text-mark">
             <Search className="size-5" />
           </Link>
-          <Link href="/profile" className="text-[#222222] transition-colors hover:text-mark">
+          <Link href="/profile" className="text-foreground transition-colors hover:text-mark">
             <User className="size-5" />
           </Link>
-          <Link href="/wishlist" className="text-[#222222] transition-colors hover:text-mark">
+          <Link href="/wishlist" className="text-foreground transition-colors hover:text-mark">
             <Heart className="size-5" />
           </Link>
-          <Link href="/cart" className="flex items-center text-[#222222] transition-colors hover:text-mark">
+          <Link href="/cart" className="flex items-center text-foreground transition-colors hover:text-mark">
             <ShoppingBag className="size-5" />
             {cartItems.length > 0 && (
               <span className="mr-1 flex h-[22px] w-[22px] items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">

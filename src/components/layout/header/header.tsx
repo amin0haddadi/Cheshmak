@@ -39,7 +39,7 @@ export function Header() {
       <header className="absolute right-0 top-0 z-[101] w-full">
         {/* Promo Banner */}
         {isPromoVisible && (
-          <div className="absolute right-0 top-0 w-full bg-[#222222] px-4 py-3 text-center text-sm text-white">
+          <div className="absolute right-0 top-0 w-full bg-background px-4 py-3 text-center text-sm text-white">
             <span className="font-bold opacity-80">
               ۳۰٪ تخفیف روی همه محصولات - کد تخفیف: {brand.promoCode}
             </span>
@@ -58,7 +58,7 @@ export function Header() {
           className={cn(
             "transition-all duration-300 px-[15px] md:px-[40px] lg:px-[70px]",
             isPromoVisible ? "pt-[55px] md:pt-10" : "pt-4 md:pt-1",
-            isScrolled && "fixed top-0 left-0 right-0 shadow-md bg-primary/80 !py-1"
+            isScrolled && "fixed top-0 left-0 right-0 shadow-md bg-background/90 backdrop-blur-md !py-1"
           )}
         >
           <div className="w-full">

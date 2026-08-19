@@ -32,16 +32,16 @@ export function Nav({ items, className }: NavProps) {
             {/* Dropdown */}
             {item.children && (
               <div className="invisible absolute left-0 top-full pt-2 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100">
-                <div className="min-w-[220px] bg-white py-4 shadow-lg">
+                <div className="min-w-[220px] rounded-md border border-border bg-card py-4 shadow-lg">
                   {item.children.map((child) => (
                     <Link
                       key={child.name}
                       href={child.path}
                       className={cn(
-                        "block px-10 py-2 text-base transition-colors hover:bg-primary hover:text-white",
+                        "block px-10 py-2 text-base transition-colors hover:bg-primary hover:text-primary-foreground",
                         pathname === child.path
-                          ? "text-primary bg-primary/10"
-                          : "text-[#666666]"
+                          ? "bg-primary/10 text-mark"
+                          : "text-muted-foreground"
                       )}
                     >
                       {child.name}

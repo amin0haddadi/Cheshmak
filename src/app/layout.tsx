@@ -2,7 +2,7 @@ import { rootMetadata } from "@/config/metadata";
 import { QueryProvider } from "@/lib/providers/query-provider";
 import { SessionProvider } from "@/lib/providers/session-provider";
 import { Toaster } from "@/components/ui/toaster";
-import { estedad, nastaliq } from "@/lib/fonts";
+import { estedad } from "@/lib/fonts";
 import "./globals.css";
 
 export const metadata = rootMetadata;
@@ -16,7 +16,7 @@ export default function RootLayout({
     <html
       lang="fa"
       dir="rtl"
-      className={`${estedad.variable} ${nastaliq.variable}`}
+      className={`dark ${estedad.variable}`}
     >
       <body className={`${estedad.className} flex min-h-screen flex-col`}>
         <SessionProvider>

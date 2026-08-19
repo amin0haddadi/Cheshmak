@@ -2,7 +2,6 @@ export const brand = {
   name: "چشمک",
   nameEn: "Cheshmak",
   logo: "/assets/img/logo.png",
-  miniLogo: "/assets/img/mini-logo.png",
   tagline: "فروشگاه آنلاین عینک",
   description:
     "خرید عینک طبی، آفتابی و فریم‌های روز از فروشگاه چشمک.",

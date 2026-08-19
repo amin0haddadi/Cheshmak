@@ -67,7 +67,7 @@ export default function AboutPage() {
       </section>
 
       {/* Values Section */}
-      <section className="bg-muted/30 py-16 lg:py-24">
+      <section className="py-16 lg:py-24">
         <div className="container-custom">
           <div className="mb-12 text-center">
             <span className="mb-2 inline-block font-display text-lg italic text-primary">

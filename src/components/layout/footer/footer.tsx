@@ -26,7 +26,7 @@ const InstagramIcon = ({ className }: { className?: string }) => (
 
 export function Footer() {
   return (
-    <footer className="bg-neutral-900 text-white">
+    <footer className="bg-background/60 text-white backdrop-blur-sm">
       {/* Top Section */}
       <div className="container-custom py-12">
         <div className="flex flex-col items-center justify-between gap-8 border-b border-white/10 pb-12 md:flex-row">

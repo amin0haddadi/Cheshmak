@@ -31,7 +31,7 @@ export function Banner() {
           <span className="text-metal block hidden font-display text-[45px] md:block md:text-[60px]">
             حرفه‌ای
           </span>
-          <h1 className="hidden text-[58px] font-bold leading-tight text-[#222222] md:block md:text-[70px]">
+          <h1 className="hidden text-[58px] font-bold leading-tight text-white md:block md:text-[70px]">
             عینک و فریم
           </h1>
           <p className="mt-4 hidden max-w-[465px] text-[16px] leading-[180%] text-white md:block md:text-[20px]">
@@ -41,7 +41,7 @@ export function Banner() {
           <Button
             asChild
             size="xl"
-            className="mt-[30px] w-full bg-metal-50 text-white md:mt-[60px] md:w-auto"
+            className="mt-[30px] w-full bg-metal-50 text-black md:mt-[60px] md:w-auto"
           >
             <Link href="/shop">همین حالا خرید کنید</Link>
           </Button>

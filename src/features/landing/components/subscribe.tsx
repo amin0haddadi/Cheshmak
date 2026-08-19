@@ -19,11 +19,11 @@ export function Subscribe() {
   };
 
   return (
-    <section className="relative overflow-hidden bg-muted/50 py-16 lg:py-24">
+    <section className="relative overflow-hidden py-16 lg:py-24">
       {/* Decorative Image */}
       <div className="pointer-events-none absolute bottom-0 right-0 w-64 opacity-20 lg:w-96">
         <Image
-          src="/assets/img/subscribe-img.png"
+          src="/assets/img/subscribe-img.svg"
           alt=""
           width={400}
           height={400}
