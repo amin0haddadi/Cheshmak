@@ -13,7 +13,7 @@ export function useCart() {
   const { data: session, status } = useSession();
 
   return useQuery<CartItem[]>({
-    queryKey: cartKeys.list(session?.accessToken),
+    queryKey: [...cartKeys.lists(), session?.accessToken],
     queryFn: async () => {
       const response = await getCart(session?.accessToken);
       return transformApiCartResponse(response);
