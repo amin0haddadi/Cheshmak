@@ -1,27 +1,30 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
+import { useState } from 'react';
+
+import Image from 'next/image';
+import Link from 'next/link';
+
 import {
-  Heart,
-  ShoppingBag,
-  Minus,
-  Plus,
-  Star,
   ChevronLeft,
   ChevronRight,
-} from "lucide-react";
-import { cn, formatPrice } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { PageHeader } from "@/components/ui/page-header";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useCartStore } from "@/stores/cart-store";
-import { useWishlistStore } from "@/stores/wishlist-store";
-import { useProducts } from "@/hooks/queries/products";
-import { ProductCard } from "@/features/products/components/product-card";
-import type { Product } from "@/types";
+  Heart,
+  Minus,
+  Plus,
+  ShoppingBag,
+  Star,
+} from 'lucide-react';
+
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { PageHeader } from '@/components/ui/page-header';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { ProductCard } from '@/features/products/components/product-card';
+import { useProducts } from '@/hooks/queries/products';
+import { cn, formatPrice } from '@/lib/utils';
+import { useCartStore } from '@/stores/cart-store';
+import { useWishlistStore } from '@/stores/wishlist-store';
+import type { Product } from '@/types';
 
 interface ProductDetailsProps {
   product: Product;
@@ -30,7 +33,7 @@ interface ProductDetailsProps {
 export function ProductDetails({ product }: ProductDetailsProps) {
   const [selectedImage, setSelectedImage] = useState(0);
   const [selectedColor, setSelectedColor] = useState<string | undefined>(
-    product?.colors?.[0]
+    product?.colors?.[0],
   );
   const [quantity, setQuantity] = useState(1);
 
@@ -38,26 +41,23 @@ export function ProductDetails({ product }: ProductDetailsProps) {
   const { toggleItem, isInWishlist } = useWishlistStore();
   const maxQuantity = Math.max(0, product.stock ?? 0);
 
-
   // Fetch related products from the same category
   const { data: relatedProductsData } = useProducts({
-    "filter[category.slug]": product.category,
+    'filter[category.slug]': product.category,
     per_page: 5, // Get 5 to filter out current product
   });
 
   const isWishlisted = isInWishlist(product.id);
   const images = product.imageGallery || [product.image];
   const relatedProducts = relatedProductsData?.products
-    ? relatedProductsData.products
-        .filter((p) => p.id !== product.id)
-        .slice(0, 4)
+    ? relatedProductsData.products.filter(p => p.id !== product.id).slice(0, 4)
     : [];
 
   const handleIncreaseQuantity = () => {
     setQuantity(quantity + 1);
   };
 
-  const handleDecreaseQuantity= () => {
+  const handleDecreaseQuantity = () => {
     setQuantity(quantity - 1);
   };
 
@@ -75,314 +75,319 @@ export function ProductDetails({ product }: ProductDetailsProps) {
     <>
       <PageHeader
         breadcrumbs={[
-          { label: "خانه", href: "/" },
-          { label: "فروشگاه", href: "/shop" },
+          { label: 'خانه', href: '/' },
+          { label: 'فروشگاه', href: '/shop' },
           { label: product.name },
         ]}
       />
-      <div className="py-8 lg:py-12">
-        <div className="container-custom">
-        {/* Product Details */}
-        <div className="mb-16 grid gap-8 lg:grid-cols-2 lg:gap-12">
-          {/* Gallery */}
-          <div className="space-y-4">
-            {/* Main Image */}
-            <div className="relative aspect-square overflow-hidden rounded-xl bg-muted">
-              <Image
-                src={images[selectedImage]}
-                alt={product.name}
-                fill
-                className="object-cover"
-                priority
-              />
+      <div className='py-8 lg:py-12'>
+        <div className='container-custom'>
+          {/* Product Details */}
+          <div className='mb-16 grid gap-8 lg:grid-cols-2 lg:gap-12'>
+            {/* Gallery */}
+            <div className='space-y-4'>
+              {/* Main Image */}
+              <div className='relative aspect-square overflow-hidden rounded-xl bg-muted'>
+                <Image
+                  src={images[selectedImage]}
+                  alt={product.name}
+                  fill
+                  className='object-cover'
+                  priority
+                />
+                {images.length > 1 && (
+                  <>
+                    <Button
+                      variant='secondary'
+                      size='icon'
+                      className='absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-metal'
+                      onClick={() =>
+                        setSelectedImage(
+                          selectedImage === 0
+                            ? images.length - 1
+                            : selectedImage - 1,
+                        )
+                      }
+                    >
+                      <ChevronLeft className='size-5' />
+                    </Button>
+                    <Button
+                      variant='secondary'
+                      size='icon'
+                      className='absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-metal'
+                      onClick={() =>
+                        setSelectedImage(
+                          selectedImage === images.length - 1
+                            ? 0
+                            : selectedImage + 1,
+                        )
+                      }
+                    >
+                      <ChevronRight className='size-5' />
+                    </Button>
+                  </>
+                )}
+              </div>
+
+              {/* Thumbnails */}
               {images.length > 1 && (
-                <>
-                  <Button
-                    variant="secondary"
-                    size="icon"
-                    className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full"
-                    onClick={() =>
-                      setSelectedImage(
-                        selectedImage === 0
-                          ? images.length - 1
-                          : selectedImage - 1
-                      )
-                    }
-                  >
-                    <ChevronLeft className="size-5" />
-                  </Button>
-                  <Button
-                    variant="secondary"
-                    size="icon"
-                    className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full"
-                    onClick={() =>
-                      setSelectedImage(
-                        selectedImage === images.length - 1
-                          ? 0
-                          : selectedImage + 1
-                      )
-                    }
-                  >
-                    <ChevronRight className="size-5" />
-                  </Button>
-                </>
+                <div className='flex gap-2 overflow-x-auto pb-2'>
+                  {images.map((image, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setSelectedImage(index)}
+                      className={cn(
+                        'relative w-20 h-20 rounded-lg overflow-hidden flex-shrink-0 border-2 transition-colors',
+                        selectedImage === index
+                          ? 'border-primary'
+                          : 'border-transparent',
+                      )}
+                    >
+                      <Image
+                        src={image}
+                        alt={`${product.name} ${index + 1}`}
+                        fill
+                        className='object-cover'
+                      />
+                    </button>
+                  ))}
+                </div>
               )}
             </div>
 
-            {/* Thumbnails */}
-            {images.length > 1 && (
-              <div className="flex gap-2 overflow-x-auto pb-2">
-                {images.map((image, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setSelectedImage(index)}
-                    className={cn(
-                      "relative w-20 h-20 rounded-lg overflow-hidden flex-shrink-0 border-2 transition-colors",
-                      selectedImage === index
-                        ? "border-primary"
-                        : "border-transparent"
-                    )}
-                  >
-                    <Image
-                      src={image}
-                      alt={`${product.name} ${index + 1}`}
-                      fill
-                      className="object-cover"
-                    />
-                  </button>
-                ))}
+            {/* Info */}
+            <div className='space-y-6'>
+              {/* Badges */}
+              <div className='flex gap-2'>
+                {product.isSale && <Badge variant='sale'>حراج</Badge>}
+                {product.isNew && <Badge variant='new'>جدید</Badge>}
               </div>
-            )}
-          </div>
 
-          {/* Info */}
-          <div className="space-y-6">
-            {/* Badges */}
-            <div className="flex gap-2">
-              {product.isSale && <Badge variant="sale">حراج</Badge>}
-              {product.isNew && <Badge variant="new">جدید</Badge>}
-            </div>
+              {/* Title & Rating */}
+              <div>
+                <p className='mb-2 text-sm uppercase tracking-wider text-muted-foreground'>
+                  {product.category}
+                </p>
+                <h1 className='mb-4 text-3xl font-bold'>{product.name}</h1>
+                {averageRating > 0 && (
+                  <div className='flex items-center gap-2'>
+                    <div className='flex'>
+                      {[1, 2, 3, 4, 5].map(star => (
+                        <Star
+                          key={star}
+                          className={cn(
+                            'h-4 w-4',
+                            star <= averageRating
+                              ? 'fill-yellow-400 text-yellow-400'
+                              : 'text-muted',
+                          )}
+                        />
+                      ))}
+                    </div>
+                    <span className='text-sm text-muted-foreground'>
+                      ({product.reviews?.length} نظر)
+                    </span>
+                  </div>
+                )}
+              </div>
 
-            {/* Title & Rating */}
-            <div>
-              <p className="mb-2 text-sm uppercase tracking-wider text-muted-foreground">
-                {product.category}
-              </p>
-              <h1 className="mb-4 text-3xl font-bold">{product.name}</h1>
-              {averageRating > 0 && (
-                <div className="flex items-center gap-2">
-                  <div className="flex">
-                    {[1, 2, 3, 4, 5].map((star) => (
-                      <Star
-                        key={star}
+              {/* Price */}
+              <div className='flex items-baseline gap-3'>
+                <span className='text-3xl font-bold text-primary'>
+                  {formatPrice(product.price)}
+                </span>
+                {product.oldPrice && (
+                  <span className='text-xl text-muted-foreground line-through'>
+                    {formatPrice(product.oldPrice)}
+                  </span>
+                )}
+              </div>
+
+              {/* Description */}
+              <p className='text-muted-foreground'>{product.content}</p>
+
+              {/* Colors */}
+              {product.colors && product.colors.length > 0 && (
+                <div>
+                  <p className='mb-3 font-medium'>رنگ</p>
+                  <div className='flex gap-2'>
+                    {product.colors.map(color => (
+                      <button
+                        key={color}
+                        onClick={() => setSelectedColor(color)}
                         className={cn(
-                          "h-4 w-4",
-                          star <= averageRating
-                            ? "fill-yellow-400 text-yellow-400"
-                            : "text-muted"
+                          'w-10 h-10 rounded-full border-2 transition-all',
+                          selectedColor === color
+                            ? 'border-primary scale-110'
+                            : 'border-transparent',
                         )}
+                        style={{ backgroundColor: color }}
                       />
                     ))}
                   </div>
-                  <span className="text-sm text-muted-foreground">
-                    ({product.reviews?.length} نظر)
+                </div>
+              )}
+
+              {/* Quantity & Add to Cart */}
+              <div className='flex items-stretch gap-2'>
+                <div className='flex h-11 shrink-0 items-center rounded-lg border border-gray-400'>
+                  <Button
+                    variant='ghost'
+                    size='icon'
+                    className='h-11 w-10 shrink-0'
+                    disabled={quantity <= 1}
+                    onClick={handleDecreaseQuantity}
+                  >
+                    <Minus className='size-4' />
+                  </Button>
+                  <span className='w-8 text-center font-medium tabular-nums sm:w-12'>
+                    {quantity}
                   </span>
+                  <Button
+                    variant='ghost'
+                    size='icon'
+                    className='h-11 w-10 shrink-0'
+                    disabled={quantity >= maxQuantity}
+
+                    onClick={handleIncreaseQuantity}
+                  >
+                    <Plus className='size-4' />
+                  </Button>
                 </div>
-              )}
-            </div>
 
-            {/* Price */}
-            <div className="flex items-baseline gap-3">
-              <span className="text-3xl font-bold text-primary">
-                {formatPrice(product.price)}
-              </span>
-              {product.oldPrice && (
-                <span className="text-xl text-muted-foreground line-through">
-                  {formatPrice(product.oldPrice)}
-                </span>
-              )}
-            </div>
-
-            {/* Description */}
-            <p className="text-muted-foreground">{product.content}</p>
-
-            {/* Colors */}
-            {product.colors && product.colors.length > 0 && (
-              <div>
-                <p className="mb-3 font-medium">رنگ</p>
-                <div className="flex gap-2">
-                  {product.colors.map((color) => (
-                    <button
-                      key={color}
-                      onClick={() => setSelectedColor(color)}
-                      className={cn(
-                        "w-10 h-10 rounded-full border-2 transition-all",
-                        selectedColor === color
-                          ? "border-primary scale-110"
-                          : "border-transparent"
-                      )}
-                      style={{ backgroundColor: color }}
-                    />
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Quantity & Add to Cart */}
-            <div className="flex items-stretch gap-2">
-              <div className="flex h-11 shrink-0 items-center rounded-lg border">
                 <Button
-                  variant="ghost"
-                  size="icon"
-                  className="h-11 w-10 shrink-0"
-                  disabled={quantity <= 1}
-                  onClick={handleDecreaseQuantity}
+                  className='h-11 min-w-0 flex-1 px-3 text-sm sm:px-8 sm:text-base'
+                  size='lg'
+                  onClick={handleAddToCart}
                 >
-                  <Minus className="size-4" />
+                  <ShoppingBag className='size-4 shrink-0 sm:size-5' />
+                  افزودن به سبد
                 </Button>
-                <span className="w-8 text-center font-medium tabular-nums sm:w-12">
-                  {quantity}
-                </span>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="h-11 w-10 shrink-0"
-                  disabled={quantity >= maxQuantity}
 
-                  onClick={handleIncreaseQuantity}
+                <Button
+                  variant='outline'
+                  size='icon'
+                  className='size-11 shrink-0'
+                  onClick={() => toggleItem(product)}
+                  aria-label='افزودن به علاقه‌مندی‌ها'
                 >
-                  <Plus className="size-4" />
+                  <Heart
+                    className={cn(
+                      'h-5 w-5',
+                      isWishlisted && 'fill-red-500 text-red-500',
+                    )}
+                  />
                 </Button>
               </div>
+              <div className='text-sm text-red-500 '>
+                {maxQuantity} عدد موجود در انبار
+              </div>
 
-              <Button
-                className="h-11 min-w-0 flex-1 px-3 text-sm sm:px-8 sm:text-base"
-                size="lg"
-                onClick={handleAddToCart}
-              >
-                <ShoppingBag className="size-4 shrink-0 sm:size-5" />
-                افزودن به سبد
-              </Button>
-
-              <Button
-                variant="outline"
-                size="icon"
-                className="size-11 shrink-0"
-                onClick={() => toggleItem(product)}
-                aria-label="افزودن به علاقه‌مندی‌ها"
-              >
-                <Heart
-                  className={cn(
-                    "h-5 w-5",
-                    isWishlisted && "fill-red-500 text-red-500"
+              {/* Product Info */}
+              <div className='space-y-2 border-t pt-6 text-sm'>
+                <p>
+                  <span className='text-muted-foreground'>شناسه:</span>{' '}
+                  {product.productNumber}
+                </p>
+                <p>
+                  <span className='text-muted-foreground'>دسته‌بندی:</span>{' '}
+                  <Link
+                    href={`/shop?category=${product.category}`}
+                    className='hover:text-primary'
+                  >
+                    {product.category}
+                  </Link>
+                </p>
+                <p>
+                  <span className='text-muted-foreground'>موجودی:</span>{' '}
+                  {product.isStocked ? (
+                    <span className='text-green-600'>موجود</span>
+                  ) : (
+                    <span className='text-red-600'>ناموجود</span>
                   )}
-                />
-              </Button>
-            </div>
-            <div className="text-sm text-red-500 ">{maxQuantity} عدد موجود در انبار</div>
-
-            {/* Product Info */}
-            <div className="space-y-2 border-t pt-6 text-sm">
-              <p>
-                <span className="text-muted-foreground">شناسه:</span>{" "}
-                {product.productNumber}
-              </p>
-              <p>
-                <span className="text-muted-foreground">دسته‌بندی:</span>{" "}
-                <Link
-                  href={`/shop?category=${product.category}`}
-                  className="hover:text-primary"
-                >
-                  {product.category}
-                </Link>
-              </p>
-              <p>
-                <span className="text-muted-foreground">موجودی:</span>{" "}
-                {product.isStocked ? (
-                  <span className="text-green-600">موجود</span>
-                ) : (
-                  <span className="text-red-600">ناموجود</span>
-                )}
-              </p>
+                </p>
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Tabs */}
-        <Tabs defaultValue="description" dir="rtl" className="mb-16">
-          <div className="flex w-full justify-start">
-            <TabsList>
-              <TabsTrigger value="description">توضیحات</TabsTrigger>
-              <TabsTrigger value="reviews">
-                نظرات ({product.reviews?.length || 0})
-              </TabsTrigger>
-            </TabsList>
-          </div>
-          <TabsContent value="description" className="mt-6 text-start">
-            <p className="max-w-3xl text-muted-foreground">
-              {product.description || product.content}
-            </p>
-          </TabsContent>
-          <TabsContent value="reviews" className="mt-6 text-start">
-            {product.reviews && product.reviews.length > 0 ? (
-              <div className="max-w-3xl space-y-6">
-                {product.reviews.map((review, index) => (
-                  <div key={index} className="border-b pb-6 last:border-0">
-                    <div className="flex items-start gap-4">
-                      <div className="relative size-12 overflow-hidden rounded-full">
-                        <Image
-                          src={review.author.image}
-                          alt={review.author.name}
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
-                      <div className="flex-1">
-                        <div className="mb-2 flex items-center justify-between">
-                          <h4 className="font-medium">{review.author.name}</h4>
-                          <span className="text-sm text-muted-foreground">
-                            {review.reviewDate}
-                          </span>
+          {/* Tabs */}
+          <Tabs defaultValue='description' dir='rtl' className='mb-16'>
+            <div className='flex w-full justify-start'>
+              <TabsList>
+                <TabsTrigger value='description'>توضیحات</TabsTrigger>
+                <TabsTrigger value='reviews'>
+                  نظرات ({product.reviews?.length || 0})
+                </TabsTrigger>
+              </TabsList>
+            </div>
+            <TabsContent value='description' className='mt-6 text-start'>
+              <p className='max-w-3xl text-muted-foreground'>
+                {product.description || product.content}
+              </p>
+            </TabsContent>
+            <TabsContent value='reviews' className='mt-6 text-start'>
+              {product.reviews && product.reviews.length > 0 ? (
+                <div className='max-w-3xl space-y-6'>
+                  {product.reviews.map((review, index) => (
+                    <div key={index} className='border-b pb-6 last:border-0'>
+                      <div className='flex items-start gap-4'>
+                        <div className='relative size-12 overflow-hidden rounded-full'>
+                          <Image
+                            src={review.author.image}
+                            alt={review.author.name}
+                            fill
+                            className='object-cover'
+                          />
                         </div>
-                        <div className="mb-2 flex">
-                          {[1, 2, 3, 4, 5].map((star) => (
-                            <Star
-                              key={star}
-                              className={cn(
-                                "h-4 w-4",
-                                star <= review.rating
-                                  ? "fill-yellow-400 text-yellow-400"
-                                  : "text-muted"
-                              )}
-                            />
-                          ))}
+                        <div className='flex-1'>
+                          <div className='mb-2 flex items-center justify-between'>
+                            <h4 className='font-medium'>
+                              {review.author.name}
+                            </h4>
+                            <span className='text-sm text-muted-foreground'>
+                              {review.reviewDate}
+                            </span>
+                          </div>
+                          <div className='mb-2 flex'>
+                            {[1, 2, 3, 4, 5].map(star => (
+                              <Star
+                                key={star}
+                                className={cn(
+                                  'h-4 w-4',
+                                  star <= review.rating
+                                    ? 'fill-yellow-400 text-yellow-400'
+                                    : 'text-muted',
+                                )}
+                              />
+                            ))}
+                          </div>
+                          <p className='text-muted-foreground'>
+                            {review.content}
+                          </p>
                         </div>
-                        <p className="text-muted-foreground">{review.content}</p>
                       </div>
                     </div>
-                  </div>
+                  ))}
+                </div>
+              ) : (
+                <p className='text-muted-foreground'>هنوز نظری ثبت نشده است.</p>
+              )}
+            </TabsContent>
+          </Tabs>
+
+          {/* Related Products */}
+          {relatedProducts.length > 0 && (
+            <div>
+              <h2 className='mb-8 text-2xl font-bold'>محصولات مرتبط</h2>
+              <div className='grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4'>
+                {relatedProducts.map(p => (
+                  <ProductCard key={p.id} product={p} />
                 ))}
               </div>
-            ) : (
-              <p className="text-muted-foreground">هنوز نظری ثبت نشده است.</p>
-            )}
-          </TabsContent>
-        </Tabs>
-
-        {/* Related Products */}
-        {relatedProducts.length > 0 && (
-          <div>
-            <h2 className="mb-8 text-2xl font-bold">محصولات مرتبط</h2>
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {relatedProducts.map((p) => (
-                <ProductCard key={p.id} product={p} />
-              ))}
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
-    </div>
     </>
   );
 }
-
