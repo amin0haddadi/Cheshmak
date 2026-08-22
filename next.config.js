@@ -13,12 +13,12 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "beauty-center.mrhn.ir",
+        hostname: "api.cheshmak-store.ir",
         pathname: "/storage/**",
       },
       {
         protocol: "http",
-        hostname: "beauty-center.mrhn.ir",
+        hostname: "api.cheshmak-store.ir",
         pathname: "/storage/**",
       },
     ],

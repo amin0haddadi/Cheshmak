@@ -1,28 +1,28 @@
-import type { NextAuthOptions } from "next-auth";
-import CredentialsProvider from "next-auth/providers/credentials";
+import type { NextAuthOptions } from 'next-auth';
+import CredentialsProvider from 'next-auth/providers/credentials';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "https://beauty-center.mrhn.ir/api";
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
-      name: "Credentials",
+      name: 'Credentials',
       credentials: {
-        email: { label: "Email", type: "email" },
-        password: { label: "Password", type: "password" },
-        guest_token: { label: "Guest Token", type: "text", required: false },
+        email: { label: 'Email', type: 'email' },
+        password: { label: 'Password', type: 'password' },
+        guest_token: { label: 'Guest Token', type: 'text', required: false },
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) {
-          throw new Error("ایمیل و رمز عبور الزامی است");
+          throw new Error('ایمیل و رمز عبور الزامی است');
         }
 
         try {
           const response = await fetch(`${API_BASE_URL}/login`, {
-            method: "POST",
+            method: 'POST',
             headers: {
-              "Content-Type": "application/json",
-              Accept: "application/json",
+              'Content-Type': 'application/json',
+              Accept: 'application/json',
             },
             body: JSON.stringify({
               email: credentials.email,
@@ -34,7 +34,9 @@ export const authOptions: NextAuthOptions = {
           if (!response.ok) {
             const errorData = await response.json().catch(() => ({}));
             throw new Error(
-              errorData.message || errorData.error || "خطا در ورود. لطفاً اطلاعات خود را بررسی کنید."
+              errorData.message ||
+                errorData.error ||
+                'خطا در ورود. لطفاً اطلاعات خود را بررسی کنید.',
             );
           }
 
@@ -49,12 +51,12 @@ export const authOptions: NextAuthOptions = {
             };
           }
 
-          throw new Error("پاسخ نامعتبر از سرور");
+          throw new Error('پاسخ نامعتبر از سرور');
         } catch (error) {
           if (error instanceof Error) {
             throw error;
           }
-          throw new Error("خطا در ارتباط با سرور");
+          throw new Error('خطا در ارتباط با سرور');
         }
       },
     }),
@@ -79,12 +81,11 @@ export const authOptions: NextAuthOptions = {
     },
   },
   pages: {
-    signIn: "/login",
+    signIn: '/login',
   },
   session: {
-    strategy: "jwt",
+    strategy: 'jwt',
     maxAge: 30 * 24 * 60 * 60, // 30 days
   },
   secret: process.env.NEXTAUTH_SECRET,
 };
-
