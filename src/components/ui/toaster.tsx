@@ -87,7 +87,7 @@ export function Toaster() {
             <ToastProgress 
               duration={toastDuration} 
               isOpen={open ?? true} 
-              variant={variant}
+              variant={variant ?? undefined}
             />
           </Toast>
         );

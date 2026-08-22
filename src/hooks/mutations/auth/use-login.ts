@@ -13,7 +13,7 @@ export function useLogin() {
   return useMutation({
     mutationFn: (credentials: LoginRequest) => login(credentials),
     onSuccess: (response) => {
-      const { user, token } = response.data;
+      const { user, token } = response;
       
       // Store auth data
       setAuth(
