@@ -14,6 +14,9 @@ const rootMetadata: Metadata = {
     },
   ],
   keywords: [...brand.keywords],
+  other: {
+    enamad: "40060969",
+  },
 };
 
 export { rootMetadata };
