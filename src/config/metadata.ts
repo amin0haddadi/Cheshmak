@@ -3,8 +3,12 @@ import { brand } from "@/config/brand";
 
 const rootMetadata: Metadata = {
   title: {
-    template: `%s - ${brand.name}`,
-    default: brand.name,
+    template: "40060969"
+    // `%s - ${brand.name}`
+    ,
+    default:"40060969"
+      //  brand.name
+    ,
   },
   description: brand.description,
 
