@@ -12,7 +12,7 @@ export function BrandLogos() {
   return (
     <section className='py-12'>
       <div className='container-custom'>
-        <div className='flex flex items-center justify-center gap-8 lg:gap-16'>
+        <div className='flex items-center justify-center gap-8 lg:gap-16'>
           {brands.map(brand => (
             <div
               key={brand.name}

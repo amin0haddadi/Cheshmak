@@ -54,7 +54,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
           <Button
             variant='secondary'
             size='icon'
-            className='size-7 rounded-full shadow-md text-white'
+            className='size-7 rounded-full text-white shadow-md'
             onClick={handleToggleWishlist}
           >
             <Heart
@@ -68,7 +68,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
             <Button
               variant='secondary'
               size='icon'
-              className='size-7 rounded-full shadow-md text-white'
+              className='size-7 rounded-full text-white shadow-md'
             >
               <Eye className='size-4' />
             </Button>
