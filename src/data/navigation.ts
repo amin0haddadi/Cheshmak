@@ -67,7 +67,7 @@ export const paymentMethods = [
   {
     name: 'بانک ملت',
     icon: '/assets/img/Mellat.svg',
-    href: 'https://www.melat.ir',
+    href: 'https://www.mellat.ir/',
   },
   {
     name: 'زرین‌پال',
