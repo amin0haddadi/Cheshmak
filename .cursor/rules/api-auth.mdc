@@ -1,0 +1,28 @@
+---
+description: API client, auth, and backend integration rules
+globs: src/lib/api/**/*,src/lib/auth.ts,src/hooks/**/*
+alwaysApply: false
+---
+
+# API & Auth
+
+## Client
+- Base client: `src/lib/api/client.ts` → `api.get/post/put/delete`
+- Endpoints are paths like `/products`, `/login` (prefixed by `NEXT_PUBLIC_API_URL`)
+- Transform API shapes in `transformers.ts`; keep UI types in `@/types`
+
+## Auth
+- NextAuth credentials provider in `src/lib/auth.ts`
+- Login response shape: `{ user, token }` (not wrapped in `.data`)
+- Session exposes `accessToken` for authenticated API calls
+
+## Do not change unless asked
+- API URL, auth flow, or server route handlers under `src/app/api/`
+- Do not point login at `/admin/login` (Filament UI, GET only)
+
+## Errors
+- Use `ApiError` from client; surface Persian messages in UI toasts where appropriate
+
+## Query keys
+- Define in `src/hooks/queries/*/query-keys.ts`
+- Example: `cartKeys.lists()` — use existing factory methods, do not invent missing keys

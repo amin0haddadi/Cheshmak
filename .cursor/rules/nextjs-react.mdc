@@ -1,0 +1,32 @@
+---
+description: Next.js App Router and React component conventions
+globs: src/**/*.{tsx,ts}
+alwaysApply: false
+---
+
+# Next.js & React
+
+## Structure
+- Routes: `src/app/(main)/`, `src/app/(auth)/`
+- Features: `src/features/<domain>/components/`
+- Shared UI: `src/components/ui/` (shadcn)
+- Prefer **Server Components**; add `"use client"` only when needed (hooks, events, browser APIs)
+
+## Components
+- Functional components; props interface named `{Name}Props`
+- Use `cn()` from `@/lib/utils` for class merging
+- Use `next/image` for images; remote images allowed via `next.config.js`
+- Page metadata via `generatePageMetadata()` from `@/lib/metadata-helpers`
+
+## Data fetching
+- Server: call `src/lib/api/*` directly
+- Client: TanStack Query hooks in `src/hooks/queries/` and `src/hooks/mutations/`
+- Cart: API cart when authenticated; `useCartStore` for guests
+
+## Styling
+- Tailwind + CSS variables in `globals.css` (dark theme, glass utilities)
+- Prettier: single quotes, trailing commas — see `.prettierrc.json`
+- Fonts: Estedad via `src/lib/fonts.ts` — see `fonts.mdc`
+
+## Architecture
+- Server `page.tsx` + client feature components — see `architecture.mdc`

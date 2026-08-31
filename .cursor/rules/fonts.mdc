@@ -1,0 +1,32 @@
+---
+description: Estedad font — local files only, no Nastaliq/icomoon
+globs: src/lib/fonts.ts,src/app/layout.tsx,public/assets/fonts/**/*
+alwaysApply: false
+---
+
+# Fonts
+
+## Active font: Estedad only
+- Config: `src/lib/fonts.ts` via `next/font/local`
+- Files: `public/assets/fonts/estedad/`
+  - `Estedad-Regular.ttf` (400)
+  - `Estedad-Medium.ttf` (500)
+  - `Estedad-SemiBold.ttf` (600)
+  - `Estedad-Bold.ttf` (700)
+- CSS variable: `--font-estedad`; applied on `<html>` in root layout
+
+## Do not
+- Re-add Noto Nastaliq Urdu, icomoon, or unused Estedad weights
+- Load fonts from Google Fonts CDN in production code
+- Change font paths without updating `fonts.ts` and keeping all 4 weights
+
+## Setup (fresh clone / missing files)
+1. Download Estedad from [rastikerdar/estedad](https://github.com/rastikerdar/estedad)
+2. Copy the four TTF files into `public/assets/fonts/estedad/`
+3. Restart: `npm run dev` — no code changes if filenames match `fonts.ts`
+
+## Adding/replacing fonts
+1. Place TTF/WOFF2 under `public/assets/fonts/<name>/`
+2. Register in `src/lib/fonts.ts` with `localFont`
+3. Wire `variable` on root layout; use Tailwind/CSS var if needed
+4. Restart dev server after file changes

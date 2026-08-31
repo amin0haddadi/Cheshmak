@@ -1,0 +1,32 @@
+---
+description: Cheshmak core project context and global constraints
+alwaysApply: true
+---
+
+# Cheshmak (چشمک) — Project Rules
+
+## Identity
+- Persian RTL online **glasses shop** (عینک طبی، آفتابی، فریم)
+- Physical store: **برسام بوتیک** — Zanjan (see `src/config/brand.ts`)
+- UI copy is **Persian (fa)**; layout is **RTL** (`dir="rtl"` on `<html>`)
+
+## Source of truth
+- Brand, contact, social, promo: `src/config/brand.ts`
+- Nav / footer links / payment logos: `src/data/navigation.ts`
+- API base URL: `NEXT_PUBLIC_API_URL` in `.env` (default `https://api.cheshmak-store.ir/api`)
+- Login API: `API_LOGIN_URL` → `POST /api/login` (not `/admin/login`)
+
+## Do not
+- Change API/server integration unless explicitly requested
+- Commit `.env` or create git commits unless the user asks
+- Add pages to footer/nav without an existing route (comment out until page exists)
+- Re-add removed legacy assets (beauty-shop icons, icomoon, old payment PNGs)
+
+## Build & stack
+- Next.js 14 App Router, TypeScript, Tailwind, shadcn/ui, TanStack Query, NextAuth, Zustand
+- Production output is `.next/` (not `build/`)
+- Site background: `public/assets/img/site-bg.png` on `html` in `globals.css`
+
+## Scope
+- Minimal diffs; match existing patterns in surrounding files
+- Reuse `@/` imports, `container-custom`, `brand`, existing hooks/stores

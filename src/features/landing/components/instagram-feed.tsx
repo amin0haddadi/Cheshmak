@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Instagram } from "lucide-react";
+import { brand } from "@/config/brand";
 
 const instagramImages = [
   "/assets/img/insta01.jpg",
@@ -18,7 +19,7 @@ export function InstagramFeed() {
         {instagramImages.map((image, index) => (
           <a
             key={index}
-            href="https://instagram.com"
+            href={brand.social.instagram}
             target="_blank"
             rel="noopener noreferrer"
             className="group relative aspect-square overflow-hidden"

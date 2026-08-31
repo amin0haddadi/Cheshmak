@@ -1,0 +1,34 @@
+---
+description: Persian UI copy, footer/nav links, and contact info
+globs: src/data/navigation.ts,src/components/layout/**/*,src/app/**/*.tsx,src/features/**/*
+alwaysApply: false
+---
+
+# Content & Navigation
+
+## Language
+- User-facing text: **Persian**
+- Keep tone consistent with existing pages (فروشگاه، خانه، تماس با ما)
+
+## Contact & social — use `brand` config
+- Phone: `brand.phone` / `brand.phoneTel`
+- Address: `brand.address`
+- Instagram, Telegram, WhatsApp: `brand.social.*`
+- Do not hardcode contact details in multiple files
+
+## Footer / nav links
+- Edit `footerNavItems` and `mainNavItems` in `src/data/navigation.ts`
+- **Only link to routes that exist** under `src/app/`
+- Missing pages: **comment out** the entry until the page is added, then uncomment
+
+```ts
+// { name: "مرجوعی", path: "/returns" },  // uncomment when page exists
+```
+
+## Payment badges
+- `paymentMethods` in `navigation.ts` — currently ZarinPal + Bank Saman SVGs in `public/assets/img/`
+
+## Policies (keep aligned across FAQ, advantages, copy)
+- Free shipping: orders over **1 million تومان**
+- Returns: **7 days**
+- Promo code: `brand.promoCode`

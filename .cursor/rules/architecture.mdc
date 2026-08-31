@@ -1,0 +1,69 @@
+---
+description: Component-driven architecture — server pages, client feature components
+globs: src/app/**/page.tsx,src/features/**/*
+alwaysApply: false
+---
+
+# Component-Driven Architecture
+
+## Pages are Server Components
+- All `page.tsx` files: **no** `"use client"`
+- Export metadata: `export const metadata: Metadata = generatePageMetadata({...})`
+- Pages compose feature components only; fetch data on server and pass props
+- Dynamic routes: use `generateMetadata` (`product/[id]`, `blog/[slug]`)
+
+## Feature components handle client logic
+- Interactive UI lives in `src/features/<feature>/components/`
+- Mark with `"use client"`; encapsulate state, hooks, event handlers
+- Keep reusable and self-contained
+
+## Structure
+
+```
+src/app/(main)/shop/page.tsx           ← server (metadata + compose)
+src/features/shop/components/shop-content.tsx  ← client (interactivity)
+```
+
+## Rules
+1. Never `"use client"` in `page.tsx`
+2. Always export metadata from static pages
+3. Move interactive logic into feature components
+4. Keep pages thin — import and compose only
+
+## Page template
+
+```tsx
+import type { Metadata } from 'next';
+import { generatePageMetadata } from '@/lib/metadata-helpers';
+import { PageHeader } from '@/components/ui/page-header';
+import { ShopContent } from '@/features/shop/components/shop-content';
+
+export const metadata: Metadata = generatePageMetadata({
+  title: 'فروشگاه',
+  url: '/shop',
+});
+
+export default function ShopPage() {
+  return (
+    <>
+      <PageHeader title="فروشگاه" breadcrumbs={[...]} />
+      <ShopContent />
+    </>
+  );
+}
+```
+
+## Feature component template
+
+```tsx
+'use client';
+
+export function ShopContent() {
+  // state, hooks, handlers
+  return <div>...</div>;
+}
+```
+
+## Refactor pattern
+- Bad: `"use client"` + 200 lines in `page.tsx`
+- Good: server `page.tsx` + client `*-content.tsx` in features
