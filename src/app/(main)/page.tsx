@@ -13,7 +13,7 @@ import { TrendingProducts } from '@/features/landing/components/trending-product
 import { generatePageMetadata } from '@/lib/metadata-helpers';
 
 export const metadata: Metadata = generatePageMetadata({
-  title: '40060969',
+  title: 'خانه',
   description: brand.description,
   image: '/assets/img/main-bg.jpg',
   url: '/',
