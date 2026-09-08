@@ -53,6 +53,7 @@ export async function apiClient<T>(
 
   const config: RequestInit = {
     headers: {
+      Accept: 'application/json',
       'Content-Type': 'application/json',
       ...(token && { Authorization: `Bearer ${token}` }),
       ...options?.headers,
