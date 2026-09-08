@@ -4,10 +4,8 @@ import { brand } from '@/config/brand';
 
 const rootMetadata: Metadata = {
   title: {
-    template: '49892761',
-    // `%s - ${brand.name}`
-    default: '49892761',
-    //  brand.name
+    template: `%s - ${brand.name}`,
+    default: brand.name,
   },
   description: brand.description,
 
@@ -18,7 +16,7 @@ const rootMetadata: Metadata = {
   ],
   keywords: [...brand.keywords],
   other: {
-    enamad: '49892761',
+    enamad: brand.enamad.meta,
   },
 };
 
