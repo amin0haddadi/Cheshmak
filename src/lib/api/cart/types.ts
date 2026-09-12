@@ -10,15 +10,20 @@ export interface ApiCartItem {
   quantity: number;
   product?: ApiProduct;
   variant_id?: number;
-  price?: string;
+  price?: string | number;
   created_at?: string;
   updated_at?: string;
 }
 
-export interface ApiCartResponse {
-  data: ApiCartItem[];
-  total?: number;
-  subtotal?: number;
-  shipping?: number;
+export interface ApiCartData {
+  id: number | null;
+  items: ApiCartItem[];
+  subtotal: number;
+  discount: number | null;
+  total: number;
+  items_count: number;
 }
 
+export interface ApiCartResponse {
+  data: ApiCartData;
+}

@@ -11,21 +11,25 @@ export function transformApiCartItem(apiCartItem: ApiCartItem): CartItem {
   }
 
   const product = transformApiProduct(apiCartItem.product);
-  
+
   return {
     ...product,
     quantity: apiCartItem.quantity,
-    // You can add selectedColor or other variant info here if needed
-    // selectedColor: apiCartItem.variant?.color,
   };
 }
 
 /**
  * Transform API cart response to frontend cart items
+ * API shape: { data: { id, items: [...], subtotal, total, ... } }
  */
 export function transformApiCartResponse(
   apiCartResponse: ApiCartResponse
 ): CartItem[] {
-  return apiCartResponse.data.map(transformApiCartItem);
-}
+  const items = apiCartResponse?.data?.items;
 
+  if (!Array.isArray(items)) {
+    return [];
+  }
+
+  return items.map(transformApiCartItem);
+}
