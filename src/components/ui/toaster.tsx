@@ -47,12 +47,10 @@ function ToastProgress({
 
   if (duration <= 0) return null;
 
-  const progressColor = 
-    variant === "destructive" 
-      ? "bg-destructive-foreground" 
-      : variant === "success"
-      ? "bg-green-600"
-      : "bg-primary";
+  const progressColor =
+    variant === "destructive"
+      ? "bg-destructive-foreground"
+      : "bg-white/80";
 
   return (
     <div className="absolute inset-x-0 bottom-0 h-1 overflow-hidden rounded-b-md bg-background/20">
