@@ -3,11 +3,9 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useSession } from "next-auth/react";
 import { Search, User, Heart, ShoppingBag, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useUIStore } from "@/stores/ui-store";
-import { useCartStore } from "@/stores/cart-store";
 import { useCart } from "@/hooks/queries/cart";
 import { useWishlistStore } from "@/stores/wishlist-store";
 import type { NavItem } from "@/types";
@@ -19,12 +17,8 @@ interface MobileMenuProps {
 export function MobileMenu({ items }: MobileMenuProps) {
   const pathname = usePathname();
   const { isMobileMenuOpen, closeMobileMenu } = useUIStore();
-  const { data: session } = useSession();
   const { data: apiCartItems } = useCart();
-  const { items: localCartItems } = useCartStore();
-  
-  // Use API cart for authenticated users, local store for guests
-  const cartItems = session?.user ? (apiCartItems || []) : localCartItems;
+  const cartItems = apiCartItems || [];
   const { items: wishlistItems } = useWishlistStore();
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
 

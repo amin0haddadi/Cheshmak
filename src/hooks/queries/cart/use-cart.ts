@@ -1,26 +1,37 @@
-import { useQuery } from "@tanstack/react-query";
-import { useSession } from "next-auth/react";
-import { getCart } from "@/lib/api/cart";
-import { transformApiCartResponse } from "@/lib/api/cart/transformers";
-import { cartKeys } from "./query-keys";
-import type { CartItem } from "@/types";
+import { useQuery } from '@tanstack/react-query';
+import { useSession } from 'next-auth/react';
+import {
+  getCart,
+  getCartRequestAuth,
+  transformApiCartResponse,
+} from '@/lib/api/cart';
+import { getOrCreateGuestToken } from '@/lib/guest-token';
+import { cartKeys } from './query-keys';
+import type { CartItem } from '@/types';
 
 /**
- * Hook to fetch current user's cart
- * Only fetches if user is authenticated (has session)
+ * Fetch cart for guests and logged-in users.
+ * Cart identity stays on the guest cookie (X-Guest-Token) even after login,
+ * because Bearer-only cart mutations currently 500 on the API.
  */
 export function useCart() {
   const { data: session, status } = useSession();
 
+  const guestToken =
+    typeof window !== 'undefined' ? getOrCreateGuestToken() : null;
+
+  // Prefer guest scope so login does not switch to an empty user-cart cache key
+  const scope = guestToken ?? session?.user?.id ?? 'guest';
+
   return useQuery<CartItem[]>({
-    queryKey: [...cartKeys.lists(), session?.user?.id],
+    queryKey: cartKeys.list(scope),
     queryFn: async () => {
-      const response = await getCart(session?.accessToken);
+      const auth = getCartRequestAuth(session?.accessToken);
+      const response = await getCart(auth);
       return transformApiCartResponse(response);
     },
-    enabled: status === "authenticated" && !!session?.accessToken,
-    staleTime: 30 * 1000, // 30 seconds - cart changes frequently
-    gcTime: 5 * 60 * 1000, // 5 minutes
+    enabled: status !== 'loading',
+    staleTime: 30 * 1000,
+    gcTime: 5 * 60 * 1000,
   });
 }
-

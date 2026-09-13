@@ -44,6 +44,8 @@ export interface Category {
 export interface CartItem extends Product {
   quantity: number;
   selectedColor?: string;
+  /** Cart line id from API (needed for increase/decrease/remove) */
+  cartItemId?: number;
 }
 
 // Blog types

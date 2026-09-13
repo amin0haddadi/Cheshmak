@@ -2,10 +2,8 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { useSession } from "next-auth/react";
 import { X, Search, User, Heart, ShoppingBag } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useCartStore } from "@/stores/cart-store";
 import { useCart } from "@/hooks/queries/cart";
 import { useUIStore } from "@/stores/ui-store";
 import { mainNavItems } from "@/data/navigation";
@@ -16,12 +14,8 @@ import { brand } from "@/config/brand";
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const { data: session } = useSession();
   const { data: apiCartItems } = useCart();
-  const { items: localCartItems } = useCartStore();
-  
-  // Use API cart for authenticated users, local store for guests
-  const cartItems = session?.user ? (apiCartItems || []) : localCartItems;
+  const cartItems = apiCartItems || [];
   const { isPromoVisible, hidePromo, isMobileMenuOpen, toggleMobileMenu } =
     useUIStore();
 

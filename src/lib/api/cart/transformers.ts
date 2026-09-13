@@ -1,20 +1,31 @@
-import type { CartItem } from "@/types";
-import type { ApiCartItem, ApiCartResponse } from "./types";
-import { transformApiProduct } from "../products/transformers";
+import type { CartItem } from '@/types';
+import type { ApiCartItem, ApiCartResponse } from './types';
+import { transformApiProduct } from '../products/transformers';
 
 /**
  * Transform API cart item to frontend CartItem type
  */
 export function transformApiCartItem(apiCartItem: ApiCartItem): CartItem {
   if (!apiCartItem.product) {
-    throw new Error("Product data is missing in cart item");
+    throw new Error('Product data is missing in cart item');
   }
 
-  const product = transformApiProduct(apiCartItem.product);
+  // Cart lines often include variant separately from product
+  const productWithVariant = {
+    ...apiCartItem.product,
+    variant: apiCartItem.variant ?? apiCartItem.product.variant,
+  };
+
+  const product = transformApiProduct(productWithVariant);
+  const linePrice =
+    apiCartItem.price != null ? String(apiCartItem.price) : product.price;
 
   return {
     ...product,
+    price: linePrice,
+    cartItemId: apiCartItem.id,
     quantity: apiCartItem.quantity,
+    variantId: apiCartItem.variant?.id ?? product.variantId,
   };
 }
 
@@ -23,7 +34,7 @@ export function transformApiCartItem(apiCartItem: ApiCartItem): CartItem {
  * API shape: { data: { id, items: [...], subtotal, total, ... } }
  */
 export function transformApiCartResponse(
-  apiCartResponse: ApiCartResponse
+  apiCartResponse: ApiCartResponse,
 ): CartItem[] {
   const items = apiCartResponse?.data?.items;
 
@@ -31,5 +42,7 @@ export function transformApiCartResponse(
     return [];
   }
 
-  return items.map(transformApiCartItem);
+  return items
+    .filter((item) => item?.product)
+    .map(transformApiCartItem);
 }

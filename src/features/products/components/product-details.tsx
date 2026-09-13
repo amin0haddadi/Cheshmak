@@ -22,8 +22,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ProductCard } from '@/features/products/components/product-card';
 import { useProducts } from '@/hooks/queries/products';
 import { cn, formatPrice } from '@/lib/utils';
-import { useCartStore } from '@/stores/cart-store';
+import { useAddCartItem } from '@/hooks/mutations/cart';
 import { useWishlistStore } from '@/stores/wishlist-store';
+import { useToast } from '@/hooks/use-toast';
 import type { Product } from '@/types';
 
 interface ProductDetailsProps {
@@ -37,8 +38,9 @@ export function ProductDetails({ product }: ProductDetailsProps) {
   );
   const [quantity, setQuantity] = useState(1);
 
-  const { addItem } = useCartStore();
+  const { mutate: addApiItem, isPending: addingToCart } = useAddCartItem();
   const { toggleItem, isInWishlist } = useWishlistStore();
+  const { toast } = useToast();
   const maxQuantity = Math.max(0, product.stock ?? 0);
 
   // Fetch related products from the same category
@@ -62,7 +64,15 @@ export function ProductDetails({ product }: ProductDetailsProps) {
   };
 
   const handleAddToCart = () => {
-    addItem(product, quantity, selectedColor);
+    if (!product.variantId) {
+      toast({
+        title: 'خطا',
+        description: 'این محصول برای افزودن به سبد آماده نیست',
+        variant: 'destructive',
+      });
+      return;
+    }
+    addApiItem({ variant_id: product.variantId, quantity });
   };
 
   const averageRating =
@@ -259,6 +269,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
                   className='h-11 min-w-0 flex-1 px-3 text-sm sm:px-8 sm:text-base'
                   size='lg'
                   onClick={handleAddToCart}
+                  disabled={addingToCart}
                 >
                   <ShoppingBag className='size-4 shrink-0 sm:size-5' />
                   افزودن به سبد

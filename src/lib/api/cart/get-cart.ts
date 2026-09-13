@@ -1,13 +1,12 @@
-import { api } from "../client";
-import type { ApiCartResponse } from "./types";
+import { api, type ApiRequestOptions } from '../client';
+import type { ApiCartResponse } from './types';
 
 /**
- * Get current user's cart
+ * Get current cart (auth Bearer or X-Guest-Token)
  * Endpoint: GET /api/cart
- * Requires: Bearer token in Authorization header
- * @param token - Optional auth token. If not provided, will be retrieved from session (server-side)
  */
-export async function getCart(token?: string): Promise<ApiCartResponse> {
-  return api.get<ApiCartResponse>("/cart", { token });
+export async function getCart(
+  options?: Pick<ApiRequestOptions, 'token' | 'guestToken'>,
+): Promise<ApiCartResponse> {
+  return api.get<ApiCartResponse>('/cart', options);
 }
-

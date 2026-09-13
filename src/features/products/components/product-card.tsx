@@ -2,14 +2,14 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-
 import { Eye, Heart, ShoppingBag } from 'lucide-react';
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { cn, formatPrice } from '@/lib/utils';
-import { useCartStore } from '@/stores/cart-store';
+import { useAddCartItem } from '@/hooks/mutations/cart';
 import { useWishlistStore } from '@/stores/wishlist-store';
+import { useToast } from '@/hooks/use-toast';
 import type { Product } from '@/types';
 
 interface ProductCardProps {
@@ -18,13 +18,24 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ product, className }: ProductCardProps) {
-  const { addItem } = useCartStore();
+  const { mutate: addApiItem, isPending } = useAddCartItem();
   const { toggleItem, isInWishlist } = useWishlistStore();
+  const { toast } = useToast();
   const isWishlisted = isInWishlist(product.id);
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
-    addItem(product);
+
+    if (!product.variantId) {
+      toast({
+        title: 'خطا',
+        description: 'این محصول برای افزودن به سبد آماده نیست',
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    addApiItem({ variant_id: product.variantId, quantity: 1 });
   };
 
   const handleToggleWishlist = (e: React.MouseEvent) => {
@@ -34,7 +45,6 @@ export function ProductCard({ product, className }: ProductCardProps) {
 
   return (
     <div className={cn('group glass-card flex flex-col', className)}>
-      {/* Image */}
       <div className='relative z-[1] aspect-[3/4] overflow-hidden'>
         <Link href={`/product/${product.id}`}>
           <Image
@@ -46,11 +56,11 @@ export function ProductCard({ product, className }: ProductCardProps) {
         </Link>
 
         <div className='absolute left-3 top-3 flex flex-col gap-2'>
-          {product.isSale && <Badge variant='sale'>Sale</Badge>}
-          {product.isNew && <Badge variant='new'>New</Badge>}
+          {product.isSale && <Badge variant='sale'>حراج</Badge>}
+          {product.isNew && <Badge variant='new'>جدید</Badge>}
         </div>
 
-        <div className='absolute right-3 top-3 flex flex-col gap-2 opacity-0 transition-opacity group-hover:opacity-100'>
+        <div className='absolute right-3 top-3 flex flex-col gap-2 opacity-0 transition-opacity group-hover:opacity-100 max-md:opacity-100'>
           <Button
             variant='secondary'
             size='icon'
@@ -75,15 +85,18 @@ export function ProductCard({ product, className }: ProductCardProps) {
           </Link>
         </div>
 
-        <div className='absolute inset-x-3 bottom-3 opacity-0 transition-opacity group-hover:opacity-100'>
-          <Button className='w-full shadow-lg' onClick={handleAddToCart}>
+        <div className='absolute inset-x-3 bottom-3 opacity-0 transition-opacity group-hover:opacity-100 max-md:opacity-100'>
+          <Button
+            className='w-full shadow-lg'
+            onClick={handleAddToCart}
+            disabled={isPending}
+          >
             <ShoppingBag className='mx-2 size-4' />
             افزودن به سبد
           </Button>
         </div>
       </div>
 
-      {/* Info */}
       <div className='relative z-[1] space-y-1 px-3 pb-3 pt-2 sm:space-y-2 sm:px-4 sm:pb-4'>
         <p className='text-[10px] uppercase tracking-wider text-primary/70 sm:text-xs'>
           {product.category}

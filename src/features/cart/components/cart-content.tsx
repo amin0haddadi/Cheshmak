@@ -1,52 +1,83 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import Link from "next/link";
-import { useSession } from "next-auth/react";
-import { Trash2, Minus, Plus, ShoppingBag } from "lucide-react";
-import { formatPrice } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { useCartStore } from "@/stores/cart-store";
-import { useCart } from "@/hooks/queries/cart";
-import { Loading } from "@/components/ui/loading";
-import { ErrorMessage } from "@/components/ui/error-message";
+import { useState } from 'react';
+import Link from 'next/link';
+import { useSession } from 'next-auth/react';
+import { ShoppingBag } from 'lucide-react';
+import { formatPrice } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { useCart } from '@/hooks/queries/cart';
+import {
+  useRemoveCartItem,
+  useApplyCartVoucher,
+  useRemoveCartVoucher,
+} from '@/hooks/mutations/cart';
+import { Loading } from '@/components/ui/loading';
+import { ErrorMessage } from '@/components/ui/error-message';
+import { CartLineItem } from './cart-line-item';
 
 export function CartContent() {
-  const { data: session } = useSession();
-  const { data: apiCartItems, isLoading, error } = useCart();
-  const { items: localItems, removeItem, updateQuantity, getTotal, clearCart } =
-    useCartStore();
+  const { status } = useSession();
+  const { data: items = [], isLoading, error, refetch } = useCart();
 
-  // Use API cart for authenticated users, local store for guests
-  const items = session?.user ? (apiCartItems || []) : localItems;
+  const { mutate: removeApiItem, isPending: removing } = useRemoveCartItem();
+  const { mutate: applyVoucher, isPending: applyingVoucher } =
+    useApplyCartVoucher();
+  const { mutate: removeVoucher, isPending: removingVoucher } =
+    useRemoveCartVoucher();
 
-  // Show loading state for authenticated users
-  if (session?.user && isLoading) {
+  const [voucherCode, setVoucherCode] = useState('');
+  const [clearing, setClearing] = useState(false);
+  const isAuthenticated = status === 'authenticated';
+
+  if (status === 'loading' || isLoading) {
     return <Loading message="در حال بارگذاری سبد خرید..." withContainer />;
   }
 
-  // Show error state for authenticated users
-  if (session?.user && error) {
+  if (error) {
     return (
       <ErrorMessage
         message="خطا در بارگذاری سبد خرید. لطفاً دوباره تلاش کنید."
-        onRetry={() => window.location.reload()}
+        onRetry={() => refetch()}
         withContainer
       />
     );
   }
 
-  // Calculate totals
-  const calculateTotal = () => {
-    return items.reduce((total, item) => {
-      const price = parseFloat(item.price);
-      return total + price * item.quantity;
-    }, 0);
+  const subtotal = items.reduce((total, item) => {
+    const price = parseFloat(item.price);
+    return total + price * item.quantity;
+  }, 0);
+  const shipping = subtotal >= 1_000_000 ? 0 : 0;
+  const total = subtotal + shipping;
+
+  const handleClear = async () => {
+    const ids = items
+      .map((item) => item.cartItemId)
+      .filter((id): id is number => typeof id === 'number');
+    setClearing(true);
+    try {
+      for (const id of ids) {
+        await new Promise<void>((resolve, reject) => {
+          removeApiItem(id, {
+            onSuccess: () => resolve(),
+            onError: (err) => reject(err),
+          });
+        });
+      }
+    } finally {
+      setClearing(false);
+    }
   };
 
-  const subtotal = session?.user ? calculateTotal() : getTotal();
-  const shipping = subtotal > 99 ? 0 : 10;
-  const total = subtotal + shipping;
+  const handleApplyVoucher = () => {
+    const code = voucherCode.trim();
+    if (!code) return;
+    applyVoucher(code, {
+      onSuccess: () => setVoucherCode(''),
+    });
+  };
 
   if (items.length === 0) {
     return (
@@ -73,111 +104,55 @@ export function CartContent() {
     <div className="py-8 lg:py-12">
       <div className="container-custom">
         <div className="grid gap-8 lg:grid-cols-3">
-          {/* Cart Items */}
           <div className="space-y-4 lg:col-span-2">
             {items.map((item) => (
-              <div
-                key={`${item.id}-${item.selectedColor}`}
-                className="flex gap-4 rounded-xl border bg-card p-4"
-              >
-                {/* Image */}
-                <Link
-                  href={`/product/${item.id}`}
-                  className="relative size-24 flex-shrink-0 overflow-hidden rounded-lg"
-                >
-                  <Image
-                    src={item.image}
-                    alt={item.name}
-                    fill
-                    className="object-cover"
-                  />
-                </Link>
-
-                {/* Details */}
-                <div className="min-w-0 flex-1">
-                  <div className="flex justify-between gap-4">
-                    <div>
-                      <Link
-                        href={`/product/${item.id}`}
-                        className="line-clamp-1 font-medium transition-colors hover:text-primary"
-                      >
-                        {item.name}
-                      </Link>
-                      <p className="text-sm text-muted-foreground">
-                        {item.category}
-                      </p>
-                      {item.selectedColor && (
-                        <div className="mt-1 flex items-center gap-2">
-                          <span className="text-sm text-muted-foreground">
-                            رنگ:
-                          </span>
-                          <div
-                            className="size-4 rounded-full border"
-                            style={{ backgroundColor: item.selectedColor }}
-                          />
-                        </div>
-                      )}
-                    </div>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      className="text-muted-foreground hover:text-destructive"
-                      onClick={() => removeItem(item.id)}
-                    >
-                      <Trash2 className="size-4" />
-                    </Button>
-                  </div>
-
-                  <div className="mt-4 flex items-center justify-between">
-                    {/* Quantity */}
-                    <div className="flex items-center rounded-lg border">
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="size-8"
-                        onClick={() =>
-                          updateQuantity(item.id, item.quantity - 1)
-                        }
-                      >
-                        <Minus className="size-3" />
-                      </Button>
-                      <span className="w-8 text-center text-sm">
-                        {item.quantity}
-                      </span>
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="size-8"
-                        onClick={() =>
-                          updateQuantity(item.id, item.quantity + 1)
-                        }
-                      >
-                        <Plus className="size-3" />
-                      </Button>
-                    </div>
-
-                    {/* Price */}
-                    <span className="font-semibold">
-                      {formatPrice(parseFloat(item.price) * item.quantity)}
-                    </span>
-                  </div>
-                </div>
-              </div>
+              <CartLineItem
+                key={item.cartItemId ?? item.id}
+                item={item}
+              />
             ))}
 
             <Button
               variant="outline"
               className="text-muted-foreground"
-              onClick={clearCart}
+              disabled={clearing || removing}
+              onClick={handleClear}
             >
               پاک کردن سبد
             </Button>
           </div>
 
-          {/* Order Summary */}
           <div className="lg:col-span-1">
             <div className="sticky top-24 rounded-xl border bg-card p-6">
               <h2 className="mb-6 text-xl font-semibold">خلاصه سفارش</h2>
+
+              <div className="mb-6 space-y-2">
+                <label className="block text-sm font-medium">کد تخفیف</label>
+                <div className="flex gap-2">
+                  <Input
+                    value={voucherCode}
+                    onChange={(e) => setVoucherCode(e.target.value)}
+                    placeholder="مثلاً CHESHMAK2026"
+                    disabled={applyingVoucher}
+                  />
+                  <Button
+                    type="button"
+                    variant="outline"
+                    disabled={applyingVoucher || !voucherCode.trim()}
+                    onClick={handleApplyVoucher}
+                  >
+                    اعمال
+                  </Button>
+                </div>
+                <button
+                  type="button"
+                  className="text-xs text-muted-foreground underline-offset-2 hover:underline"
+                  disabled={removingVoucher}
+                  onClick={() => removeVoucher()}
+                >
+                  حذف کد تخفیف
+                </button>
+              </div>
 
               <div className="mb-6 space-y-4">
                 <div className="flex justify-between">
@@ -194,11 +169,9 @@ export function CartContent() {
                     )}
                   </span>
                 </div>
-                {shipping > 0 && (
-                  <p className="text-xs text-muted-foreground">
-                    ارسال رایگان برای سفارش‌های بالای ۹۹ دلار
-                  </p>
-                )}
+                <p className="text-xs text-muted-foreground">
+                  ارسال رایگان برای سفارش‌های بالای ۱ میلیون تومان
+                </p>
                 <div className="flex justify-between border-t pt-4 text-lg font-semibold">
                   <span>جمع کل</span>
                   <span>{formatPrice(total)}</span>
@@ -206,12 +179,24 @@ export function CartContent() {
               </div>
 
               <Button asChild className="w-full" size="lg">
-                <Link href="/checkout">ادامه به تسویه حساب</Link>
+                <Link
+                  href={
+                    isAuthenticated
+                      ? '/checkout'
+                      : '/login?callbackUrl=/checkout'
+                  }
+                >
+                  {isAuthenticated
+                    ? 'ادامه به تسویه حساب'
+                    : 'ورود و ادامه خرید'}
+                </Link>
               </Button>
 
-              <p className="mt-4 text-center text-xs text-muted-foreground">
-                مالیات در تسویه حساب محاسبه می‌شود
-              </p>
+              {!isAuthenticated && (
+                <p className="mt-3 text-center text-xs text-muted-foreground">
+                  برای پرداخت باید وارد حساب کاربری شوید. سبد شما حفظ می‌شود.
+                </p>
+              )}
             </div>
           </div>
         </div>
@@ -219,4 +204,3 @@ export function CartContent() {
     </div>
   );
 }
-

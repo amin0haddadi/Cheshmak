@@ -1,19 +1,23 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
-import { addCartItem, getCartRequestAuth, type AddCartItemRequest } from '@/lib/api/cart';
+import { removeCartVoucher, getCartRequestAuth } from '@/lib/api/cart';
 import { cartKeys } from '@/hooks/queries/cart/query-keys';
 import { useToast } from '@/hooks/use-toast';
 
-export function useAddCartItem() {
+export function useRemoveCartVoucher() {
   const { data: session } = useSession();
   const queryClient = useQueryClient();
   const { toast } = useToast();
 
   return useMutation({
-    mutationFn: (item: AddCartItemRequest) =>
-      addCartItem(item, getCartRequestAuth(session?.accessToken)),
+    mutationFn: () =>
+      removeCartVoucher(getCartRequestAuth(session?.accessToken)),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: cartKeys.lists() });
+      toast({
+        title: 'حذف شد',
+        description: 'کد تخفیف از سبد حذف شد',
+      });
     },
     onError: (error: any) => {
       toast({
@@ -21,7 +25,7 @@ export function useAddCartItem() {
         description:
           error?.data?.message ||
           error?.message ||
-          'خطا در افزودن محصول به سبد خرید. لطفاً دوباره تلاش کنید.',
+          'خطا در حذف کد تخفیف',
         variant: 'destructive',
       });
     },
