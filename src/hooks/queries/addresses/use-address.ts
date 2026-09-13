@@ -7,7 +7,7 @@ export function useAddress(id?: number) {
   const { data: session, status } = useSession();
 
   return useQuery({
-    queryKey: addressKeys.detail(id ?? 0),
+    queryKey: addressKeys.detail(id ?? 0, session?.accessToken),
     queryFn: () => getAddressById(id!, session?.accessToken),
     enabled:
       status === 'authenticated' &&

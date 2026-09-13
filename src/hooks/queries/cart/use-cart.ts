@@ -24,7 +24,7 @@ export function useCart() {
   const scope = guestToken ?? session?.user?.id ?? 'guest';
 
   return useQuery<CartItem[]>({
-    queryKey: cartKeys.list(scope),
+    queryKey: cartKeys.list(scope, session?.accessToken),
     queryFn: async () => {
       const auth = getCartRequestAuth(session?.accessToken);
       const response = await getCart(auth);

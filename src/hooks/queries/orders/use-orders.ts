@@ -7,7 +7,7 @@ export function useOrders() {
   const { data: session, status } = useSession();
 
   return useQuery({
-    queryKey: orderKeys.list(session?.user?.id),
+    queryKey: orderKeys.list(session?.user?.id, session?.accessToken),
     queryFn: () => getOrders({ per_page: 50 }, session?.accessToken),
     enabled: status === 'authenticated' && !!session?.accessToken,
     staleTime: 30 * 1000,

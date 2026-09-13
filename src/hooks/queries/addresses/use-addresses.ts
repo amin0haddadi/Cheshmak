@@ -7,7 +7,7 @@ export function useAddresses() {
   const { data: session, status } = useSession();
 
   return useQuery({
-    queryKey: addressKeys.list(session?.user?.id),
+    queryKey: addressKeys.list(session?.user?.id, session?.accessToken),
     queryFn: () => getAddresses(session?.accessToken),
     enabled: status === 'authenticated' && !!session?.accessToken,
     staleTime: 60 * 1000,
