@@ -3,30 +3,31 @@
  * API base URL is configured via NEXT_PUBLIC_API_URL environment variable
  */
 import { logger } from '@/lib/logger';
+import { getGuestToken } from '@/lib/guest-token';
 
 import { getServerToken } from './get-token';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
-/**
- * Get auth token
- * For server-side: uses NextAuth session
- * For client-side: token should be passed via options
- */
+export type ApiRequestOptions = RequestInit & {
+  token?: string;
+  /** Explicit guest token; otherwise cookie is used automatically (even with Bearer) */
+  guestToken?: string | null;
+  /** Skip attaching X-Guest-Token even if cookie exists */
+  skipGuestToken?: boolean;
+};
+
 async function getAuthToken(options?: {
   token?: string;
 }): Promise<string | null> {
-  // If token is explicitly provided, use it
   if (options?.token) {
     return options.token;
   }
 
-  // Server-side: get from NextAuth session
   if (typeof window === 'undefined') {
     return await getServerToken();
   }
 
-  // Client-side: return null (token should be passed via options)
   return null;
 }
 
@@ -44,25 +45,35 @@ export interface ApiErrorResponse {
 
 export async function apiClient<T>(
   endpoint: string,
-  options?: RequestInit & { token?: string },
+  options?: ApiRequestOptions,
 ): Promise<T> {
   const url = `${API_BASE_URL}${endpoint}`;
 
-  // Get auth token if available
   const token = await getAuthToken({ token: options?.token });
 
+  const {
+    token: _token,
+    guestToken: explicitGuestToken,
+    skipGuestToken,
+    ...fetchOptions
+  } = options || {};
+
+  // Always send guest cookie when present (with or without Bearer).
+  // Cart APIs need X-Guest-Token for continuity; Bearer-only add returns 500.
+  const guestToken = !skipGuestToken
+    ? (explicitGuestToken ?? getGuestToken())
+    : null;
+
   const config: RequestInit = {
+    ...fetchOptions,
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
       ...(token && { Authorization: `Bearer ${token}` }),
-      ...options?.headers,
+      ...(guestToken && { 'X-Guest-Token': guestToken }),
+      ...fetchOptions.headers,
     },
-    ...options,
   };
-
-  // Remove token from options to avoid passing it in fetch
-  delete (config as any).token;
 
   try {
     logger.debug(`API Request: ${options?.method || 'GET'} ${endpoint}`);
@@ -70,12 +81,11 @@ export async function apiClient<T>(
     const response = await fetch(url, config);
 
     if (!response.ok) {
-      // Try to parse error response
       let errorData: ApiErrorResponse = {};
       try {
         errorData = await response.json();
       } catch {
-        // If JSON parsing fails, use default message
+        // ignore
       }
 
       const error: ApiError = {
@@ -95,16 +105,19 @@ export async function apiClient<T>(
       throw error;
     }
 
-    const data = await response.json();
+    const text = await response.text();
+    if (!text) {
+      return undefined as T;
+    }
+
+    const data = JSON.parse(text);
     logger.debug(`API Success: ${endpoint}`);
     return data as T;
   } catch (error) {
-    // Re-throw ApiError as-is
     if (error && typeof error === 'object' && 'status' in error) {
       throw error;
     }
 
-    // Handle network errors
     if (error instanceof TypeError && error.message.includes('fetch')) {
       logger.error(`Network Error: ${endpoint}`, error);
       const networkError: ApiError = {
@@ -115,7 +128,6 @@ export async function apiClient<T>(
       throw networkError;
     }
 
-    // Handle other errors
     logger.error(`API Request Failed: ${endpoint}`, error);
     const apiError: ApiError = {
       message:
@@ -128,33 +140,24 @@ export async function apiClient<T>(
   }
 }
 
-// Helper methods for different HTTP verbs
 export const api = {
-  get: <T>(endpoint: string, options?: RequestInit & { token?: string }) =>
+  get: <T>(endpoint: string, options?: ApiRequestOptions) =>
     apiClient<T>(endpoint, { ...options, method: 'GET' }),
 
-  post: <T>(
-    endpoint: string,
-    data?: unknown,
-    options?: RequestInit & { token?: string },
-  ) =>
+  post: <T>(endpoint: string, data?: unknown, options?: ApiRequestOptions) =>
     apiClient<T>(endpoint, {
       ...options,
       method: 'POST',
-      body: JSON.stringify(data),
+      ...(data !== undefined ? { body: JSON.stringify(data) } : {}),
     }),
 
-  put: <T>(
-    endpoint: string,
-    data?: unknown,
-    options?: RequestInit & { token?: string },
-  ) =>
+  put: <T>(endpoint: string, data?: unknown, options?: ApiRequestOptions) =>
     apiClient<T>(endpoint, {
       ...options,
       method: 'PUT',
-      body: JSON.stringify(data),
+      ...(data !== undefined ? { body: JSON.stringify(data) } : {}),
     }),
 
-  delete: <T>(endpoint: string, options?: RequestInit & { token?: string }) =>
+  delete: <T>(endpoint: string, options?: ApiRequestOptions) =>
     apiClient<T>(endpoint, { ...options, method: 'DELETE' }),
 };
