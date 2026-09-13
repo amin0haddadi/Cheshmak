@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { signIn } from "next-auth/react";
+import { useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { Eye, EyeOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -11,6 +12,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useRegister } from "@/hooks/mutations/auth";
 import { useToast } from "@/hooks/use-toast";
+import { getGuestToken } from "@/lib/guest-token";
+import { cartKeys } from "@/hooks/queries/cart/query-keys";
 
 interface RegisterFormData {
   firstName: string;
@@ -22,10 +25,13 @@ interface RegisterFormData {
 
 export function RegisterContent() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const queryClient = useQueryClient();
   const { toast } = useToast();
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordConfirmation, setShowPasswordConfirmation] = useState(false);
   const { mutateAsync: register, isPending } = useRegister();
+  const callbackUrl = searchParams.get("callbackUrl") || "/";
 
   const {
     register: registerField,
@@ -46,12 +52,14 @@ export function RegisterContent() {
 
   const onSubmit = async (data: RegisterFormData) => {
     try {
-      // Register the user
+      const guestToken = getGuestToken() || undefined;
+
       const response = await register({
         name: `${data.firstName} ${data.lastName}`.trim(),
         email: data.email,
         password: data.password,
         password_confirmation: data.password_confirmation,
+        ...(guestToken ? { guest_token: guestToken } : {}),
       });
 
       const user = response?.user;
@@ -59,8 +67,10 @@ export function RegisterContent() {
 
       if (user && token) {
         const signInResult = await signIn("credentials", {
-          email: data.email,
-          password: data.password,
+          accessToken: token,
+          id: String(user.id),
+          email: user.email,
+          name: user.name,
           redirect: false,
         });
 
@@ -69,13 +79,19 @@ export function RegisterContent() {
             title: "ثبت نام موفق",
             description: "حساب کاربری شما ایجاد شد. لطفاً وارد شوید.",
           });
-          router.push("/login");
+          router.push(
+            callbackUrl !== "/"
+              ? `/login?callbackUrl=${encodeURIComponent(callbackUrl)}`
+              : "/login",
+          );
         } else if (signInResult?.ok) {
+          // Keep guest cookie — cart still needs X-Guest-Token after login
+          await queryClient.invalidateQueries({ queryKey: cartKeys.all });
           toast({
             title: "ثبت نام موفق",
             description: `خوش آمدید ${user.name}`,
           });
-          router.push("/");
+          router.push(callbackUrl);
           router.refresh();
         }
       } else {
@@ -83,7 +99,11 @@ export function RegisterContent() {
           title: "ثبت نام موفق",
           description: "حساب کاربری شما ایجاد شد. لطفاً وارد شوید.",
         });
-        router.push("/login");
+        router.push(
+          callbackUrl !== "/"
+            ? `/login?callbackUrl=${encodeURIComponent(callbackUrl)}`
+            : "/login",
+        );
       }
     } catch (error: any) {
       let errorMessage = "خطا در ثبت نام. لطفاً اطلاعات خود را بررسی کنید.";
@@ -303,7 +323,14 @@ export function RegisterContent() {
 
       <p className="mt-8 text-center text-sm text-muted-foreground">
         قبلاً حساب کاربری دارید؟{" "}
-        <Link href="/login" className="text-primary hover:underline">
+        <Link
+          href={
+            callbackUrl !== '/'
+              ? `/login?callbackUrl=${encodeURIComponent(callbackUrl)}`
+              : '/login'
+          }
+          className="text-primary hover:underline"
+        >
           ورود
         </Link>
       </p>

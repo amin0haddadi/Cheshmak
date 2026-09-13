@@ -2,14 +2,18 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { signIn } from "next-auth/react";
+import { useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { Eye, EyeOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
+import { login } from "@/lib/api/auth";
+import { getGuestToken } from "@/lib/guest-token";
+import { cartKeys } from "@/hooks/queries/cart/query-keys";
 
 interface LoginFormData {
   email: string;
@@ -18,9 +22,12 @@ interface LoginFormData {
 
 export function LoginContent() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const queryClient = useQueryClient();
   const { toast } = useToast();
   const [showPassword, setShowPassword] = useState(false);
   const [isPending, setIsPending] = useState(false);
+  const callbackUrl = searchParams.get("callbackUrl") || "/";
 
   const {
     register,
@@ -35,11 +42,27 @@ export function LoginContent() {
 
   const onSubmit = async (data: LoginFormData) => {
     setIsPending(true);
-    
+
     try {
-      const result = await signIn("credentials", {
+      const guestToken = getGuestToken();
+
+      // Call /login directly so guest_token is always in the JSON body (cart merge)
+      const response = await login({
         email: data.email,
         password: data.password,
+        ...(guestToken ? { guest_token: guestToken } : {}),
+      });
+
+      if (!response?.user || !response?.token) {
+        throw new Error("پاسخ نامعتبر از سرور");
+      }
+
+      // Create NextAuth session from API response (avoids a second /login)
+      const result = await signIn("credentials", {
+        accessToken: response.token,
+        id: String(response.user.id),
+        email: response.user.email,
+        name: response.user.name,
         redirect: false,
       });
 
@@ -49,18 +72,26 @@ export function LoginContent() {
           description: result.error,
           variant: "destructive",
         });
-      } else if (result?.ok) {
-        toast({
-          title: "ورود موفق",
-          description: "خوش آمدید",
-        });
-        router.push("/");
-        router.refresh();
+        return;
       }
-    } catch (error) {
+
+      // Keep guest cookie so cart APIs still send X-Guest-Token after login
+      await queryClient.invalidateQueries({ queryKey: cartKeys.all });
+
+      toast({
+        title: "ورود موفق",
+        description: `خوش آمدید ${response.user.name}`,
+      });
+      router.push(callbackUrl);
+      router.refresh();
+    } catch (error: unknown) {
+      const err = error as { data?: { message?: string }; message?: string };
       toast({
         title: "خطا در ورود",
-        description: "خطای نامشخص. لطفاً دوباره تلاش کنید.",
+        description:
+          err?.data?.message ||
+          err?.message ||
+          "خطای نامشخص. لطفاً دوباره تلاش کنید.",
         variant: "destructive",
       });
     } finally {
@@ -202,7 +233,14 @@ export function LoginContent() {
 
       <p className="mt-2 text-center text-sm text-muted-foreground">
         حساب کاربری ندارید؟{" "}
-        <Link href="/register" className="text-primary transition-colors hover:underline">
+        <Link
+          href={
+            callbackUrl !== "/"
+              ? `/register?callbackUrl=${encodeURIComponent(callbackUrl)}`
+              : "/register"
+          }
+          className="text-primary transition-colors hover:underline"
+        >
           ثبت نام
         </Link>
       </p>

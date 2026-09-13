@@ -5,6 +5,7 @@
 export interface LoginRequest {
   email: string;
   password: string;
+  guest_token?: string;
 }
 
 export interface LoginResponse {

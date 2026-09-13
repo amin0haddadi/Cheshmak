@@ -11,8 +11,22 @@ export const authOptions: NextAuthOptions = {
         email: { label: 'Email', type: 'email' },
         password: { label: 'Password', type: 'password' },
         guest_token: { label: 'Guest Token', type: 'text', required: false },
+        // Session bootstrap after client already called /login or /register
+        accessToken: { label: 'Access Token', type: 'text', required: false },
+        id: { label: 'User ID', type: 'text', required: false },
+        name: { label: 'Name', type: 'text', required: false },
       },
       async authorize(credentials) {
+        // Path A: client already logged in via API (with guest_token merge)
+        if (credentials?.accessToken && credentials?.email && credentials?.id) {
+          return {
+            id: credentials.id,
+            name: credentials.name || '',
+            email: credentials.email,
+            token: credentials.accessToken,
+          };
+        }
+
         if (!credentials?.email || !credentials?.password) {
           throw new Error('ایمیل و رمز عبور الزامی است');
         }
@@ -27,7 +41,9 @@ export const authOptions: NextAuthOptions = {
             body: JSON.stringify({
               email: credentials.email,
               password: credentials.password,
-              guest_token: credentials.guest_token || undefined,
+              ...(credentials.guest_token
+                ? { guest_token: credentials.guest_token }
+                : {}),
             }),
           });
 
@@ -63,7 +79,6 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async jwt({ token, user }) {
-      // Initial sign in
       if (user) {
         token.accessToken = user.token;
         token.id = user.id;
@@ -85,7 +100,7 @@ export const authOptions: NextAuthOptions = {
   },
   session: {
     strategy: 'jwt',
-    maxAge: 30 * 24 * 60 * 60, // 30 days
+    maxAge: 30 * 24 * 60 * 60,
   },
   secret: process.env.NEXTAUTH_SECRET,
 };
